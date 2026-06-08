@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- PLACEHOLDER: 差し替え用の街並みシルエット。本番では支給SVG/PNGに置き換えてください。 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 220" preserveAspectRatio="xMidYMax slice" role="img" aria-label="街並みのイラスト（プレースホルダー）">
+  <defs>
+    <linearGradient id="bld" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#bcd4f5"/>
+      <stop offset="1" stop-color="#d8e6fb"/>
+    </linearGradient>
+  </defs>
+  <g fill="url(#bld)">
+    <rect x="20"   y="120" width="60"  height="100"/>
+    <rect x="90"   y="80"  width="48"  height="140"/>
+    <rect x="150"  y="140" width="70"  height="80"/>
+    <rect x="232"  y="60"  width="40"  height="160"/>
+    <rect x="284"  y="110" width="64"  height="110"/>
+    <rect x="360"  y="150" width="54"  height="70"/>
+    <rect x="426"  y="90"  width="44"  height="130"/>
+    <rect x="482"  y="130" width="74"  height="90"/>
+    <rect x="568"  y="70"  width="38"  height="150"/>
+    <rect x="618"  y="120" width="60"  height="100"/>
+    <rect x="690"  y="100" width="50"  height="120"/>
+    <rect x="752"  y="150" width="68"  height="70"/>
+    <rect x="832"  y="84"  width="42"  height="136"/>
+    <rect x="886"  y="130" width="60"  height="90"/>
+    <rect x="958"  y="64"  width="40"  height="156"/>
+    <rect x="1010" y="120" width="70"  height="100"/>
+    <rect x="1092" y="96"  width="46"  height="124"/>
+    <rect x="1150" y="146" width="58"  height="74"/>
+    <rect x="1220" y="78"  width="40"  height="142"/>
+    <rect x="1272" y="124" width="64"  height="96"/>
+    <rect x="1348" y="104" width="48"  height="116"/>
+  </g>
+  <g fill="#ffffff" opacity="0.35">
+    <rect x="100" y="96"  width="8" height="10"/>
+    <rect x="116" y="96"  width="8" height="10"/>
+    <rect x="100" y="116" width="8" height="10"/>
+    <rect x="116" y="116" width="8" height="10"/>
+    <rect x="242" y="80"  width="8" height="10"/>
+    <rect x="242" y="100" width="8" height="10"/>
+    <rect x="578" y="88"  width="8" height="10"/>
+    <rect x="578" y="110" width="8" height="10"/>
+    <rect x="968" y="84"  width="8" height="10"/>
+    <rect x="968" y="106" width="8" height="10"/>
+    <rect x="1230" y="96" width="8" height="10"/>
+    <rect x="1230" y="118" width="8" height="10"/>
+  </g>
+</svg>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>つなぐ依頼ページ | TSUNAGU MEMBER PORTAL</title>
+  <meta name="description" content="つなぐ会員の皆さまからの各種ご依頼・ご相談を受け付けるページです。ご希望のメニューを選択し、必要な情報をご送信ください。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- ============================================================
+       ヘッダー
+       [ACF] site_logo_text / header_contact_label / header_contact_url
+  ============================================================ -->
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="#" class="site-logo">つなぐ</a>
+      <a href="#contact" class="btn-contact">
+        <!-- PLACEHOLDER ICON: envelope -->
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/>
+          <path d="M4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>お問い合わせ</span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============================================================
+         ヒーロー
+         [ACF] hero_badge / hero_title / hero_lead
+               info_card_title / info_card_desc
+               info_item_1_label / info_item_2_label / info_item_3_label
+    ============================================================ -->
+    <section class="hero">
+      <div class="container hero__inner">
+        <div class="hero__main" data-reveal>
+          <span class="hero__badge">
+            <!-- PLACEHOLDER ICON: shield -->
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+              <path d="M9 12l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            TSUNAGU MEMBER PORTAL
+          </span>
+          <h1 class="hero__title">つなぐ依頼ページ</h1>
+          <p class="hero__lead">つなぐ会員の皆さまからの各種ご依頼・ご相談を受け付けるページです。<br>ご希望のメニューを選択し、必要な情報をご送信ください。</p>
+        </div>
+
+        <aside class="info-card" data-reveal>
+          <div class="info-card__head">
+            <span class="info-card__head-icon">
+              <!-- PLACEHOLDER ICON: info -->
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/>
+                <line x1="12" y1="11" x2="12" y2="16.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                <circle cx="12" cy="7.8" r="1.1" fill="currentColor"/>
+              </svg>
+            </span>
+            <div>
+              <h2 class="info-card__title">ご利用について</h2>
+              <p class="info-card__desc">各メニューから、依頼シート・料金表・<br>ご連絡方法などを確認いただけます。</p>
+            </div>
+          </div>
+          <ul class="info-card__list">
+            <li class="info-item">
+              <span class="info-item__icon">
+                <!-- PLACEHOLDER ICON: document -->
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M7 3h7l4 4v14H7z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                  <path d="M14 3v4h4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                  <line x1="9.5" y1="12" x2="15" y2="12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                  <line x1="9.5" y1="15.5" x2="15" y2="15.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <span class="info-item__label">依頼シート<br>を確認</span>
+            </li>
+            <li class="info-item">
+              <span class="info-item__icon">
+                <!-- PLACEHOLDER ICON: yen -->
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M7 5l5 7 5-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  <line x1="12" y1="12" x2="12" y2="19" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                  <line x1="8" y1="14" x2="16" y2="14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                  <line x1="8" y1="16.5" x2="16" y2="16.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <span class="info-item__label">料金表<br>を確認</span>
+            </li>
+            <li class="info-item">
+              <span class="info-item__icon">
+                <!-- PLACEHOLDER ICON: phone -->
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M6 4h3l1.5 4-2 1.5a11 11 0 0 0 5 5l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A15 15 0 0 1 4 6.2 2 2 0 0 1 6 4z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span class="info-item__label">連絡方法<br>を確認</span>
+            </li>
+          </ul>
+        </aside>
+      </div>
+      <div class="hero__skyline" aria-hidden="true"></div>
+    </section>
+
+    <!-- ============================================================
+         おすすめツール（調速）バナー
+         [ACF] featured_ribbon / featured_name / featured_product
+               featured_pill / featured_text
+               featured_btn_label / featured_btn_url
+    ============================================================ -->
+    <section class="featured">
+      <div class="container">
+        <div class="featured__box" data-reveal>
+          <span class="featured__ribbon">おすすめツール</span>
+
+          <div class="featured__brand">
+            <span class="featured__graphic">
+              <img src="assets/img/chousoku-graphic.svg" alt="" width="76" height="76">
+            </span>
+            <span class="featured__name">調速</span>
+          </div>
+
+          <div class="featured__body">
+            <p class="featured__product">
+              不動産調査AIツール
+              <span class="featured__pill">調査・相場確認を効率化</span>
+            </p>
+            <p class="featured__text">調査・相場確認をAIで自動化。<br class="br-pc">データに基づく判断で、業務のスピードと精度を高めます。</p>
+          </div>
+
+          <a class="btn btn--white featured__btn" href="#">
+            <span>利用案内を見る</span>
+            <!-- PLACEHOLDER ICON: chevron -->
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         サービスメニュー（固定6枚）
+         各カード [ACF]:
+           card_{n}_tag / card_{n}_title / card_{n}_desc
+           card_{n}_btn1_label / card_{n}_btn1_url
+           card_{n}_btn2_label / card_{n}_btn2_url
+    ============================================================ -->
+    <section class="services" id="menu">
+      <div class="container">
+        <div class="services__grid">
+
+          <!-- Card 1 : 売却 (blue) -->
+          <article class="service-card" data-theme="blue" data-reveal>
+            <span class="service-card__tag">売却の相談・依頼</span>
+            <div class="service-card__head">
+              <span class="service-card__icon">
+                <!-- PLACEHOLDER ICON: house -->
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M4 11l8-6 8 6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M6 10v9h12v-9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                  <rect x="10.5" y="13" width="3" height="6" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                </svg>
+              </span>
+              <h3 class="service-card__title">売却物件の依頼</h3>
+            </div>
+            <p class="service-card__desc">売却したい物件のご相談・ご依頼を受け付けています。</p>
+            <div class="service-card__actions">
+              <a class="btn btn--outline" href="#">依頼シートを見る</a>
+              <a class="btn btn--solid" href="#">相談する</a>
+            </div>
+          </article>
+
+          <!-- Card 2 : 仕入・エンド (teal) -->
+          <article class="service-card" data-theme="teal" data-reveal>
+            <span class="service-card__tag">仕入・エンド情報</span>
+            <div class="service-card__head">
+              <span class="service-card__icon">
+                <!-- PLACEHOLDER ICON: person + search -->
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <circle cx="11" cy="9.5" r="3.2" fill="none" stroke="currentColor" stroke-width="1.7"/>
+                  <path d="M5.5 19c0-3 2.6-5 5.5-5s5.5 2 5.5 5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                  <circle cx="16.5" cy="15" r="2.6" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                  <line x1="18.4" y1="16.9" x2="20.5" y2="19" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <h3 class="service-card__title">仕入物件の依頼・<br>エンド情報の依頼</h3>
+            </div>
+            <p class="service-card__desc">仕入れたい物件や、エンド（購入希望者）情報のご提供をお願いします。</p>
+            <div class="service-card__actions">
+              <a class="btn btn--outline" href="#">仕入情報を送る</a>
+              <a class="btn btn--solid" href="#">エンド情報を送る</a>
+            </div>
+          </article>
+
+          <!-- Card 3 : 工事 (green) -->
+          <article class="service-card" data-theme="green" data-reveal>
+            <span class="service-card__tag">工事・リフォーム・派遣</span>
+            <div class="service-card__head">
+              <span class="service-card__icon">
+                <!-- PLACEHOLDER ICON: tools -->
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M14 7a3 3 0 0 1 4 4l-9 9-2-2 9-9a1 1 0 0 0-1-1z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                  <path d="M6.5 4l3.5 3.5-2.5 2.5L4 6.5a3 3 0 0 1 2.5-2.5z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                  <path d="M13 13l5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <h3 class="service-card__title">工事の見積・相談・<br>派遣の依頼</h3>
+            </div>
+            <p class="service-card__desc">リフォームや修繕、工事の見積・相談、職人・スタッフの派遣依頼を承ります。</p>
+            <div class="service-card__actions">
+              <a class="btn btn--outline" href="#">見積を依頼する</a>
+              <a class="btn btn--solid" href="#">派遣を相談する</a>
+            </div>
+          </article>
+
+          <!-- Card 4 : 印刷 (purple) -->
+          <article class="service-card" data-theme="purple" data-reveal>
+            <span class="service-card__tag">印刷・制作</span>
+            <div class="service-card__head">
+              <span class="service-card__icon">
+                <!-- PLACEHOLDER ICON: printer -->
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M7 9V4h10v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                  <rect x="4" y="9" width="16" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+                  <rect x="7" y="14" width="10" height="6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                  <circle cx="16.5" cy="11.5" r="0.9" fill="currentColor"/>
+                </svg>
+              </span>
+              <h3 class="service-card__title">名刺・チラシ印刷の依頼</h3>
+            </div>
+            <p class="service-card__desc">名刺やチラシなどの印刷物制作をサポートします。</p>
+            <div class="service-card__actions">
+              <a class="btn btn--outline" href="#">料金表を見る</a>
+              <a class="btn btn--solid" href="#">印刷を依頼する</a>
+            </div>
+          </article>
+
+          <!-- Card 5 : イベント (orange) -->
+          <article class="service-card" data-theme="orange" data-reveal>
+            <span class="service-card__tag">イベント・セミナー</span>
+            <div class="service-card__head">
+              <span class="service-card__icon">
+                <!-- PLACEHOLDER ICON: presentation -->
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <rect x="4" y="4" width="16" height="10" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+                  <path d="M8.5 18.5L12 15l3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="9.5" cy="8.5" r="1.4" fill="none" stroke="currentColor" stroke-width="1.4"/>
+                  <path d="M13 11c0-1.4 1-2.2 2.2-2.2S17.4 9.6 17.4 11" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <h3 class="service-card__title">イベント・セミナーの依頼</h3>
+            </div>
+            <p class="service-card__desc">勉強会や研修、イベントの企画・運営をサポートします。</p>
+            <div class="service-card__actions">
+              <a class="btn btn--outline" href="#">企画を相談する</a>
+              <a class="btn btn--solid" href="#">依頼シートを見る</a>
+            </div>
+          </article>
+
+          <!-- Card 6 : その他 (cyan) -->
+          <article class="service-card" data-theme="cyan" data-reveal>
+            <span class="service-card__tag">その他のご相談</span>
+            <div class="service-card__head">
+              <span class="service-card__icon">
+                <!-- PLACEHOLDER ICON: handshake -->
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M3 9l4-2 5 3 5-3 4 2v6l-4 2-3-2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                  <path d="M12 10l-2.2 2.2a1.4 1.4 0 0 0 2 2l.7-.7.9.9a1.3 1.3 0 0 0 1.9-1.8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <h3 class="service-card__title">その他依頼<small>（営業代行・業務効率化相談など）</small></h3>
+            </div>
+            <p class="service-card__desc">営業代行や業務効率化など、課題に合わせたご相談を承ります。</p>
+            <div class="service-card__actions">
+              <a class="btn btn--outline" href="#">内容を相談する</a>
+              <a class="btn btn--solid" href="#">個別相談する</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         迷ったときの相談 CTA
+         [ACF] help_title / help_desc / help_btn_label / help_btn_url
+    ============================================================ -->
+    <section class="help-cta" id="contact">
+      <div class="container help-cta__inner" data-reveal>
+        <span class="help-cta__icon">
+          <!-- PLACEHOLDER ICON: question -->
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M9 9a3 3 0 1 1 4 2.8c-0.9.5-1.5 1-1.5 2.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="11.6" cy="17.5" r="1.2" fill="currentColor"/>
+          </svg>
+        </span>
+        <div class="help-cta__text">
+          <h2 class="help-cta__title">どのメニューを選べばよいか分からない場合</h2>
+          <p class="help-cta__desc">ご状況やご希望をお伺いし、最適なメニューをご案内します。<br>まずはお気軽にご相談ください。</p>
+        </div>
+        <a class="btn btn--white help-cta__btn" href="#">
+          <!-- PLACEHOLDER ICON: chat -->
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M4 6h16v10H9l-4 3v-3H4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+          </svg>
+          <span>まとめて相談する</span>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       フッター  [ACF] footer_copyright
+  ============================================================ -->
+  <footer class="site-footer">
+    <div class="container">
+      <span class="site-footer__logo">つなぐ</span>
+      <small class="site-footer__copy">&copy; TSUNAGU. All rights reserved.</small>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
