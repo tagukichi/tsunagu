@@ -64,7 +64,11 @@ python3 -m http.server 8000
 | タイトル | `hero_title` |
 | リード文 | `hero_lead`（テキストエリア） |
 | 利用案内 タイトル / 説明 | `info_card_title` / `info_card_desc` |
-| 利用案内 3項目ラベル | `info_item_1_label` / `info_item_2_label` / `info_item_3_label` |
+| 依頼シートを確認：ラベル / リンク先 | `info_item_1_label` / `info_item_1_file`（**PDFファイル**） |
+| 料金表を確認：ラベル / リンク先 | `info_item_2_label` / `info_item_2_file`（**PDFファイル**） |
+| 連絡方法を確認：ラベル / リンク先 | `info_item_3_label` / `info_item_3_url`（URL or ページリンク） |
+
+> 依頼シート・料金表は ACF の **ファイルフィールド（PDF）** を想定。出力時はファイルの URL を `href` に出し、`target="_blank"` で別タブ表示します。連絡方法はリンク（URL）フィールドです。
 
 ### おすすめツール（調速）
 | 項目 | フィールド名 |

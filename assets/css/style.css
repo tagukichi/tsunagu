@@ -222,13 +222,19 @@ h1, h2, h3, p { margin: 0; }
   gap: 10px;
   padding-top: 18px;
 }
-.info-item {
+.info-item__link {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   gap: 8px;
+  padding: 6px 4px;
+  border-radius: 12px;
+  color: var(--ink);
+  transition: background-color .15s ease;
 }
+.info-item__link:hover { background: var(--bg-soft); }
+.info-item__link:hover .info-item__icon { background: var(--brand); color: #fff; }
 .info-item__icon {
   display: inline-flex;
   align-items: center;
@@ -238,6 +244,7 @@ h1, h2, h3, p { margin: 0; }
   border-radius: 14px;
   background: var(--bg-soft);
   color: var(--brand);
+  transition: background-color .15s ease, color .15s ease;
 }
 .info-item__icon .icon { width: 26px; height: 26px; }
 .info-item__label { font-size: 12.5px; font-weight: 500; color: var(--ink); line-height: 1.4; }
@@ -337,12 +344,6 @@ h1, h2, h3, p { margin: 0; }
   border-radius: var(--radius);
   box-shadow: var(--shadow-card);
   padding: 22px 22px 24px;
-  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
-}
-.service-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 34px rgba(20, 52, 110, 0.12);
-  border-color: var(--c);
 }
 
 /* カラーテーマ */
@@ -455,7 +456,7 @@ h1, h2, h3, p { margin: 0; }
 [data-reveal].is-visible { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
   [data-reveal] { opacity: 1; transform: none; transition: none; }
-  .btn:hover, .service-card:hover { transform: none; }
+  .btn:hover { transform: none; }
 }
 
 /* ---------- 11. レスポンシブ ---------- */

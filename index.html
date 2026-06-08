@@ -36,7 +36,9 @@
          ヒーロー
          [ACF] hero_badge / hero_title / hero_lead
                info_card_title / info_card_desc
-               info_item_1_label / info_item_2_label / info_item_3_label
+               info_item_1_label / info_item_1_file (PDF)
+               info_item_2_label / info_item_2_file (PDF)
+               info_item_3_label / info_item_3_url
     ============================================================ -->
     <section class="hero">
       <div class="container hero__inner">
@@ -69,38 +71,47 @@
             </div>
           </div>
           <ul class="info-card__list">
+            <!-- [ACF] info_item_1: 依頼シート（PDFファイル / info_item_1_file・ラベル / info_item_1_label） -->
             <li class="info-item">
-              <span class="info-item__icon">
-                <!-- PLACEHOLDER ICON: document -->
-                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                  <path d="M7 3h7l4 4v14H7z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-                  <path d="M14 3v4h4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-                  <line x1="9.5" y1="12" x2="15" y2="12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-                  <line x1="9.5" y1="15.5" x2="15" y2="15.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-                </svg>
-              </span>
-              <span class="info-item__label">依頼シート<br>を確認</span>
+              <a class="info-item__link" href="#" target="_blank" rel="noopener">
+                <span class="info-item__icon">
+                  <!-- PLACEHOLDER ICON: document -->
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M7 3h7l4 4v14H7z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                    <path d="M14 3v4h4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                    <line x1="9.5" y1="12" x2="15" y2="12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                    <line x1="9.5" y1="15.5" x2="15" y2="15.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                  </svg>
+                </span>
+                <span class="info-item__label">依頼シート<br>を確認</span>
+              </a>
             </li>
+            <!-- [ACF] info_item_2: 料金表（PDFファイル / info_item_2_file・ラベル / info_item_2_label） -->
             <li class="info-item">
-              <span class="info-item__icon">
-                <!-- PLACEHOLDER ICON: yen -->
-                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                  <path d="M7 5l5 7 5-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                  <line x1="12" y1="12" x2="12" y2="19" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-                  <line x1="8" y1="14" x2="16" y2="14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-                  <line x1="8" y1="16.5" x2="16" y2="16.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-                </svg>
-              </span>
-              <span class="info-item__label">料金表<br>を確認</span>
+              <a class="info-item__link" href="#" target="_blank" rel="noopener">
+                <span class="info-item__icon">
+                  <!-- PLACEHOLDER ICON: yen -->
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M7 5l5 7 5-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                    <line x1="12" y1="12" x2="12" y2="19" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                    <line x1="8" y1="14" x2="16" y2="14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                    <line x1="8" y1="16.5" x2="16" y2="16.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                  </svg>
+                </span>
+                <span class="info-item__label">料金表<br>を確認</span>
+              </a>
             </li>
+            <!-- [ACF] info_item_3: 連絡方法（URL / info_item_3_url・ラベル / info_item_3_label） -->
             <li class="info-item">
-              <span class="info-item__icon">
-                <!-- PLACEHOLDER ICON: phone -->
-                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                  <path d="M6 4h3l1.5 4-2 1.5a11 11 0 0 0 5 5l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A15 15 0 0 1 4 6.2 2 2 0 0 1 6 4z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-                </svg>
-              </span>
-              <span class="info-item__label">連絡方法<br>を確認</span>
+              <a class="info-item__link" href="#">
+                <span class="info-item__icon">
+                  <!-- PLACEHOLDER ICON: phone -->
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M6 4h3l1.5 4-2 1.5a11 11 0 0 0 5 5l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A15 15 0 0 1 4 6.2 2 2 0 0 1 6 4z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span class="info-item__label">連絡方法<br>を確認</span>
+              </a>
             </li>
           </ul>
         </aside>
