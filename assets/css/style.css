@@ -403,6 +403,50 @@ h1, h2, h3, p { margin: 0; }
 }
 .service-card__actions .btn { padding: 11px 8px; font-size: 14px; }
 
+/* PDFドロップダウン（左ボタン） */
+.pdf-dropdown { position: relative; }
+.pdf-trigger { width: 100%; }
+.pdf-caret { width: 14px; height: 14px; transition: transform .15s ease; }
+.pdf-dropdown.is-single .pdf-caret { display: none; }
+.pdf-trigger[aria-expanded="true"] .pdf-caret { transform: rotate(180deg); }
+.pdf-menu {
+  position: absolute;
+  z-index: 30;
+  top: calc(100% + 6px);
+  left: 0;
+  min-width: 100%;
+  width: max-content;
+  max-width: 240px;
+  margin: 0;
+  padding: 6px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 0 14px 30px rgba(20, 52, 110, .16);
+}
+.pdf-menu[hidden] { display: none; }
+.pdf-menu__item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--ink);
+  transition: background-color .12s ease, color .12s ease;
+}
+.pdf-menu__item::before {
+  content: "";
+  flex: none;
+  width: 7px; height: 7px;
+  border-right: 2px solid var(--c, var(--brand));
+  border-bottom: 2px solid var(--c, var(--brand));
+  transform: rotate(-45deg);
+}
+.pdf-menu__item:hover { background: var(--c-bg, #eef4ff); color: var(--c, var(--brand)); }
+
 /* ---------- 8. 相談CTA ---------- */
 .help-cta {
   background: linear-gradient(120deg, #1857c8 0%, #2070e6 100%);
@@ -446,6 +490,73 @@ h1, h2, h3, p { margin: 0; }
 }
 .site-footer__logo { font-size: 20px; font-weight: 900; color: var(--brand); }
 .site-footer__copy { color: var(--muted); font-size: 12.5px; }
+
+/* ---------- モーダル（ポップアップ） ---------- */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.modal[hidden] { display: none; }
+.modal__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(13, 31, 64, .55);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+}
+.modal__dialog {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, .3);
+  padding: 28px 26px 26px;
+  animation: modal-in .2s ease;
+}
+@keyframes modal-in {
+  from { opacity: 0; transform: translateY(12px) scale(.98); }
+  to   { opacity: 1; transform: none; }
+}
+.modal__close {
+  position: absolute;
+  top: 12px; right: 12px;
+  width: 34px; height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: var(--bg-soft);
+  color: var(--muted);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color .15s ease, color .15s ease;
+}
+.modal__close:hover { background: #e7edf6; color: var(--ink); }
+.modal__title {
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--navy);
+  padding-right: 28px;
+}
+.modal__body {
+  margin-top: 12px;
+  font-size: 14.5px;
+  line-height: 1.85;
+  color: var(--ink);
+}
+.modal__body p + p { margin-top: 12px; }
+body.is-locked { overflow: hidden; }
+@media (prefers-reduced-motion: reduce) {
+  .modal__dialog { animation: none; }
+}
 
 /* ---------- 10. 出現アニメ ---------- */
 [data-reveal] {
