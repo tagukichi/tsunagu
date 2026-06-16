@@ -146,9 +146,11 @@ h1, h2, h3, p { margin: 0; }
 .hero__skyline {
   position: absolute;
   inset: auto 0 0 0;
-  height: 150px;
-  background: url("../img/skyline.svg") repeat-x bottom center / auto 100%;
-  opacity: .9;
+  width: 100%;
+  aspect-ratio: 2104 / 747;
+  background: url("../img/tsungau_back.png") no-repeat bottom center / 100% auto;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 34%);
+          mask-image: linear-gradient(to bottom, transparent 0, #000 34%);
   z-index: 0;
   pointer-events: none;
 }
@@ -635,7 +637,6 @@ body.is-locked { overflow: hidden; }
   :root { --gutter: 18px; }
 
   .hero { padding-block: 40px 72px; }
-  .hero__skyline { height: 110px; }
 
   .featured__box { grid-template-columns: 1fr; gap: 16px; padding: 30px 22px 24px; text-align: left; }
   .featured__brand { padding-right: 0; }

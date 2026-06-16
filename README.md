@@ -12,8 +12,9 @@ tsunagu/
 │   ├── css/style.css          … スタイル（色テーマは data-theme で切替）
 │   ├── js/main.js             … スクロール出現アニメのみ
 │   └── img/
-│       ├── skyline.svg        … ヒーロー背景の街並み（★プレースホルダー）
-│       └── chousoku-graphic.svg … 調速ツールのイメージ（★プレースホルダー）
+│       ├── tsungau_back.png   … ヒーロー背景の街並み（支給画像 2104×747）
+│       ├── chousoku-graphic.svg … 調速ツールのイメージ（★プレースホルダー）
+│       └── popup-sample.svg   … ポップアップ内サンプル画像（★プレースホルダー）
 └── README.md
 ```
 
@@ -33,8 +34,9 @@ python3 -m http.server 8000
 
 | 種別 | 箇所 | 現状 |
 |------|------|------|
-| 画像 | ヒーロー背景の街並み | `assets/img/skyline.svg` |
+| 画像 | ヒーロー背景の街並み | `assets/img/tsungau_back.png`（**支給画像で設定済み**。下端にフルワイド配置、上端はマスクで背景へフェード） |
 | 画像 | 調速ツールのイメージ | `assets/img/chousoku-graphic.svg` |
+| 画像 | ポップアップ内サンプル画像 | `assets/img/popup-sample.svg` |
 | アイコン | ヘッダー / ヒーロー / 各カード / CTA | `index.html` 内のインライン SVG（`<!-- PLACEHOLDER ICON: ... -->`） |
 
 インライン SVG は `currentColor` で塗っているため、差し替え時もカードのカラーテーマ（`--c`）がそのまま反映されます。
