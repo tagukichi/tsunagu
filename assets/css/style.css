@@ -253,7 +253,8 @@ h1, h2, h3, p { margin: 0; }
 .info-item__label { font-size: 12.5px; font-weight: 500; color: var(--ink); line-height: 1.4; }
 
 /* ---------- 6. おすすめツール（調速） ---------- */
-.featured { padding-block: 40px; background: #fff; }
+.featured { padding-block: 56px 40px; background: #fff; }
+.featured__wrap { position: relative; }
 .featured__box {
   position: relative;
   display: grid;
@@ -276,14 +277,39 @@ h1, h2, h3, p { margin: 0; }
 }
 .featured__ribbon {
   position: absolute;
-  top: 0; left: 28px;
-  background: linear-gradient(180deg, #f4d18a, #e3b25c);
+  top: -18px;
+  left: 48px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(180deg, #fbe2a0, #e3b25c);
   color: #5a3d08;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
-  padding: 5px 16px 6px;
-  border-radius: 0 0 8px 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, .2);
+  letter-spacing: .04em;
+  padding: 9px 18px 9px 16px;
+  border-radius: 999px;
+  box-shadow: 0 10px 22px rgba(216, 158, 56, .35),
+              0 2px 4px rgba(0, 0, 0, .12);
+  transform-origin: center;
+  animation: ribbon-float 4.2s ease-in-out infinite;
+}
+.featured__ribbon::before {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background: #fff8e1;
+  clip-path: polygon(50% 0, 61% 38%, 100% 38%, 68% 60%, 80% 100%, 50% 76%, 20% 100%, 32% 60%, 0 38%, 39% 38%);
+  filter: drop-shadow(0 1px 1px rgba(120, 80, 0, .25));
+}
+@keyframes ribbon-float {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50%      { transform: translateY(-6px) rotate(-3deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .featured__ribbon { animation: none; transform: rotate(-3deg); }
 }
 .featured__brand {
   position: relative;
@@ -639,6 +665,8 @@ body.is-locked { overflow: hidden; }
 
   .hero { padding-block: 40px 72px; }
 
+  .featured { padding-block: 46px 32px; }
+  .featured__ribbon { left: 26px; top: -16px; font-size: 12px; padding: 7px 14px; }
   .featured__box { grid-template-columns: 1fr; gap: 16px; padding: 30px 22px 24px; text-align: left; }
   .featured__brand { padding-right: 0; }
   .featured__brand::after { display: none; }
