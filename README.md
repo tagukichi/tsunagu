@@ -13,7 +13,7 @@ tsunagu/
 │   ├── js/main.js             … スクロール出現アニメのみ
 │   └── img/
 │       ├── tsungau_back.png   … ヒーロー背景の街並み（支給画像 2104×747）
-│       ├── chousoku-graphic.svg … 調速ツールのイメージ（★プレースホルダー）
+│       ├── cho-sokulogo_yoko.png … 調速 横ロゴ（支給画像 1774×887）
 │       └── popup-sample.svg   … ポップアップ内サンプル画像（★プレースホルダー）
 └── README.md
 ```
@@ -35,7 +35,7 @@ python3 -m http.server 8000
 | 種別 | 箇所 | 現状 |
 |------|------|------|
 | 画像 | ヒーロー背景の街並み | `assets/img/tsungau_back.png`（**支給画像で設定済み**。下端にフルワイド配置、上端はマスクで背景へフェード） |
-| 画像 | 調速ツールのイメージ | `assets/img/chousoku-graphic.svg` |
+| 画像 | 調速 横ロゴ | `assets/img/cho-sokulogo_yoko.png`（**支給画像で設定済み**。バナー左に白チップで配置） |
 | 画像 | ポップアップ内サンプル画像 | `assets/img/popup-sample.svg` |
 | アイコン | ヘッダー / ヒーロー / 各カード / CTA | `index.html` 内のインライン SVG（`<!-- PLACEHOLDER ICON: ... -->`） |
 
@@ -76,12 +76,13 @@ python3 -m http.server 8000
 | 項目 | フィールド名 |
 |------|------------|
 | リボン文言 | `featured_ribbon` |
-| ツール名 | `featured_name` |
+| ロゴ画像（調速 横ロゴ） | `featured_logo`（画像） |
 | 製品名 | `featured_product` |
 | ピル文言 | `featured_pill` |
 | 説明文 | `featured_text` |
 | ボタン ラベル / URL | `featured_btn_label` / `featured_btn_url` |
-| イメージ画像 | `featured_image`（画像） |
+
+> 調速ロゴはワードマーク（調速／チョーソク）＋アイコン＋「不動産調査アプリ」が一体の横ロゴ画像です。暗色バナー上で視認できるよう、白の角丸チップに乗せて表示しています。
 
 ### サービスカード（固定6枚 / n = 1〜6）
 各カードで以下を用意します。
