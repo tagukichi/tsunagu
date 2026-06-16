@@ -71,6 +71,7 @@ h1, h2, h3, p { margin: 0; }
   font-size: 15px;
   line-height: 1.3;
   text-align: center;
+  white-space: nowrap;
   border: 2px solid transparent;
   cursor: pointer;
   transition: transform .15s ease, box-shadow .15s ease, background-color .15s ease,
@@ -401,12 +402,12 @@ h1, h2, h3, p { margin: 0; }
   gap: 10px;
   margin-top: 18px;
 }
-.service-card__actions .btn { padding: 11px 8px; font-size: 14px; }
+.service-card__actions .btn { padding: 11px 7px; font-size: 13.5px; }
 
 /* PDFドロップダウン（左ボタン） */
 .pdf-dropdown { position: relative; }
-.pdf-trigger { width: 100%; }
-.pdf-caret { width: 14px; height: 14px; transition: transform .15s ease; }
+.pdf-trigger { width: 100%; gap: 5px; }
+.pdf-caret { width: 12px; height: 12px; transition: transform .15s ease; }
 .pdf-dropdown.is-single .pdf-caret { display: none; }
 .pdf-trigger[aria-expanded="true"] .pdf-caret { transform: rotate(180deg); }
 .pdf-menu {
@@ -499,7 +500,7 @@ h1, h2, h3, p { margin: 0; }
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 24px;
 }
 .modal[hidden] { display: none; }
 .modal__overlay {
@@ -511,12 +512,15 @@ h1, h2, h3, p { margin: 0; }
 }
 .modal__dialog {
   position: relative;
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  max-width: 460px;
+  max-width: 680px;
+  max-height: 88vh;
   background: #fff;
-  border-radius: 16px;
+  border-radius: 18px;
   box-shadow: 0 24px 60px rgba(0, 0, 0, .3);
-  padding: 28px 26px 26px;
+  overflow: hidden;
   animation: modal-in .2s ease;
 }
 @keyframes modal-in {
@@ -525,8 +529,9 @@ h1, h2, h3, p { margin: 0; }
 }
 .modal__close {
   position: absolute;
-  top: 12px; right: 12px;
-  width: 34px; height: 34px;
+  top: 14px; right: 14px;
+  z-index: 2;
+  width: 36px; height: 36px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -541,21 +546,66 @@ h1, h2, h3, p { margin: 0; }
 }
 .modal__close:hover { background: #e7edf6; color: var(--ink); }
 .modal__title {
-  font-size: 19px;
+  flex: none;
+  padding: 28px 60px 14px 32px;
+  font-size: 22px;
   font-weight: 700;
+  line-height: 1.45;
   color: var(--navy);
-  padding-right: 28px;
 }
+.modal__title:empty { display: none; }
+.modal__title:empty + .modal__body { padding-top: 30px; }
+
+/* 本文（ACF WYSIWYG 想定：見出し・リンク・画像などを自由に挿入可能） */
 .modal__body {
-  margin-top: 12px;
-  font-size: 14.5px;
-  line-height: 1.85;
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: 0 32px 32px;
+  font-size: 15px;
+  line-height: 1.9;
   color: var(--ink);
 }
-.modal__body p + p { margin-top: 12px; }
+.modal__body > :first-child { margin-top: 0; }
+.modal__body > :last-child { margin-bottom: 0; }
+.modal__body h2, .modal__body h3, .modal__body h4 {
+  margin: 22px 0 10px;
+  line-height: 1.5;
+  color: var(--navy);
+}
+.modal__body h2 { font-size: 19px; }
+.modal__body h3 { font-size: 17px; }
+.modal__body h4 { font-size: 15.5px; }
+.modal__body p { margin: 0 0 12px; }
+.modal__body ul, .modal__body ol { margin: 0 0 14px; padding-left: 1.4em; }
+.modal__body ul { list-style: disc; }
+.modal__body ol { list-style: decimal; }
+.modal__body li { margin: 4px 0; }
+.modal__body a {
+  color: var(--brand);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.modal__body a:hover { color: var(--brand-dark); }
+.modal__body img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 14px 0;
+  border-radius: 12px;
+}
+.modal__body hr { border: none; border-top: 1px solid var(--line); margin: 18px 0; }
+.modal__body strong { font-weight: 700; }
+.modal__body .popup-note { font-size: 13px; color: var(--muted); }
+
 body.is-locked { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
   .modal__dialog { animation: none; }
+}
+@media (max-width: 680px) {
+  .modal { padding: 16px; }
+  .modal__title { padding: 24px 52px 12px 22px; font-size: 19px; }
+  .modal__body { padding: 0 22px 24px; }
 }
 
 /* ---------- 10. 出現アニメ ---------- */
