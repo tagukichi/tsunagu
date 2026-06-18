@@ -14,19 +14,36 @@
 
   <!-- ============================================================
        ヘッダー
-       [ACF] site_logo_text / header_contact_label / header_contact_url
+       [ACF] site_logo（画像）
+             header_terms_label / header_terms_url
+             header_download_label / header_download_url
   ============================================================ -->
   <header class="site-header">
     <div class="container site-header__inner">
-      <a href="#" class="site-logo">つなぐ</a>
-      <a href="#contact" class="btn-contact">
-        <!-- PLACEHOLDER ICON: envelope -->
-        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-          <rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/>
-          <path d="M4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span>お問い合わせ</span>
+      <a href="#" class="site-logo">
+        <img class="site-logo__img" src="assets/img/logo-placeholder.svg" alt="つなぐ" width="160" height="40">
       </a>
+      <nav class="header-actions">
+        <a href="#" class="btn-header btn-header--ghost">
+          <!-- PLACEHOLDER ICON: document -->
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M7 3h7l4 4v14H7z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+            <path d="M14 3v4h4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+            <line x1="9.5" y1="13" x2="15" y2="13" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+            <line x1="9.5" y1="16.5" x2="15" y2="16.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+          </svg>
+          <span>利用規約</span>
+        </a>
+        <a href="#" class="btn-header btn-header--solid">
+          <!-- PLACEHOLDER ICON: download -->
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M12 4v10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M8 11l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M5 19h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          <span>ダウンロード</span>
+        </a>
+      </nav>
     </div>
   </header>
 
@@ -35,10 +52,6 @@
     <!-- ============================================================
          ヒーロー
          [ACF] hero_badge / hero_title / hero_lead
-               info_card_title / info_card_desc
-               info_item_1_label / info_item_1_file (PDF)
-               info_item_2_label / info_item_2_file (PDF)
-               info_item_3_label / info_item_3_url
     ============================================================ -->
     <section class="hero">
       <div class="container hero__inner">
@@ -49,72 +62,11 @@
               <path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
               <path d="M9 12l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            TSUNAGU MEMBER PORTAL
+            会員限定ポータルサイト
           </span>
           <h1 class="hero__title">つなぐ依頼ページ</h1>
-          <p class="hero__lead">つなぐ会員の皆さまからの各種ご依頼・ご相談を受け付けるページです。<br>ご希望のメニューを選択し、必要な情報をご送信ください。</p>
+          <p class="hero__lead">つなぐ登録会社の皆様からの各種ご依頼・ご相談を受け付けるページです。</p>
         </div>
-
-        <aside class="info-card" data-reveal>
-          <div class="info-card__head">
-            <span class="info-card__head-icon">
-              <!-- PLACEHOLDER ICON: info -->
-              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/>
-                <line x1="12" y1="11" x2="12" y2="16.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-                <circle cx="12" cy="7.8" r="1.1" fill="currentColor"/>
-              </svg>
-            </span>
-            <div>
-              <h2 class="info-card__title">ご利用について</h2>
-              <p class="info-card__desc">各メニューから、依頼シート・料金表・<br>ご連絡方法などを確認いただけます。</p>
-            </div>
-          </div>
-          <ul class="info-card__list">
-            <!-- [ACF] info_item_1: 依頼シート（PDFファイル / info_item_1_file・ラベル / info_item_1_label） -->
-            <li class="info-item">
-              <a class="info-item__link" href="#" target="_blank" rel="noopener">
-                <span class="info-item__icon">
-                  <!-- PLACEHOLDER ICON: document -->
-                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                    <path d="M7 3h7l4 4v14H7z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-                    <path d="M14 3v4h4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-                    <line x1="9.5" y1="12" x2="15" y2="12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-                    <line x1="9.5" y1="15.5" x2="15" y2="15.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-                  </svg>
-                </span>
-                <span class="info-item__label">依頼シート<br>を確認</span>
-              </a>
-            </li>
-            <!-- [ACF] info_item_2: 料金表（PDFファイル / info_item_2_file・ラベル / info_item_2_label） -->
-            <li class="info-item">
-              <a class="info-item__link" href="#" target="_blank" rel="noopener">
-                <span class="info-item__icon">
-                  <!-- PLACEHOLDER ICON: yen -->
-                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                    <path d="M7 5l5 7 5-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                    <line x1="12" y1="12" x2="12" y2="19" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-                    <line x1="8" y1="14" x2="16" y2="14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-                    <line x1="8" y1="16.5" x2="16" y2="16.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-                  </svg>
-                </span>
-                <span class="info-item__label">料金表<br>を確認</span>
-              </a>
-            </li>
-            <!-- [ACF] info_item_3: 連絡方法（URL / info_item_3_url・ラベル / info_item_3_label） -->
-            <li class="info-item">
-              <a class="info-item__link" href="#">
-                <span class="info-item__icon">
-                  <!-- PLACEHOLDER ICON: phone -->
-                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                    <path d="M6 4h3l1.5 4-2 1.5a11 11 0 0 0 5 5l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A15 15 0 0 1 4 6.2 2 2 0 0 1 6 4z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-                  </svg>
-                </span>
-                <span class="info-item__label">連絡方法<br>を確認</span>
-              </a>
-            </li>
-          </ul>
-        </aside>
       </div>
       <div class="hero__skyline" aria-hidden="true"></div>
     </section>
@@ -186,29 +138,25 @@
               <!-- 左：PDF（複数登録対応 / card_1_pds） -->
               <div class="pdf-dropdown">
                 <button type="button" class="btn btn--outline pdf-trigger" aria-haspopup="true" aria-expanded="false">
-                  <span>依頼シートを見る</span>
+                  <span>依頼シート</span>
                   <svg class="pdf-caret" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </button>
                 <ul class="pdf-menu" role="menu" hidden>
-                  <li role="none"><a class="pdf-menu__item" role="menuitem" href="assets/pdf/sample.pdf" target="_blank" rel="noopener">売却依頼シート（戸建）</a></li>
-                  <li role="none"><a class="pdf-menu__item" role="menuitem" href="assets/pdf/sample.pdf" target="_blank" rel="noopener">売却依頼シート（マンション）</a></li>
-                  <li role="none"><a class="pdf-menu__item" role="menuitem" href="assets/pdf/sample.pdf" target="_blank" rel="noopener">売却依頼シート（土地）</a></li>
+                  <li role="none"><a class="pdf-menu__item" role="menuitem" href="assets/pdf/sample.pdf" target="_blank" rel="noopener">自社物件の売却依頼</a></li>
+                  <li role="none"><a class="pdf-menu__item" role="menuitem" href="assets/pdf/sample.pdf" target="_blank" rel="noopener">仲介物件の売却依頼</a></li>
                 </ul>
               </div>
               <!-- 右：ポップアップ（card_1_popup_*） -->
               <button type="button" class="btn btn--solid popup-trigger" data-popup="popup-c1" data-popup-title="売却のご相談について">相談する</button>
             </div>
             <div class="popup-content" id="popup-c1" hidden>
-              <p>売却をご検討の物件について、査定・売却時期・税金など、専門スタッフがご相談を承ります。</p>
-              <img src="assets/img/popup-sample.svg" alt="サンプル画像">
-              <h4>ご相談の流れ</h4>
+              <p>自社物件の売却や、一般のお客様から預かった物件の売却依頼はこちらからご依頼ください。</p>
               <ul>
-                <li>無料査定（机上・訪問）のお申し込み</li>
-                <li>売却スケジュール・想定価格のご提案</li>
-                <li>税務・相続に関するご相談</li>
+                <li>水面下で進めたい</li>
+                <li>まずは強気価格で出したい</li>
+                <li>仲介手数料を事前に定めた上で案件を出したい。</li>
               </ul>
-              <p><a href="#" target="_blank" rel="noopener">売却の流れを詳しく見る →</a></p>
-              <p class="popup-note">※ ダミーです。テーマ化後は ACF（card_1_popup_text）の WYSIWYG に、見出し・リンク・画像などを自由に入れられます。</p>
+              <p>など、柔軟なご依頼が可能です。</p>
             </div>
           </article>
 
@@ -232,19 +180,20 @@
               <!-- 左：PDF（今回は1件＝クリックで直接表示 / card_2_pdfs） -->
               <div class="pdf-dropdown">
                 <button type="button" class="btn btn--outline pdf-trigger" aria-haspopup="true" aria-expanded="false">
-                  <span>仕入情報を送る</span>
+                  <span>依頼する</span>
                   <svg class="pdf-caret" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </button>
                 <ul class="pdf-menu" role="menu" hidden>
-                  <li role="none"><a class="pdf-menu__item" role="menuitem" href="assets/pdf/sample.pdf" target="_blank" rel="noopener">仕入情報シート（記入用）</a></li>
+                  <li role="none"><a class="pdf-menu__item" role="menuitem" href="assets/pdf/sample.pdf" target="_blank" rel="noopener">自社購入の仕入基準を依頼</a></li>
+                  <li role="none"><a class="pdf-menu__item" role="menuitem" href="assets/pdf/sample.pdf" target="_blank" rel="noopener">一般買主の購入ニーズを依頼</a></li>
                 </ul>
               </div>
               <!-- 右：ポップアップ（card_2_popup_*） -->
               <button type="button" class="btn btn--solid popup-trigger" data-popup="popup-c2" data-popup-title="エンド情報の送付について">エンド情報を送る</button>
             </div>
             <div class="popup-content" id="popup-c2" hidden>
-              <p>購入をご希望のエンド情報（ご予算・希望エリア・条件など）をお送りください。条件に合う物件をご案内します。</p>
-              <p>※ ダミーテキストです。本番では ACF（card_2_popup_text）の内容がここに表示されます。</p>
+              <p>自社物件の仕入や、一般のお客様が希望されるニーズ情報の共有はこちらからご依頼ください。</p>
+              <p>案件情報のうち、約70%が未公開案件であり、値下げ案件も多くございます。仕入にも適した案件情報をご提供致します。</p>
             </div>
           </article>
 
@@ -267,7 +216,7 @@
               <!-- 左：PDF（複数登録対応 / card_3_pdfs） -->
               <div class="pdf-dropdown">
                 <button type="button" class="btn btn--outline pdf-trigger" aria-haspopup="true" aria-expanded="false">
-                  <span>見積を依頼する</span>
+                  <span>依頼する</span>
                   <svg class="pdf-caret" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </button>
                 <ul class="pdf-menu" role="menu" hidden>
@@ -279,8 +228,8 @@
               <button type="button" class="btn btn--solid popup-trigger" data-popup="popup-c3" data-popup-title="職人・スタッフ派遣のご相談">派遣を相談する</button>
             </div>
             <div class="popup-content" id="popup-c3" hidden>
-              <p>職人・スタッフの派遣について承ります。必要な人員・期間・作業内容をお知らせください。</p>
-              <p>※ ダミーテキストです。本番では ACF（card_3_popup_text）の内容がここに表示されます。</p>
+              <p>つなぐ提携会社様をご紹介可能です。まずは実際の現場の見積からおつなぎ致します。</p>
+              <p>大切な弊社のパートナー企業様をおつなぎ致しますので、軽率な依頼はご遠慮ください。</p>
             </div>
           </article>
 
@@ -304,19 +253,21 @@
               <!-- 左：PDF（今回は1件＝クリックで直接表示 / card_4_pdfs） -->
               <div class="pdf-dropdown">
                 <button type="button" class="btn btn--outline pdf-trigger" aria-haspopup="true" aria-expanded="false">
-                  <span>料金表を見る</span>
+                  <span>依頼する</span>
                   <svg class="pdf-caret" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </button>
                 <ul class="pdf-menu" role="menu" hidden>
-                  <li role="none"><a class="pdf-menu__item" role="menuitem" href="assets/pdf/sample.pdf" target="_blank" rel="noopener">印刷料金表</a></li>
+                  <li role="none"><a class="pdf-menu__item" role="menuitem" href="assets/pdf/sample.pdf" target="_blank" rel="noopener">名刺作成パックの依頼</a></li>
+                  <li role="none"><a class="pdf-menu__item" role="menuitem" href="assets/pdf/sample.pdf" target="_blank" rel="noopener">チラシ作成パックの依頼</a></li>
+                  <li role="none"><a class="pdf-menu__item" role="menuitem" href="assets/pdf/sample.pdf" target="_blank" rel="noopener">毎月販促パックの依頼</a></li>
                 </ul>
               </div>
               <!-- 右：ポップアップ（card_4_popup_*） -->
-              <button type="button" class="btn btn--solid popup-trigger" data-popup="popup-c4" data-popup-title="印刷物制作のご依頼">印刷を依頼する</button>
+              <button type="button" class="btn btn--solid popup-trigger" data-popup="popup-c4" data-popup-title="印刷メニュー・料金表">印刷を依頼する</button>
             </div>
             <div class="popup-content" id="popup-c4" hidden>
-              <p>名刺・チラシなどの印刷物制作を承ります。デザインの有無・数量・納期をお知らせください。</p>
-              <p>※ ダミーテキストです。本番では ACF（card_4_popup_text）の内容がここに表示されます。</p>
+              <img src="assets/img/print-pricing-sample.svg" alt="印刷メニュー・料金表（サンプル）">
+              <p class="popup-note">※ サンプル画像です。本番では支給画像（ACF: card_4_popup_image）に差し替わります。</p>
             </div>
           </article>
 
@@ -340,7 +291,7 @@
               <!-- 左：PDF（複数登録対応 / card_5_pdfs） -->
               <div class="pdf-dropdown">
                 <button type="button" class="btn btn--outline pdf-trigger" aria-haspopup="true" aria-expanded="false">
-                  <span>企画を相談する</span>
+                  <span>相談の依頼をする</span>
                   <svg class="pdf-caret" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </button>
                 <ul class="pdf-menu" role="menu" hidden>
@@ -352,8 +303,7 @@
               <button type="button" class="btn btn--solid popup-trigger" data-popup="popup-c5" data-popup-title="イベント・セミナー依頼について">依頼シートを見る</button>
             </div>
             <div class="popup-content" id="popup-c5" hidden>
-              <p>勉強会・研修・イベントの企画・運営をサポートします。ご希望の内容・規模・日程をお知らせください。</p>
-              <p>※ ダミーテキストです。本番では ACF（card_5_popup_text）の内容がここに表示されます。</p>
+              <p>弊社では、イベントやセミナーの補助を行っております。不動産業界に関わらず、様々な業界・業種の企業様にご利用いただいております。大手企業様向け・中小企業様向けどちらも対応可能です。</p>
             </div>
           </article>
 
@@ -375,7 +325,7 @@
               <!-- 左：PDF（今回は1件＝クリックで直接表示 / card_6_pdfs） -->
               <div class="pdf-dropdown">
                 <button type="button" class="btn btn--outline pdf-trigger" aria-haspopup="true" aria-expanded="false">
-                  <span>内容を相談する</span>
+                  <span>相談の依頼をする</span>
                   <svg class="pdf-caret" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </button>
                 <ul class="pdf-menu" role="menu" hidden>
@@ -386,8 +336,8 @@
               <button type="button" class="btn btn--solid popup-trigger" data-popup="popup-c6" data-popup-title="個別相談について">個別相談する</button>
             </div>
             <div class="popup-content" id="popup-c6" hidden>
-              <p>営業代行や業務効率化など、課題に合わせた個別相談を承ります。現状のお悩みをお聞かせください。</p>
-              <p>※ ダミーテキストです。本番では ACF（card_6_popup_text）の内容がここに表示されます。</p>
+              <p>弊社のメイン事業は「営業代行事業」です。継続的なご依頼も、スポット対応でもご相談可能です。</p>
+              <p>また、様々な企業様への支援経験を活かし、業務の効率化ツールの紹介や、独自ツールの作成もご協力可能です。簡単なHP作成〜何でもご相談ください。</p>
             </div>
           </article>
 
@@ -396,11 +346,26 @@
     </section>
 
     <!-- ============================================================
-         迷ったときの相談 CTA
-         [ACF] help_title / help_desc / help_btn_label / help_btn_url
+         TOPIC ＋ 迷ったときの相談 CTA
+         [ACF] topics（リピーター: topic_text）
+               help_title / help_desc / help_btn_label / help_btn_url
     ============================================================ -->
     <section class="help-cta" id="contact">
-      <div class="container help-cta__inner" data-reveal>
+      <div class="container">
+
+        <!-- [ACF] topics（リピーター: topic_text）。1件でも複数でもOK -->
+        <div class="topics" data-reveal>
+          <span class="topics__label">TOPIC</span>
+          <div class="topics__viewport">
+            <ul class="topics__track">
+              <li class="topics__item">1棟案件アパート求む</li>
+              <li class="topics__item">ボロ戸建て投資家に提案可能</li>
+              <li class="topics__item">500万円以下の案件は是非！</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="help-cta__inner" data-reveal>
         <span class="help-cta__icon">
           <!-- PLACEHOLDER ICON: question -->
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -422,6 +387,7 @@
             <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </a>
+        </div>
       </div>
     </section>
 

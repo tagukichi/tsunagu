@@ -14,7 +14,8 @@ tsunagu/
 │   └── img/
 │       ├── tsungau_back.png   … ヒーロー背景の街並み（支給画像 2104×747）
 │       ├── cho-sokulogo_yoko.png … 調速 横ロゴ（支給画像 1774×887）
-│       └── popup-sample.svg   … ポップアップ内サンプル画像（★プレースホルダー）
+│       ├── logo-placeholder.svg … ヘッダーロゴ（★プレースホルダー / つなぐ）
+│       └── print-pricing-sample.svg … 印刷ポップアップの料金表画像（★プレースホルダー）
 └── README.md
 ```
 
@@ -36,7 +37,8 @@ python3 -m http.server 8000
 |------|------|------|
 | 画像 | ヒーロー背景の街並み | `assets/img/tsungau_back.png`（**支給画像で設定済み**。下端にフルワイド配置、上端はマスクで背景へフェード） |
 | 画像 | 調速 横ロゴ | `assets/img/cho-sokulogo_yoko.png`（**支給画像で設定済み**。バナー左に白チップで配置） |
-| 画像 | ポップアップ内サンプル画像 | `assets/img/popup-sample.svg` |
+| 画像 | ヘッダーロゴ（つなぐ） | `assets/img/logo-placeholder.svg`（★仮ロゴ。支給ロゴ／ACF `site_logo` に差し替え） |
+| 画像 | 印刷ポップアップの料金表 | `assets/img/print-pricing-sample.svg`（★仮。**印刷を依頼する**で開く画像。支給画像に差し替え） |
 | アイコン | ヘッダー / ヒーロー / 各カード / CTA | `index.html` 内のインライン SVG（`<!-- PLACEHOLDER ICON: ... -->`） |
 
 インライン SVG は `currentColor` で塗っているため、差し替え時もカードのカラーテーマ（`--c`）がそのまま反映されます。
@@ -55,8 +57,9 @@ python3 -m http.server 8000
 ### 共通・ヘッダー / フッター
 | 項目 | フィールド名 | 種別 |
 |------|------------|------|
-| ロゴ文言 | `site_logo_text` | テキスト |
-| お問い合わせ ラベル / URL | `header_contact_label` / `header_contact_url` | テキスト / URL |
+| ロゴ | `site_logo` | 画像 |
+| 利用規約 ラベル / URL | `header_terms_label` / `header_terms_url` | テキスト / URL |
+| ダウンロード ラベル / URL | `header_download_label` / `header_download_url` | テキスト / URL |
 | コピーライト | `footer_copyright` | テキスト |
 
 ### ヒーロー
@@ -65,12 +68,8 @@ python3 -m http.server 8000
 | バッジ文言 | `hero_badge` |
 | タイトル | `hero_title` |
 | リード文 | `hero_lead`（テキストエリア） |
-| 利用案内 タイトル / 説明 | `info_card_title` / `info_card_desc` |
-| 依頼シートを確認：ラベル / リンク先 | `info_item_1_label` / `info_item_1_file`（**PDFファイル**） |
-| 料金表を確認：ラベル / リンク先 | `info_item_2_label` / `info_item_2_file`（**PDFファイル**） |
-| 連絡方法を確認：ラベル / リンク先 | `info_item_3_label` / `info_item_3_url`（URL or ページリンク） |
 
-> 依頼シート・料金表は ACF の **ファイルフィールド（PDF）** を想定。出力時はファイルの URL を `href` に出し、`target="_blank"` で別タブ表示します。連絡方法はリンク（URL）フィールドです。
+> 「ご利用について」枠は廃止。リード文1行（つなぐ登録会社の皆様からの〜）のみの構成です。
 
 ### おすすめツール（調速）
 | 項目 | フィールド名 |
@@ -107,13 +106,17 @@ python3 -m http.server 8000
 - **右ボタン（ポップアップ）**：クリックで共通モーダルを開き、`card_{n}_popup_title` を見出し、`card_{n}_popup_text` を本文として表示します（**ページ遷移なし**）。
   - 本文は **WYSIWYG** 想定で、**見出し・リンク・画像・リスト**などを自由に挿入できます（モーダル側で `h2〜h4 / a / img / ul / ol / hr` を整形済み）。
   - 本文が長い場合はモーダル内でスクロール表示されます（最大幅 680px・最大高さ 88vh）。
+  - **画像主体のポップアップも可**：カード4「印刷を依頼する」は料金表画像を表示する例です（`card_4_popup_text` の WYSIWYG に画像を入れる想定。専用画像フィールド `card_4_popup_image` でも可）。
 
 > カラーテーマ・アイコンはテーマ側で固定（テンプレートに直書き）。文言・リンク（PDF）・ポップアップ本文を ACF 化する想定です。
-> ダミー実装では PDF はすべて `assets/pdf/sample.pdf`、ポップアップ本文は各カード内の `#popup-c{n}` を参照しています。
+> ダミー実装では PDF はすべて `assets/pdf/sample.pdf`、ポップアップ本文は各カード内の `#popup-c{n}`、カード4の画像は `assets/img/print-pricing-sample.svg` を参照しています。
 
-### 相談CTA
-| 項目 | フィールド名 |
-|------|------------|
-| タイトル | `help_title` |
-| 説明文 | `help_desc` |
-| ボタン ラベル / URL | `help_btn_label` / `help_btn_url` |
+### TOPIC ＋ 相談CTA
+| 項目 | フィールド名 | 種別 |
+|------|------------|------|
+| TOPIC（お知らせ） | `topics`（**リピーター**）<br>└ `topic_text`（テキスト） | リピーター |
+| タイトル | `help_title` | テキスト |
+| 説明文 | `help_desc` | テキストエリア |
+| ボタン ラベル / URL | `help_btn_label` / `help_btn_url` | テキスト / URL |
+
+> TOPIC は「まとめて相談する」ボタンの上に表示。`topics` を1件以上登録すると反映され、**横に流れるマーキー**になります（`prefers-reduced-motion` 時は折り返し表示）。シームレスなループのため、JS が項目を1セット複製しています。
