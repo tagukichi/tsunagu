@@ -60,10 +60,11 @@ python3 -m http.server 8000
 ### 共通・ヘッダー / フッター
 | 項目 | フィールド名 | 種別 |
 |------|------------|------|
-| ロゴ | `site_logo` | 画像 |
-| 利用規約 ラベル / URL | `header_terms_label` / `header_terms_url` | テキスト / URL |
-| ダウンロード ラベル / URL | `header_download_label` / `header_download_url` | テキスト / URL |
+| ロゴ（ヘッダー / フッター共通） | `site_logo` | 画像 |
+| ヘッダーボタン ラベル / URL | `header_btn_label` / `header_btn_url`（利用規約・ダウンロード） | テキスト / URL |
 | コピーライト | `footer_copyright` | テキスト |
+
+> ヘッダーとフッターのロゴは同じ `site_logo`（`tsunaglogo.png`）を使用。ヘッダー右は「利用規約・ダウンロード」の1ボタンに統合しています。
 
 ### ヒーロー
 | 項目 | フィールド名 |

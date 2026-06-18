@@ -114,10 +114,10 @@ h1, h2, h3, p { margin: 0; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 68px;
+  min-height: 92px;
 }
 .site-logo { display: inline-flex; align-items: center; }
-.site-logo__img { display: block; height: 52px; width: auto; }
+.site-logo__img { display: block; height: 72px; width: auto; }
 
 .header-actions { display: inline-flex; align-items: center; gap: 10px; }
 .btn-header {
@@ -484,6 +484,7 @@ h1, h2, h3, p { margin: 0; }
 .help-cta {
   background: linear-gradient(120deg, #1857c8 0%, #2070e6 100%);
   color: #fff;
+  padding-top: 46px;
 }
 .help-cta__inner {
   display: flex;
@@ -584,7 +585,7 @@ h1, h2, h3, p { margin: 0; }
   padding-block: 22px;
   flex-wrap: wrap;
 }
-.site-footer__logo { font-size: 20px; font-weight: 900; color: var(--brand); }
+.site-footer__logo { display: block; height: 56px; width: auto; }
 .site-footer__copy { color: var(--muted); font-size: 12.5px; }
 
 /* ---------- モーダル（ポップアップ） ---------- */
@@ -738,8 +739,10 @@ body.is-locked { overflow: hidden; }
 @media (max-width: 680px) {
   :root { --gutter: 18px; }
 
-  .site-logo__img { height: 42px; }
+  .site-header__inner { min-height: 76px; }
+  .site-logo__img { height: 56px; }
   .header-actions { gap: 7px; }
+  .site-footer__logo { height: 46px; }
   .btn-header { padding: 8px 13px; font-size: 12.5px; gap: 5px; }
   .btn-header .icon { width: 15px; height: 15px; }
 
