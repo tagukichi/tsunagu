@@ -21,7 +21,7 @@
   <header class="site-header">
     <div class="container site-header__inner">
       <a href="#" class="site-logo">
-        <img class="site-logo__img" src="assets/img/logo-placeholder.svg" alt="つなぐ" width="160" height="40">
+        <img class="site-logo__img" src="assets/img/tsunaglogo.png" alt="つなぐ" width="500" height="500">
       </a>
       <nav class="header-actions">
         <a href="#" class="btn-header btn-header--ghost">
@@ -266,8 +266,10 @@
               <button type="button" class="btn btn--solid popup-trigger" data-popup="popup-c4" data-popup-title="印刷メニュー・料金表">印刷を依頼する</button>
             </div>
             <div class="popup-content" id="popup-c4" hidden>
-              <img src="assets/img/print-pricing-sample.svg" alt="印刷メニュー・料金表（サンプル）">
-              <p class="popup-note">※ サンプル画像です。本番では支給画像（ACF: card_4_popup_image）に差し替わります。</p>
+              <object class="popup-pdf" data="assets/pdf/print-pricing.pdf" type="application/pdf" title="印刷メニュー・料金表">
+                <p class="popup-note">PDFをこの場で表示できない環境のようです。下のリンクからご覧ください。</p>
+              </object>
+              <p class="popup-note"><a href="assets/pdf/print-pricing.pdf" target="_blank" rel="noopener">料金表PDFを新しいタブで開く →</a></p>
             </div>
           </article>
 

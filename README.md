@@ -10,12 +10,14 @@ tsunagu/
 ├── index.html                 … ページ本体（ACFフィールド名をコメントで明記）
 ├── assets/
 │   ├── css/style.css          … スタイル（色テーマは data-theme で切替）
-│   ├── js/main.js             … スクロール出現アニメのみ
-│   └── img/
-│       ├── tsungau_back.png   … ヒーロー背景の街並み（支給画像 2104×747）
-│       ├── cho-sokulogo_yoko.png … 調速 横ロゴ（支給画像 1774×887）
-│       ├── logo-placeholder.svg … ヘッダーロゴ（★プレースホルダー / つなぐ）
-│       └── print-pricing-sample.svg … 印刷ポップアップの料金表画像（★プレースホルダー）
+│   ├── js/main.js             … 出現アニメ / PDFドロップダウン / モーダル / TOPICマーキー
+│   ├── img/
+│   │   ├── tsungau_back.png   … ヒーロー背景の街並み（支給画像 2104×747）
+│   │   ├── cho-sokulogo_yoko.png … 調速 横ロゴ（支給画像 1774×887）
+│   │   └── tsunaglogo.png     … ヘッダーロゴ（支給画像 500×500・透過）
+│   └── pdf/
+│       ├── print-pricing.pdf  … 印刷の料金表（支給PDF・印刷ポップアップで表示）
+│       └── sample.pdf         … 依頼シート等のダミーPDF（★差し替え）
 └── README.md
 ```
 
@@ -37,8 +39,9 @@ python3 -m http.server 8000
 |------|------|------|
 | 画像 | ヒーロー背景の街並み | `assets/img/tsungau_back.png`（**支給画像で設定済み**。下端にフルワイド配置、上端はマスクで背景へフェード） |
 | 画像 | 調速 横ロゴ | `assets/img/cho-sokulogo_yoko.png`（**支給画像で設定済み**。バナー左に白チップで配置） |
-| 画像 | ヘッダーロゴ（つなぐ） | `assets/img/logo-placeholder.svg`（★仮ロゴ。支給ロゴ／ACF `site_logo` に差し替え） |
-| 画像 | 印刷ポップアップの料金表 | `assets/img/print-pricing-sample.svg`（★仮。**印刷を依頼する**で開く画像。支給画像に差し替え） |
+| 画像 | ヘッダーロゴ（つなぐ） | `assets/img/tsunaglogo.png`（**支給画像で設定済み**。正方形・透過） |
+| PDF | 印刷の料金表 | `assets/pdf/print-pricing.pdf`（**支給PDFで設定済み**。「印刷を依頼する」のポップアップに `<object>` で埋め込み表示＋別タブリンク） |
+| PDF | 依頼シート等のダミー | `assets/pdf/sample.pdf`（★仮。各カード左ボタンの選択肢が参照） |
 | アイコン | ヘッダー / ヒーロー / 各カード / CTA | `index.html` 内のインライン SVG（`<!-- PLACEHOLDER ICON: ... -->`） |
 
 インライン SVG は `currentColor` で塗っているため、差し替え時もカードのカラーテーマ（`--c`）がそのまま反映されます。
@@ -106,10 +109,10 @@ python3 -m http.server 8000
 - **右ボタン（ポップアップ）**：クリックで共通モーダルを開き、`card_{n}_popup_title` を見出し、`card_{n}_popup_text` を本文として表示します（**ページ遷移なし**）。
   - 本文は **WYSIWYG** 想定で、**見出し・リンク・画像・リスト**などを自由に挿入できます（モーダル側で `h2〜h4 / a / img / ul / ol / hr` を整形済み）。
   - 本文が長い場合はモーダル内でスクロール表示されます（最大幅 680px・最大高さ 88vh）。
-  - **画像主体のポップアップも可**：カード4「印刷を依頼する」は料金表画像を表示する例です（`card_4_popup_text` の WYSIWYG に画像を入れる想定。専用画像フィールド `card_4_popup_image` でも可）。
+  - **PDF / 画像のポップアップも可**：カード4「印刷を依頼する」は料金表PDF `assets/pdf/print-pricing.pdf` を `<object>` で埋め込み表示する例です（テーマ化時は ACF ファイルフィールド `card_4_popup_pdf` のURLを `data` / リンクの `href` に流し込み）。
 
 > カラーテーマ・アイコンはテーマ側で固定（テンプレートに直書き）。文言・リンク（PDF）・ポップアップ本文を ACF 化する想定です。
-> ダミー実装では PDF はすべて `assets/pdf/sample.pdf`、ポップアップ本文は各カード内の `#popup-c{n}`、カード4の画像は `assets/img/print-pricing-sample.svg` を参照しています。
+> ダミー実装では左ボタンの選択肢PDFは `assets/pdf/sample.pdf`、ポップアップ本文は各カード内の `#popup-c{n}`、カード4は料金表PDF `assets/pdf/print-pricing.pdf` を参照しています。
 
 ### TOPIC ＋ 相談CTA
 | 項目 | フィールド名 | 種別 |
