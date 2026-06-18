@@ -8,6 +8,7 @@
 ```
 tsunagu/
 ├── index.html                 … ページ本体（ACFフィールド名をコメントで明記）
+├── login.html                 … 会員ログイン画面（ID/PASS・WP連携前提）
 ├── assets/
 │   ├── css/style.css          … スタイル（色テーマは data-theme で切替）
 │   ├── js/main.js             … 出現アニメ / PDFドロップダウン / モーダル / TOPICマーキー
@@ -52,6 +53,40 @@ python3 -m http.server 8000
 - フォント：Noto Sans JP（Google Fonts）。
 - レスポンシブ：PC（3カラム）→ タブレット 1024px 以下（2カラム）→ スマホ 680px 以下（1カラム）。
 - サービスカードは**固定6枚**。
+
+## 会員限定アクセス（ログイン）
+
+WordPress でユーザー登録された会員だけが、ID・パスワードで閲覧できるようにする想定です。
+`login.html` がログイン画面のデザインです（サイトと同じトーンの中央カード＋背景の街並み）。
+
+- **フォームの仕様**：入力欄の `name` は WordPress 準拠（`log` / `pwd` / `rememberme`）。テーマ化時はフォームの `action` を `wp_login_url()` に、必要に応じて hidden の `redirect_to` を出力すれば、`wp-login.php` がそのまま認証を処理します。
+- **パスワード表示切替**：目アイコンで表示/非表示を切り替え（`assets/js/main.js` の 5) ブロック）。
+- **新規登録リンクは無し**：会員登録は管理者（事務局）が WP 管理画面で行う想定。公開登録は無効化を推奨（`設定 > 一般 >「だれでも登録できるようにする」をオフ`）。
+
+### テーマ化時の実装メモ（functions.php）
+
+ログインしていない訪問者を、すべてログインページへリダイレクトします。
+
+```php
+// 未ログインは全ページをログインページ（固定ページ slug = login）へ誘導
+add_action('template_redirect', function () {
+    if (is_user_logged_in()) return;
+
+    // ログインページ自身・wp-login・管理画面・REST/AJAX は除外
+    if (is_page('login')) return;
+    $uri = $_SERVER['REQUEST_URI'] ?? '';
+    foreach (['wp-login.php', '/wp-admin', '/wp-json', 'admin-ajax.php'] as $allow) {
+        if (strpos($uri, $allow) !== false) return;
+    }
+
+    wp_safe_redirect( home_url('/login/?redirect_to=' . rawurlencode(home_url($uri))) );
+    exit;
+});
+```
+
+- ログイン画面は固定ページ（slug `login`）＋専用テンプレート `page-login.php` に `login.html` のマークアップを移植。
+- フォーム例：`<form method="post" action="<?php echo esc_url( wp_login_url() ); ?>">` ＋ `name="log"/"pwd"/"rememberme"` ＋ `<input type="hidden" name="redirect_to" value="<?php echo esc_url( home_url('/') ); ?>">`。
+- エラー時は `login.html` の `.login__error`（既定 `hidden`）を表示。
 
 ## WordPress / ACF 移行ガイド
 

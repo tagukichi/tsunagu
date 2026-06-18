@@ -134,4 +134,17 @@
     });
     track.classList.add('is-marquee');
   })();
+
+  /* ---------- 5) パスワード表示切替（ログイン画面） ---------- */
+  document.querySelectorAll('.pass-toggle').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var input = btn.parentNode.querySelector('input');
+      if (!input) return;
+      var show = input.type === 'password';
+      input.type = show ? 'text' : 'password';
+      btn.classList.toggle('is-on', show);
+      btn.setAttribute('aria-pressed', String(show));
+      btn.setAttribute('aria-label', show ? 'パスワードを隠す' : 'パスワードを表示');
+    });
+  });
 })();
