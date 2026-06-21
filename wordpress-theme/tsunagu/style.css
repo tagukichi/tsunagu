@@ -1,0 +1,16 @@
+/*
+Theme Name: つなぐ依頼ページ (Tsunagu)
+Theme URI: https://example.com/
+Author: つなぐ
+Author URI: https://example.com/
+Description: つなぐ会員向け「依頼ページ」専用テーマ。ACF（Advanced Custom Fields）で文言・リンク・PDF・ポップアップ・TOPICを編集でき、会員ログイン（ID/PASS）による閲覧制限に対応します。ACF未導入でも初期内容で表示されます。
+Version: 1.0.0
+Requires at least: 6.0
+Tested up to: 6.6
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: tsunagu
+*/
+
+/* 実スタイルは assets/css/style.css を functions.php で読み込みます（このファイルはテーマ情報用）。 */
