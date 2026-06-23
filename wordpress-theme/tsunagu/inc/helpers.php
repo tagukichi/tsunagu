@@ -46,31 +46,34 @@ function tsunagu_asset( $path ) {
 	return get_theme_file_uri( 'assets/' . ltrim( $path, '/' ) );
 }
 
+/** ファイル/画像ACF値（array/URL/ID）からURL文字列を取り出す */
+function tsunagu_extract_file_url( $v ) {
+	if ( is_array( $v ) && ! empty( $v['url'] ) ) return $v['url'];
+	if ( is_string( $v ) && $v !== '' )           return $v;
+	if ( is_numeric( $v ) ) {
+		$u = wp_get_attachment_url( $v );
+		if ( $u ) return $u;
+	}
+	return '';
+}
+
 /**
- * カードの左ボタン用 PDFリスト取得
- * ACFリピーター card_{n}_pdfs があればそれを、無ければ既定配列を返す
- * 返り値: [ ['label'=>..., 'url'=>...], ... ]
+ * カードの左ボタン用 PDFリスト取得（ACF無料版対応：固定スロット card_{n}_pdf1..4）
+ * 返り値: [ ['label'=>..., 'url'=>...], ... ]。未入力なら既定配列。
  */
 function tsunagu_card_pdfs( $n, $default = array() ) {
-	$name = "card_{$n}_pdfs";
-	if ( function_exists( 'have_rows' ) && have_rows( $name ) ) {
+	if ( function_exists( 'get_field' ) ) {
 		$out = array();
-		while ( have_rows( $name ) ) {
-			the_row();
-			$file = function_exists( 'get_sub_field' ) ? get_sub_field( 'pdf_file' ) : '';
-			$url  = '#';
-			if ( is_array( $file ) && ! empty( $file['url'] ) ) {
-				$url = $file['url'];
-			} elseif ( is_string( $file ) && $file !== '' ) {
-				$url = $file;
-			} elseif ( is_numeric( $file ) ) {
-				$u = wp_get_attachment_url( $file );
-				if ( $u ) $url = $u;
+		for ( $i = 1; $i <= 4; $i++ ) {
+			$label = get_field( "card_{$n}_pdf{$i}_label" );
+			$url   = tsunagu_extract_file_url( get_field( "card_{$n}_pdf{$i}_file" ) );
+			$has_label = ( $label !== '' && $label !== null );
+			if ( $has_label || $url !== '' ) {
+				$out[] = array(
+					'label' => $has_label ? $label : 'PDF',
+					'url'   => $url !== '' ? $url : '#',
+				);
 			}
-			$out[] = array(
-				'label' => get_sub_field( 'pdf_label' ),
-				'url'   => $url,
-			);
 		}
 		if ( ! empty( $out ) ) return $out;
 	}
@@ -78,18 +81,19 @@ function tsunagu_card_pdfs( $n, $default = array() ) {
 }
 
 /**
- * TOPIC リスト取得
- * ACFリピーター topics（サブ topic_text）→ 文字列配列。無ければ既定配列
+ * TOPIC リスト取得（ACF無料版対応：テキストエリア topics_text、1行＝1件）
  */
 function tsunagu_topics( $default = array() ) {
-	if ( function_exists( 'have_rows' ) && have_rows( 'topics' ) ) {
-		$out = array();
-		while ( have_rows( 'topics' ) ) {
-			the_row();
-			$t = get_sub_field( 'topic_text' );
-			if ( $t !== '' && $t !== null ) $out[] = $t;
+	if ( function_exists( 'get_field' ) ) {
+		$raw = get_field( 'topics_text' );
+		if ( is_string( $raw ) && trim( $raw ) !== '' ) {
+			$out = array();
+			foreach ( preg_split( '/\r\n|\r|\n/', $raw ) as $line ) {
+				$line = trim( $line );
+				if ( $line !== '' ) $out[] = $line;
+			}
+			if ( ! empty( $out ) ) return $out;
 		}
-		if ( ! empty( $out ) ) return $out;
 	}
 	return $default;
 }

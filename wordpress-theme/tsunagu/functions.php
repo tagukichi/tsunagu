@@ -69,15 +69,6 @@ add_action( 'wp_login_failed', function ( $username ) {
 	}
 }, 10, 1 );
 
-/* ID/PASS未入力でのログイン試行も同様に戻す */
-add_filter( 'authenticate', function ( $user, $username, $password ) {
-	if ( ( $username === '' || $password === '' ) && ! empty( $_POST ) && isset( $_POST['pwd'] ) ) {
-		wp_safe_redirect( add_query_arg( 'login', 'empty', tsunagu_login_page_url() ) );
-		exit;
-	}
-	return $user;
-}, 1, 3 );
-
 /* ACF 未導入時に管理画面で案内 */
 add_action( 'admin_notices', function () {
 	if ( ! class_exists( 'ACF' ) ) {

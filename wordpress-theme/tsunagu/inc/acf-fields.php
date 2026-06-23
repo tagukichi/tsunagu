@@ -53,14 +53,17 @@ add_action( 'acf/init', function () {
 		$fields[] = $F( "card_{$n}_title", 'タイトル', 'text', array( 'instructions' => '改行は &lt;br&gt;、注釈は &lt;small&gt;〜&lt;/small&gt; が使えます' ) );
 		$fields[] = $F( "card_{$n}_desc", '説明文', 'textarea', array( 'rows' => 2 ) );
 		$fields[] = $F( "card_{$n}_btn1_label", '左ボタン ラベル', 'text' );
-		$fields[] = $F( "card_{$n}_pdfs", '左ボタン PDF（1件＝直接表示 / 2件以上＝リスト）', 'repeater', array(
-			'layout'       => 'table',
-			'button_label' => 'PDFを追加',
-			'sub_fields'   => array(
-				array( 'key' => "field_tsg_card_{$n}_pdf_label", 'name' => 'pdf_label', 'label' => 'ラベル', 'type' => 'text' ),
-				array( 'key' => "field_tsg_card_{$n}_pdf_file", 'name' => 'pdf_file', 'label' => 'PDF', 'type' => 'file', 'return_format' => 'array', 'mime_types' => 'pdf' ),
-			),
-		) );
+		$fields[] = array(
+			'key'     => "field_tsg_card_{$n}_pdfmsg",
+			'label'   => '左ボタンのPDF（最大4件）',
+			'type'    => 'message',
+			'message' => 'PDFを1件だけ入れるとボタンで直接表示、2件以上でクリック時にリスト表示になります。',
+		);
+		for ( $i = 1; $i <= 4; $i++ ) {
+			$opt = ( $i === 1 ) ? '' : '（任意）';
+			$fields[] = $F( "card_{$n}_pdf{$i}_label", "PDF{$i} ラベル{$opt}", 'text' );
+			$fields[] = $F( "card_{$n}_pdf{$i}_file", "PDF{$i} ファイル{$opt}", 'file', array( 'return_format' => 'array', 'mime_types' => 'pdf' ) );
+		}
 		$fields[] = $F( "card_{$n}_btn2_label", '右ボタン ラベル', 'text' );
 		$fields[] = $F( "card_{$n}_popup_title", '右ボタン ポップアップ 見出し', 'text' );
 		if ( $n === 4 ) {
@@ -71,12 +74,10 @@ add_action( 'acf/init', function () {
 	}
 
 	$fields[] = $TAB( 'TOPIC' );
-	$fields[] = $F( 'topics', 'TOPIC（「まとめて相談する」上に流れるお知らせ）', 'repeater', array(
-		'layout'       => 'table',
-		'button_label' => 'TOPICを追加',
-		'sub_fields'   => array(
-			array( 'key' => 'field_tsg_topic_text', 'name' => 'topic_text', 'label' => '文言', 'type' => 'text' ),
-		),
+	$fields[] = $F( 'topics_text', 'TOPIC（1行に1件）', 'textarea', array(
+		'rows'         => 4,
+		'instructions' => '「まとめて相談する」の上に流れるお知らせ。1行＝1件。例）1棟案件アパート求む',
+		'placeholder'  => "1棟案件アパート求む\nボロ戸建て投資家に提案可能\n500万円以下の案件は是非！",
 	) );
 
 	$fields[] = $TAB( '相談CTA' );

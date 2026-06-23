@@ -131,7 +131,7 @@ add_action('template_redirect', function () {
 | タイトル | `card_{n}_title` | テキスト |
 | 説明文 | `card_{n}_desc` | テキストエリア |
 | **左ボタン** ラベル | `card_{n}_btn1_label` | テキスト |
-| 左ボタン PDF（複数可） | `card_{n}_pdfs`（**リピーター**）<br>└ `pdf_label`（テキスト） / `pdf_file`（**ファイル＝PDF**） | リピーター |
+| 左ボタン PDF（最大4件） | `card_{n}_pdf1〜4_label`（テキスト） / `card_{n}_pdf1〜4_file`（**ファイル＝PDF**） | 固定スロット（ACF無料版対応） |
 | **右ボタン** ラベル | `card_{n}_btn2_label` | テキスト |
 | 右ボタン ポップアップ 見出し | `card_{n}_popup_title` | テキスト |
 | 右ボタン ポップアップ 本文 | `card_{n}_popup_text` | WYSIWYG / テキストエリア |
@@ -153,7 +153,7 @@ add_action('template_redirect', function () {
 ### TOPIC ＋ 相談CTA
 | 項目 | フィールド名 | 種別 |
 |------|------------|------|
-| TOPIC（お知らせ） | `topics`（**リピーター**）<br>└ `topic_text`（テキスト） | リピーター |
+| TOPIC（お知らせ） | `topics_text`（テキストエリア・**1行＝1件**） | テキストエリア（ACF無料版対応） |
 | タイトル | `help_title` | テキスト |
 | 説明文 | `help_desc` | テキストエリア |
 | ボタン ラベル / URL | `help_btn_label` / `help_btn_url` | テキスト / URL |
