@@ -9,7 +9,7 @@ $topics       = tsunagu_topics( $d['topics'] );
 
 <main>
 
-	<!-- ヒーロー -->
+	<!-- ヒーロー（右に調速プロモを配置） -->
 	<section class="hero">
 		<div class="container hero__inner">
 			<div class="hero__main" data-reveal>
@@ -23,36 +23,44 @@ $topics       = tsunagu_topics( $d['topics'] );
 				<h1 class="hero__title"><?php echo esc_html( tsunagu_field( 'hero_title', $d['hero_title'] ) ); ?></h1>
 				<p class="hero__lead"><?php echo nl2br( esc_html( tsunagu_field( 'hero_lead', $d['hero_lead'] ) ) ); ?></p>
 			</div>
+
+			<aside class="hero__promo" data-reveal>
+				<span class="featured__ribbon"><?php echo esc_html( tsunagu_field( 'featured_ribbon', $d['featured_ribbon'] ) ); ?></span>
+				<div class="featured__box">
+					<div class="featured__brand">
+						<img class="featured__logo" src="<?php echo esc_url( $featured_img ); ?>" alt="調速（チョーソク） 不動産調査アプリ">
+					</div>
+					<div class="featured__body">
+						<p class="featured__product"><?php echo esc_html( tsunagu_field( 'featured_product', $d['featured_product'] ) ); ?><span class="featured__pill"><?php echo esc_html( tsunagu_field( 'featured_pill', $d['featured_pill'] ) ); ?></span></p>
+						<p class="featured__text"><?php echo wp_kses_post( tsunagu_field( 'featured_text', $d['featured_text'] ) ); ?></p>
+					</div>
+					<a class="btn btn--white featured__btn" href="<?php echo esc_url( tsunagu_url( 'featured_btn_url' ) ); ?>">
+						<span><?php echo esc_html( tsunagu_field( 'featured_btn_label', $d['featured_btn_label'] ) ); ?></span>
+						<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+					</a>
+				</div>
+			</aside>
 		</div>
 		<div class="hero__skyline" aria-hidden="true"></div>
-	</section>
-
-	<!-- おすすめツール（調速） -->
-	<section class="featured">
-		<div class="container featured__wrap">
-			<span class="featured__ribbon"><?php echo esc_html( tsunagu_field( 'featured_ribbon', $d['featured_ribbon'] ) ); ?></span>
-			<div class="featured__box" data-reveal>
-				<div class="featured__brand">
-					<img class="featured__logo" src="<?php echo esc_url( $featured_img ); ?>" alt="調速（チョーソク） 不動産調査アプリ">
-				</div>
-				<div class="featured__body">
-					<p class="featured__product">
-						<?php echo esc_html( tsunagu_field( 'featured_product', $d['featured_product'] ) ); ?>
-						<span class="featured__pill"><?php echo esc_html( tsunagu_field( 'featured_pill', $d['featured_pill'] ) ); ?></span>
-					</p>
-					<p class="featured__text"><?php echo wp_kses_post( tsunagu_field( 'featured_text', $d['featured_text'] ) ); ?></p>
-				</div>
-				<a class="btn btn--white featured__btn" href="<?php echo esc_url( tsunagu_url( 'featured_btn_url' ) ); ?>">
-					<span><?php echo esc_html( tsunagu_field( 'featured_btn_label', $d['featured_btn_label'] ) ); ?></span>
-					<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-				</a>
-			</div>
-		</div>
 	</section>
 
 	<!-- サービスメニュー（固定6枚） -->
 	<section class="services" id="menu">
 		<div class="container">
+
+			<?php if ( ! empty( $topics ) ) : ?>
+			<div class="topics" data-reveal>
+				<span class="topics__label">TOPIC</span>
+				<div class="topics__viewport">
+					<ul class="topics__track">
+						<?php foreach ( $topics as $t ) : ?>
+							<li class="topics__item"><?php echo esc_html( $t ); ?></li>
+						<?php endforeach; ?>
+					</ul>
+				</div>
+			</div>
+			<?php endif; ?>
+
 			<div class="services__grid">
 				<?php
 				foreach ( range( 1, 6 ) as $n ) :
@@ -102,23 +110,9 @@ $topics       = tsunagu_topics( $d['topics'] );
 		</div>
 	</section>
 
-	<!-- TOPIC ＋ 相談CTA -->
+	<!-- 相談CTA -->
 	<section class="help-cta" id="contact">
 		<div class="container">
-
-			<?php if ( ! empty( $topics ) ) : ?>
-			<div class="topics" data-reveal>
-				<span class="topics__label">TOPIC</span>
-				<div class="topics__viewport">
-					<ul class="topics__track">
-						<?php foreach ( $topics as $t ) : ?>
-							<li class="topics__item"><?php echo esc_html( $t ); ?></li>
-						<?php endforeach; ?>
-					</ul>
-				</div>
-			</div>
-			<?php endif; ?>
-
 			<div class="help-cta__inner" data-reveal>
 				<span class="help-cta__icon">
 					<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">

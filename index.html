@@ -39,8 +39,10 @@
   <main>
 
     <!-- ============================================================
-         ヒーロー
+         ヒーロー（右に調速プロモを配置）
          [ACF] hero_badge / hero_title / hero_lead
+               featured_ribbon / featured_logo / featured_product
+               featured_pill / featured_text / featured_btn_label / featured_btn_url
     ============================================================ -->
     <section class="hero">
       <div class="container hero__inner">
@@ -56,42 +58,28 @@
           <h1 class="hero__title">つなぐ依頼ページ</h1>
           <p class="hero__lead">つなぐ登録会社の皆様からの各種ご依頼・ご相談を受け付けるページです。</p>
         </div>
+
+        <!-- おすすめツール（調速）：ヒーロー右のコンパクトカード -->
+        <aside class="hero__promo" data-reveal>
+          <span class="featured__ribbon">おすすめツール</span>
+          <div class="featured__box">
+            <div class="featured__brand">
+              <img class="featured__logo" src="assets/img/cho-sokulogo_yoko.png" alt="調速（チョーソク） 不動産調査アプリ">
+            </div>
+            <div class="featured__body">
+              <p class="featured__product">不動産調査AIツール<span class="featured__pill">調査・相場確認を効率化</span></p>
+              <p class="featured__text">調査・相場確認をAIで自動化。データに基づく判断で、業務のスピードと精度を高めます。</p>
+            </div>
+            <a class="btn btn--white featured__btn" href="#">
+              <span>利用案内を見る</span>
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </aside>
       </div>
       <div class="hero__skyline" aria-hidden="true"></div>
-    </section>
-
-    <!-- ============================================================
-         おすすめツール（調速）バナー
-         [ACF] featured_ribbon / featured_logo(画像) / featured_product
-               featured_pill / featured_text
-               featured_btn_label / featured_btn_url
-    ============================================================ -->
-    <section class="featured">
-      <div class="container featured__wrap">
-        <span class="featured__ribbon">おすすめツール</span>
-        <div class="featured__box" data-reveal>
-
-          <div class="featured__brand">
-            <img class="featured__logo" src="assets/img/cho-sokulogo_yoko.png" alt="調速（チョーソク） 不動産調査アプリ">
-          </div>
-
-          <div class="featured__body">
-            <p class="featured__product">
-              不動産調査AIツール
-              <span class="featured__pill">調査・相場確認を効率化</span>
-            </p>
-            <p class="featured__text">調査・相場確認をAIで自動化。<br class="br-pc">データに基づく判断で、業務のスピードと精度を高めます。</p>
-          </div>
-
-          <a class="btn btn--white featured__btn" href="#">
-            <span>利用案内を見る</span>
-            <!-- PLACEHOLDER ICON: chevron -->
-            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-        </div>
-      </div>
     </section>
 
     <!-- ============================================================
@@ -106,6 +94,19 @@
     ============================================================ -->
     <section class="services" id="menu">
       <div class="container">
+
+        <!-- TOPIC（カードの上） [ACF] topics（リピーター: topic_text） -->
+        <div class="topics" data-reveal>
+          <span class="topics__label">TOPIC</span>
+          <div class="topics__viewport">
+            <ul class="topics__track">
+              <li class="topics__item">1棟案件アパート求む</li>
+              <li class="topics__item">ボロ戸建て投資家に提案可能</li>
+              <li class="topics__item">500万円以下の案件は是非！</li>
+            </ul>
+          </div>
+        </div>
+
         <div class="services__grid">
 
           <!-- Card 1 : 売却 (blue) -->
@@ -337,25 +338,11 @@
     </section>
 
     <!-- ============================================================
-         TOPIC ＋ 迷ったときの相談 CTA
-         [ACF] topics（リピーター: topic_text）
-               help_title / help_desc / help_btn_label / help_btn_url
+         迷ったときの相談 CTA
+         [ACF] help_title / help_desc / help_btn_label / help_btn_url
     ============================================================ -->
     <section class="help-cta" id="contact">
       <div class="container">
-
-        <!-- [ACF] topics（リピーター: topic_text）。1件でも複数でもOK -->
-        <div class="topics" data-reveal>
-          <span class="topics__label">TOPIC</span>
-          <div class="topics__viewport">
-            <ul class="topics__track">
-              <li class="topics__item">1棟案件アパート求む</li>
-              <li class="topics__item">ボロ戸建て投資家に提案可能</li>
-              <li class="topics__item">500万円以下の案件は是非！</li>
-            </ul>
-          </div>
-        </div>
-
         <div class="help-cta__inner" data-reveal>
         <span class="help-cta__icon">
           <!-- PLACEHOLDER ICON: question -->
