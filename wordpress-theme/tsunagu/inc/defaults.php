@@ -24,7 +24,7 @@ function tsunagu_defaults() {
 		'featured_ribbon'    => 'おすすめツール',
 		'featured_product'   => '不動産調査AIツール',
 		'featured_pill'      => '調査・相場確認を効率化',
-		'featured_text'      => '調査・相場確認をAIで自動化。<br class="br-pc">データに基づく判断で、業務のスピードと精度を高めます。',
+		'featured_text'      => '「10秒検索」で物件概要を簡易調査、提案資料を「AI」が自動作成',
 		'featured_btn_label' => '利用案内を見る',
 
 		// TOPIC
@@ -33,11 +33,6 @@ function tsunagu_defaults() {
 			'ボロ戸建て投資家に提案可能',
 			'500万円以下の案件は是非！',
 		),
-
-		// 相談CTA
-		'help_title'     => 'どのメニューを選べばよいか分からない場合',
-		'help_desc'      => 'ご状況やご希望をお伺いし、最適なメニューをご案内します。<br>まずはお気軽にご相談ください。',
-		'help_btn_label' => 'まとめて相談する',
 
 		// ログイン
 		'login_title' => '会員ログイン',

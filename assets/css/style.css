@@ -320,11 +320,11 @@ h1, h2, h3, p { margin: 0; }
 }
 .featured__logo {
   display: block;
-  height: 52px;
+  height: 96px;
   width: auto;
   background: #fff;
-  border-radius: 12px;
-  padding: 6px 12px;
+  border-radius: 14px;
+  padding: 8px 16px;
   box-shadow: 0 6px 16px rgba(0, 0, 0, .18);
 }
 .featured__body { color: #eaf1ff; }
@@ -857,7 +857,7 @@ body.is-locked { overflow: hidden; }
 
   .hero { padding-block: 28px 48px; }
   .featured__ribbon { left: 20px; top: -15px; font-size: 12px; padding: 7px 14px; }
-  .featured__logo { height: 64px; }
+  .featured__logo { height: 84px; }
 
   .services__grid { grid-template-columns: 1fr; }
 

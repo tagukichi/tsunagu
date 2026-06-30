@@ -80,12 +80,6 @@ add_action( 'acf/init', function () {
 		'placeholder'  => "1棟案件アパート求む\nボロ戸建て投資家に提案可能\n500万円以下の案件は是非！",
 	) );
 
-	$fields[] = $TAB( '相談CTA' );
-	$fields[] = $F( 'help_title', 'タイトル', 'text' );
-	$fields[] = $F( 'help_desc', '説明文', 'textarea', array( 'rows' => 2 ) );
-	$fields[] = $F( 'help_btn_label', 'ボタン ラベル', 'text' );
-	$fields[] = $F( 'help_btn_url', 'ボタン URL', 'url' );
-
 	acf_add_local_field_group( array(
 		'key'      => 'group_tsunagu_page',
 		'title'    => 'つなぐ依頼ページ',

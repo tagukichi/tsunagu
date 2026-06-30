@@ -36,7 +36,6 @@ $topics       = tsunagu_topics( $d['topics'] );
 					</div>
 					<a class="btn btn--white featured__btn" href="<?php echo esc_url( tsunagu_url( 'featured_btn_url' ) ); ?>">
 						<span><?php echo esc_html( tsunagu_field( 'featured_btn_label', $d['featured_btn_label'] ) ); ?></span>
-						<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
 					</a>
 				</div>
 			</aside>
@@ -106,29 +105,6 @@ $topics       = tsunagu_topics( $d['topics'] );
 						<div class="popup-content" id="popup-c<?php echo $n; ?>" hidden><?php echo $popup; // phpcs:ignore ?></div>
 					</article>
 				<?php endforeach; ?>
-			</div>
-		</div>
-	</section>
-
-	<!-- 相談CTA -->
-	<section class="help-cta" id="contact">
-		<div class="container">
-			<div class="help-cta__inner" data-reveal>
-				<span class="help-cta__icon">
-					<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-						<path d="M9 9a3 3 0 1 1 4 2.8c-0.9.5-1.5 1-1.5 2.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-						<circle cx="11.6" cy="17.5" r="1.2" fill="currentColor"/>
-					</svg>
-				</span>
-				<div class="help-cta__text">
-					<h2 class="help-cta__title"><?php echo esc_html( tsunagu_field( 'help_title', $d['help_title'] ) ); ?></h2>
-					<p class="help-cta__desc"><?php echo wp_kses_post( tsunagu_field( 'help_desc', $d['help_desc'] ) ); ?></p>
-				</div>
-				<a class="btn btn--white help-cta__btn" href="<?php echo esc_url( tsunagu_url( 'help_btn_url' ) ); ?>">
-					<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 6h16v10H9l-4 3v-3H4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
-					<span><?php echo esc_html( tsunagu_field( 'help_btn_label', $d['help_btn_label'] ) ); ?></span>
-					<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-				</a>
 			</div>
 		</div>
 	</section>
