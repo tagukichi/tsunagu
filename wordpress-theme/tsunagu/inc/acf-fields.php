@@ -39,7 +39,11 @@ add_action( 'acf/init', function () {
 	$fields[] = $F( 'hero_lead', 'リード文', 'textarea', array( 'rows' => 3 ) );
 
 	$fields[] = $TAB( 'おすすめツール（調速）' );
-	$fields[] = $F( 'featured_logo', 'ロゴ画像（調速 横ロゴ）', 'image', array( 'return_format' => 'array' ) );
+	$fields[] = $F( 'featured_logo', '調速 ロゴ画像（横ロゴ／PNG推奨）', 'image', array(
+		'return_format' => 'array',
+		'preview_size'  => 'medium',
+		'instructions'  => 'ヒーロー右のおすすめツールバナーに表示される「調速」ロゴ画像です。未設定時はテーマ同梱のロゴを表示します。',
+	) );
 	$fields[] = $F( 'featured_ribbon', 'リボン文言', 'text' );
 	$fields[] = $F( 'featured_product', '製品名', 'text' );
 	$fields[] = $F( 'featured_pill', 'ピル文言', 'text' );
@@ -84,9 +88,14 @@ add_action( 'acf/init', function () {
 		'key'      => 'group_tsunagu_page',
 		'title'    => 'つなぐ依頼ページ',
 		'fields'   => $fields,
+		// 依頼ページテンプレート、フロントページ、またはログイン以外の任意の固定ページで表示
 		'location' => array(
 			array( array( 'param' => 'post_template', 'operator' => '==', 'value' => 'template-tsunagu.php' ) ),
 			array( array( 'param' => 'page_type', 'operator' => '==', 'value' => 'front_page' ) ),
+			array(
+				array( 'param' => 'post_type', 'operator' => '==', 'value' => 'page' ),
+				array( 'param' => 'post_template', 'operator' => '!=', 'value' => 'template-login.php' ),
+			),
 		),
 		'position' => 'normal',
 		'style'    => 'default',

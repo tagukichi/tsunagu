@@ -568,12 +568,10 @@ h1, h2, h3, p { margin: 0; }
 .site-footer .container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding-block: 9px;
-  flex-wrap: wrap;
+  justify-content: center;
+  padding-block: 10px;
+  text-align: center;
 }
-.site-footer__logo { display: block; height: 34px; width: auto; }
 .site-footer__copy { color: var(--muted); font-size: 12.5px; }
 
 /* ---------- モーダル（ポップアップ） ---------- */
@@ -847,7 +845,6 @@ body.is-locked { overflow: hidden; }
   .site-header__inner { min-height: 76px; }
   .site-logo__img { height: 56px; }
   .header-actions { gap: 7px; }
-  .site-footer__logo { height: 46px; }
   .btn-header { padding: 8px 13px; font-size: 12.5px; gap: 5px; }
   .btn-header .icon { width: 15px; height: 15px; }
 
