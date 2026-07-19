@@ -68,7 +68,17 @@ add_action( 'acf/init', function () {
 		$fields[] = $F( "card_{$n}_title", 'タイトル', 'text', array( 'instructions' => '改行は &lt;br&gt;、注釈は &lt;small&gt;〜&lt;/small&gt; が使えます' ) );
 		$fields[] = $F( "card_{$n}_desc", '説明文', 'textarea', array( 'rows' => 2 ) );
 		$fields[] = $F( "card_{$n}_btn1_label", '左ボタン（大）ラベル', 'text', array( 'placeholder' => ( $n <= 3 ) ? '依頼' : '面談調整' ) );
-		$fields[] = $F( "card_{$n}_btn1_url", '左ボタン（大）リンクURL', 'url', array( 'instructions' => 'クリック時に開くページ。Contact Form 7 を設置した固定ページのURLを設定してください。' ) );
+		$fields[] = array(
+			'key'     => "field_tsg_card_{$n}_formmsg",
+			'label'   => '左ボタンの遷移先フォーム（最大4件）',
+			'type'    => 'message',
+			'message' => '「依頼」ボタンの遷移先です。1件だけ設定するとクリックでそのフォームへ直接遷移、2件以上でクリック時にリスト（プルダウン）が開き、選んだフォームへ遷移します。URLには Contact Form 7 を設置した固定ページのアドレスを入力してください。',
+		);
+		for ( $i = 1; $i <= 4; $i++ ) {
+			$opt = ( $i === 1 ) ? '' : '（任意）';
+			$fields[] = $F( "card_{$n}_form{$i}_label", "フォーム{$i} ラベル{$opt}", 'text', array( 'instructions' => ( $i === 1 ? '1件のみ設定時はリストを出さず直接遷移します（ラベルは大ボタンの文言が優先表示）。' : '' ) ) );
+			$fields[] = $F( "card_{$n}_form{$i}_url", "フォーム{$i} URL{$opt}", 'url' );
+		}
 		$fields[] = $F( "card_{$n}_btn2_label", '右ボタン（小）ラベル', 'text', array( 'placeholder' => ( $n === 4 ) ? 'ご料金' : '詳細' ) );
 		$fields[] = $F( "card_{$n}_popup_title", '右ボタン ポップアップ 見出し', 'text' );
 		if ( $n === 4 ) {

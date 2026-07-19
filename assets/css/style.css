@@ -451,7 +451,9 @@ h1, h2, h3, p { margin: 0; }
 .service-card__actions.actions--split {
   grid-template-columns: 7fr 3fr;
 }
-.actions--split .actions__primary { font-size: 15px; font-weight: 700; padding: 13px 8px; }
+/* 大ボタン：直接リンク（a）／ドロップダウンのトリガー（.pdf-trigger）の両対応 */
+.actions--split a.actions__primary,
+.actions--split .actions__primary .pdf-trigger { font-size: 15px; font-weight: 700; padding: 13px 8px; }
 .actions--split .actions__secondary { font-size: 12.5px; padding: 12px 6px; }
 
 /* PDFドロップダウン（左ボタン） */

@@ -141,8 +141,17 @@
             </div>
             <p class="service-card__desc">売却したい物件のご相談・ご依頼を受け付けています。</p>
             <div class="service-card__actions actions--split">
-              <!-- 左：依頼（別ページへのリンク / card_1_btn1_url） -->
-              <a class="btn btn--solid actions__primary" href="#">依頼</a>
+              <!-- 左：依頼（フォームリンクのリスト / card_1_form1..4） -->
+              <div class="pdf-dropdown actions__primary">
+                <button type="button" class="btn btn--solid pdf-trigger" aria-haspopup="true" aria-expanded="false">
+                  <span>依頼</span>
+                  <svg class="pdf-caret" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <ul class="pdf-menu" role="menu" hidden>
+                  <li role="none"><a class="pdf-menu__item" role="menuitem" href="#">自社物件の売却依頼</a></li>
+                  <li role="none"><a class="pdf-menu__item" role="menuitem" href="#">仲介物件の売却依頼</a></li>
+                </ul>
+              </div>
               <!-- 右：詳細（ポップアップ / card_1_popup_*） -->
               <button type="button" class="btn btn--outline actions__secondary popup-trigger" data-popup="popup-c1" data-popup-title="売却のご相談について">詳細</button>
             </div>
@@ -174,7 +183,17 @@
             </div>
             <p class="service-card__desc">仕入れたい物件や、エンド（購入希望者）情報のご提供をお願いします。</p>
             <div class="service-card__actions actions--split">
-              <a class="btn btn--solid actions__primary" href="#">依頼</a>
+              <!-- 左：依頼（フォームリンクのリスト / card_2_form1..4） -->
+              <div class="pdf-dropdown actions__primary">
+                <button type="button" class="btn btn--solid pdf-trigger" aria-haspopup="true" aria-expanded="false">
+                  <span>依頼</span>
+                  <svg class="pdf-caret" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <ul class="pdf-menu" role="menu" hidden>
+                  <li role="none"><a class="pdf-menu__item" role="menuitem" href="#">自社購入の仕入基準を依頼</a></li>
+                  <li role="none"><a class="pdf-menu__item" role="menuitem" href="#">一般買主の購入ニーズを依頼</a></li>
+                </ul>
+              </div>
               <button type="button" class="btn btn--outline actions__secondary popup-trigger" data-popup="popup-c2" data-popup-title="仕入・エンド情報について">詳細</button>
             </div>
             <div class="popup-content" id="popup-c2" hidden>
@@ -199,7 +218,17 @@
             </div>
             <p class="service-card__desc">解体、造成、リフォーム、建設工事の見積からご依頼可能。</p>
             <div class="service-card__actions actions--split">
-              <a class="btn btn--solid actions__primary" href="#">依頼</a>
+              <!-- 左：依頼（フォームリンクのリスト / card_3_form1..4） -->
+              <div class="pdf-dropdown actions__primary">
+                <button type="button" class="btn btn--solid pdf-trigger" aria-haspopup="true" aria-expanded="false">
+                  <span>依頼</span>
+                  <svg class="pdf-caret" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <ul class="pdf-menu" role="menu" hidden>
+                  <li role="none"><a class="pdf-menu__item" role="menuitem" href="#">工事の見積依頼</a></li>
+                  <li role="none"><a class="pdf-menu__item" role="menuitem" href="#">リフォームの見積依頼</a></li>
+                </ul>
+              </div>
               <button type="button" class="btn btn--outline actions__secondary popup-trigger" data-popup="popup-c3" data-popup-title="工事・リフォーム・派遣について">詳細</button>
             </div>
             <div class="popup-content" id="popup-c3" hidden>

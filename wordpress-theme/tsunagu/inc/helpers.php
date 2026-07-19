@@ -58,20 +58,23 @@ function tsunagu_extract_file_url( $v ) {
 }
 
 /**
- * カードの左ボタン用 PDFリスト取得（ACF無料版対応：固定スロット card_{n}_pdf1..4）
+ * カードの左ボタン用「フォームリンク」リスト取得
+ * （ACF無料版対応：固定スロット card_{n}_form1..4 の label / url）
  * 返り値: [ ['label'=>..., 'url'=>...], ... ]。未入力なら既定配列。
+ * 1件 = クリックで直接そのフォームへ遷移／2件以上 = プルダウン表示。
  */
-function tsunagu_card_pdfs( $n, $default = array() ) {
+function tsunagu_card_forms( $n, $default = array() ) {
 	if ( function_exists( 'get_field' ) ) {
 		$out = array();
 		for ( $i = 1; $i <= 4; $i++ ) {
-			$label = get_field( "card_{$n}_pdf{$i}_label" );
-			$url   = tsunagu_extract_file_url( get_field( "card_{$n}_pdf{$i}_file" ) );
+			$label = get_field( "card_{$n}_form{$i}_label" );
+			$url   = get_field( "card_{$n}_form{$i}_url" );
 			$has_label = ( $label !== '' && $label !== null );
-			if ( $has_label || $url !== '' ) {
+			$has_url   = ( $url !== '' && $url !== null );
+			if ( $has_label || $has_url ) {
 				$out[] = array(
-					'label' => $has_label ? $label : 'PDF',
-					'url'   => $url !== '' ? $url : '#',
+					'label' => $has_label ? $label : '依頼',
+					'url'   => $has_url ? $url : '#',
 				);
 			}
 		}

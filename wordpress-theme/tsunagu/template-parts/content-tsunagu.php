@@ -74,10 +74,10 @@ $topics       = tsunagu_topics( $d['topics'] );
 					$tag    = tsunagu_field( "card_{$n}_tag", $c['tag'] );
 					$title  = tsunagu_field( "card_{$n}_title", $c['title'] );
 					$desc   = tsunagu_field( "card_{$n}_desc", $c['desc'] );
-					$btn1     = tsunagu_field( "card_{$n}_btn1_label", $c['btn1'] );
-					$btn1_url = tsunagu_url( "card_{$n}_btn1_url", '#' );
-					$btn2     = tsunagu_field( "card_{$n}_btn2_label", $c['btn2'] );
-					$ptitle   = tsunagu_field( "card_{$n}_popup_title", $c['popup_title'] );
+					$btn1   = tsunagu_field( "card_{$n}_btn1_label", $c['btn1'] );
+					$forms  = tsunagu_card_forms( $n, $c['forms'] );
+					$btn2   = tsunagu_field( "card_{$n}_btn2_label", $c['btn2'] );
+					$ptitle = tsunagu_field( "card_{$n}_popup_title", $c['popup_title'] );
 
 					if ( $n === 4 ) {
 						$pdfurl = tsunagu_file_url( 'card_4_popup_pdf', $c['popup_pdf'] );
@@ -95,7 +95,22 @@ $topics       = tsunagu_topics( $d['topics'] );
 						</div>
 						<p class="service-card__desc"><?php echo esc_html( $desc ); ?></p>
 						<div class="service-card__actions actions--split">
-							<a class="btn btn--solid actions__primary" href="<?php echo esc_url( $btn1_url ); ?>"><?php echo esc_html( $btn1 ); ?></a>
+							<?php if ( count( $forms ) >= 2 ) : ?>
+								<div class="pdf-dropdown actions__primary">
+									<button type="button" class="btn btn--solid pdf-trigger" aria-haspopup="true" aria-expanded="false">
+										<span><?php echo esc_html( $btn1 ); ?></span>
+										<svg class="pdf-caret" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+									</button>
+									<ul class="pdf-menu" role="menu" hidden>
+										<?php foreach ( $forms as $f ) : ?>
+											<li role="none"><a class="pdf-menu__item" role="menuitem" href="<?php echo esc_url( $f['url'] ); ?>"><?php echo esc_html( $f['label'] ); ?></a></li>
+										<?php endforeach; ?>
+									</ul>
+								</div>
+							<?php else :
+								$one_url = ! empty( $forms ) ? $forms[0]['url'] : '#'; ?>
+								<a class="btn btn--solid actions__primary" href="<?php echo esc_url( $one_url ); ?>"><?php echo esc_html( $btn1 ); ?></a>
+							<?php endif; ?>
 							<button type="button" class="btn btn--outline actions__secondary popup-trigger" data-popup="popup-c<?php echo $n; ?>" data-popup-title="<?php echo esc_attr( $ptitle ); ?>"><?php echo esc_html( $btn2 ); ?></button>
 						</div>
 						<div class="popup-content" id="popup-c<?php echo $n; ?>" hidden><?php echo $popup; // phpcs:ignore ?></div>
