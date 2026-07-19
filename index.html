@@ -15,6 +15,8 @@
   <!-- ============================================================
        ヘッダー
        [ACF] site_logo（画像）
+             header_ext1_label / header_ext1_file（Excel: 買付証明書）
+             header_ext2_label / header_ext2_file（Excel: 売却合意書）
              header_btn_label / header_btn_url（利用規約・ダウンロード）
   ============================================================ -->
   <header class="site-header">
@@ -23,8 +25,22 @@
         <img class="site-logo__img" src="assets/img/tsunaglogo.png" alt="つなぐ" width="500" height="500">
       </a>
       <nav class="header-actions">
+        <a href="#" class="btn-header btn-header--ghost" download>
+          <!-- PLACEHOLDER ICON: excel -->
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <rect x="4" y="4" width="16" height="16" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M9 9l6 6M15 9l-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+          <span>買付証明書</span>
+        </a>
+        <a href="#" class="btn-header btn-header--ghost" download>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <rect x="4" y="4" width="16" height="16" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M9 9l6 6M15 9l-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+          <span>売却合意書</span>
+        </a>
         <a href="#" class="btn-header btn-header--solid">
-          <!-- PLACEHOLDER ICON: download -->
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <path d="M12 4v10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
             <path d="M8 11l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
@@ -56,7 +72,10 @@
             会員限定ポータルサイト
           </span>
           <h1 class="hero__title">つなぐ依頼ページ</h1>
-          <p class="hero__lead">つなぐ登録会社の皆様からの各種ご依頼・ご相談を受け付けるページです。</p>
+          <p class="hero__contact">
+            <span class="hero__contact-label">問い合わせ先:</span>
+            <a class="hero__contact-mail" href="mailto:info@tsunagu.example">info@tsunagu.example</a>
+          </p>
         </div>
 
         <!-- おすすめツール（調速）：ヒーロー右のコンパクトカード -->
@@ -121,20 +140,11 @@
               <h3 class="service-card__title">売却物件の依頼</h3>
             </div>
             <p class="service-card__desc">売却したい物件のご相談・ご依頼を受け付けています。</p>
-            <div class="service-card__actions">
-              <!-- 左：PDF（複数登録対応 / card_1_pds） -->
-              <div class="pdf-dropdown">
-                <button type="button" class="btn btn--outline pdf-trigger" aria-haspopup="true" aria-expanded="false">
-                  <span>依頼シート</span>
-                  <svg class="pdf-caret" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </button>
-                <ul class="pdf-menu" role="menu" hidden>
-                  <li role="none"><a class="pdf-menu__item" role="menuitem" href="assets/pdf/sample.pdf" target="_blank" rel="noopener">自社物件の売却依頼</a></li>
-                  <li role="none"><a class="pdf-menu__item" role="menuitem" href="assets/pdf/sample.pdf" target="_blank" rel="noopener">仲介物件の売却依頼</a></li>
-                </ul>
-              </div>
-              <!-- 右：ポップアップ（card_1_popup_*） -->
-              <button type="button" class="btn btn--solid popup-trigger" data-popup="popup-c1" data-popup-title="売却のご相談について">相談する</button>
+            <div class="service-card__actions actions--split">
+              <!-- 左：依頼（別ページへのリンク / card_1_btn1_url） -->
+              <a class="btn btn--solid actions__primary" href="#">依頼</a>
+              <!-- 右：詳細（ポップアップ / card_1_popup_*） -->
+              <button type="button" class="btn btn--outline actions__secondary popup-trigger" data-popup="popup-c1" data-popup-title="売却のご相談について">詳細</button>
             </div>
             <div class="popup-content" id="popup-c1" hidden>
               <p>自社物件の売却や、一般のお客様から預かった物件の売却依頼はこちらからご依頼ください。</p>
@@ -163,20 +173,9 @@
               <h3 class="service-card__title">仕入物件の依頼・<br>エンド情報の依頼</h3>
             </div>
             <p class="service-card__desc">仕入れたい物件や、エンド（購入希望者）情報のご提供をお願いします。</p>
-            <div class="service-card__actions">
-              <!-- 左：PDF（今回は1件＝クリックで直接表示 / card_2_pdfs） -->
-              <div class="pdf-dropdown">
-                <button type="button" class="btn btn--outline pdf-trigger" aria-haspopup="true" aria-expanded="false">
-                  <span>依頼する</span>
-                  <svg class="pdf-caret" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </button>
-                <ul class="pdf-menu" role="menu" hidden>
-                  <li role="none"><a class="pdf-menu__item" role="menuitem" href="assets/pdf/sample.pdf" target="_blank" rel="noopener">自社購入の仕入基準を依頼</a></li>
-                  <li role="none"><a class="pdf-menu__item" role="menuitem" href="assets/pdf/sample.pdf" target="_blank" rel="noopener">一般買主の購入ニーズを依頼</a></li>
-                </ul>
-              </div>
-              <!-- 右：ポップアップ（card_2_popup_*） -->
-              <button type="button" class="btn btn--solid popup-trigger" data-popup="popup-c2" data-popup-title="エンド情報の送付について">エンド情報を送る</button>
+            <div class="service-card__actions actions--split">
+              <a class="btn btn--solid actions__primary" href="#">依頼</a>
+              <button type="button" class="btn btn--outline actions__secondary popup-trigger" data-popup="popup-c2" data-popup-title="仕入・エンド情報について">詳細</button>
             </div>
             <div class="popup-content" id="popup-c2" hidden>
               <p>自社物件の仕入や、一般のお客様が希望されるニーズ情報の共有はこちらからご依頼ください。</p>
@@ -198,21 +197,10 @@
               </span>
               <h3 class="service-card__title">工事の見積・相談・<br>派遣の依頼</h3>
             </div>
-            <p class="service-card__desc">リフォームや修繕、工事の見積・相談、職人・スタッフの派遣依頼を承ります。</p>
-            <div class="service-card__actions">
-              <!-- 左：PDF（複数登録対応 / card_3_pdfs） -->
-              <div class="pdf-dropdown">
-                <button type="button" class="btn btn--outline pdf-trigger" aria-haspopup="true" aria-expanded="false">
-                  <span>依頼する</span>
-                  <svg class="pdf-caret" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </button>
-                <ul class="pdf-menu" role="menu" hidden>
-                  <li role="none"><a class="pdf-menu__item" role="menuitem" href="assets/pdf/sample.pdf" target="_blank" rel="noopener">工事見積依頼シート</a></li>
-                  <li role="none"><a class="pdf-menu__item" role="menuitem" href="assets/pdf/sample.pdf" target="_blank" rel="noopener">リフォーム見積依頼シート</a></li>
-                </ul>
-              </div>
-              <!-- 右：ポップアップ（card_3_popup_*） -->
-              <button type="button" class="btn btn--solid popup-trigger" data-popup="popup-c3" data-popup-title="職人・スタッフ派遣のご相談">派遣を相談する</button>
+            <p class="service-card__desc">解体、造成、リフォーム、建設工事の見積からご依頼可能。</p>
+            <div class="service-card__actions actions--split">
+              <a class="btn btn--solid actions__primary" href="#">依頼</a>
+              <button type="button" class="btn btn--outline actions__secondary popup-trigger" data-popup="popup-c3" data-popup-title="工事・リフォーム・派遣について">詳細</button>
             </div>
             <div class="popup-content" id="popup-c3" hidden>
               <p>つなぐ提携会社様をご紹介可能です。まずは実際の現場の見積からおつなぎ致します。</p>
@@ -236,21 +224,9 @@
               <h3 class="service-card__title">名刺・チラシ印刷の依頼</h3>
             </div>
             <p class="service-card__desc">名刺やチラシなどの印刷物制作をサポートします。</p>
-            <div class="service-card__actions">
-              <!-- 左：PDF（今回は1件＝クリックで直接表示 / card_4_pdfs） -->
-              <div class="pdf-dropdown">
-                <button type="button" class="btn btn--outline pdf-trigger" aria-haspopup="true" aria-expanded="false">
-                  <span>依頼する</span>
-                  <svg class="pdf-caret" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </button>
-                <ul class="pdf-menu" role="menu" hidden>
-                  <li role="none"><a class="pdf-menu__item" role="menuitem" href="assets/pdf/sample.pdf" target="_blank" rel="noopener">名刺作成パックの依頼</a></li>
-                  <li role="none"><a class="pdf-menu__item" role="menuitem" href="assets/pdf/sample.pdf" target="_blank" rel="noopener">チラシ作成パックの依頼</a></li>
-                  <li role="none"><a class="pdf-menu__item" role="menuitem" href="assets/pdf/sample.pdf" target="_blank" rel="noopener">毎月販促パックの依頼</a></li>
-                </ul>
-              </div>
-              <!-- 右：ポップアップ（card_4_popup_*） -->
-              <button type="button" class="btn btn--solid popup-trigger" data-popup="popup-c4" data-popup-title="印刷メニュー・料金表">印刷を依頼する</button>
+            <div class="service-card__actions actions--split">
+              <a class="btn btn--solid actions__primary" href="#">面談調整</a>
+              <button type="button" class="btn btn--outline actions__secondary popup-trigger" data-popup="popup-c4" data-popup-title="印刷メニュー・料金表">ご料金</button>
             </div>
             <div class="popup-content" id="popup-c4" hidden>
               <object class="popup-pdf" data="assets/pdf/print-pricing.pdf" type="application/pdf" title="印刷メニュー・料金表">
@@ -276,20 +252,9 @@
               <h3 class="service-card__title">イベント・セミナーの依頼</h3>
             </div>
             <p class="service-card__desc">勉強会や研修、イベントの企画・運営をサポートします。</p>
-            <div class="service-card__actions">
-              <!-- 左：PDF（複数登録対応 / card_5_pdfs） -->
-              <div class="pdf-dropdown">
-                <button type="button" class="btn btn--outline pdf-trigger" aria-haspopup="true" aria-expanded="false">
-                  <span>相談の依頼をする</span>
-                  <svg class="pdf-caret" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </button>
-                <ul class="pdf-menu" role="menu" hidden>
-                  <li role="none"><a class="pdf-menu__item" role="menuitem" href="assets/pdf/sample.pdf" target="_blank" rel="noopener">セミナー企画シート</a></li>
-                  <li role="none"><a class="pdf-menu__item" role="menuitem" href="assets/pdf/sample.pdf" target="_blank" rel="noopener">研修プログラム一覧</a></li>
-                </ul>
-              </div>
-              <!-- 右：ポップアップ（card_5_popup_*） -->
-              <button type="button" class="btn btn--solid popup-trigger" data-popup="popup-c5" data-popup-title="イベント・セミナー依頼について">依頼シートを見る</button>
+            <div class="service-card__actions actions--split">
+              <a class="btn btn--solid actions__primary" href="#">面談調整</a>
+              <button type="button" class="btn btn--outline actions__secondary popup-trigger" data-popup="popup-c5" data-popup-title="イベント・セミナー依頼について">詳細</button>
             </div>
             <div class="popup-content" id="popup-c5" hidden>
               <p>弊社では、イベントやセミナーの補助を行っております。不動産業界に関わらず、様々な業界・業種の企業様にご利用いただいております。大手企業様向け・中小企業様向けどちらも対応可能です。</p>
@@ -310,19 +275,9 @@
               <h3 class="service-card__title">その他依頼<small>（営業代行・業務効率化相談など）</small></h3>
             </div>
             <p class="service-card__desc">営業代行や業務効率化など、課題に合わせたご相談を承ります。</p>
-            <div class="service-card__actions">
-              <!-- 左：PDF（今回は1件＝クリックで直接表示 / card_6_pdfs） -->
-              <div class="pdf-dropdown">
-                <button type="button" class="btn btn--outline pdf-trigger" aria-haspopup="true" aria-expanded="false">
-                  <span>相談の依頼をする</span>
-                  <svg class="pdf-caret" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </button>
-                <ul class="pdf-menu" role="menu" hidden>
-                  <li role="none"><a class="pdf-menu__item" role="menuitem" href="assets/pdf/sample.pdf" target="_blank" rel="noopener">業務効率化チェックシート</a></li>
-                </ul>
-              </div>
-              <!-- 右：ポップアップ（card_6_popup_*） -->
-              <button type="button" class="btn btn--solid popup-trigger" data-popup="popup-c6" data-popup-title="個別相談について">個別相談する</button>
+            <div class="service-card__actions actions--split">
+              <a class="btn btn--solid actions__primary" href="#">面談調整</a>
+              <button type="button" class="btn btn--outline actions__secondary popup-trigger" data-popup="popup-c6" data-popup-title="個別相談について">詳細</button>
             </div>
             <div class="popup-content" id="popup-c6" hidden>
               <p>弊社のメイン事業は「営業代行事業」です。継続的なご依頼も、スポット対応でもご相談可能です。</p>

@@ -28,15 +28,26 @@ add_action( 'acf/init', function () {
 	$fields = array();
 
 	$fields[] = $TAB( 'ヘッダー / 共通' );
-	$fields[] = $F( 'site_logo', 'ロゴ画像（ヘッダー / フッター共通）', 'image', array( 'return_format' => 'array', 'instructions' => '未設定時はテーマ同梱ロゴを表示' ) );
-	$fields[] = $F( 'header_btn_label', 'ヘッダーボタン ラベル', 'text', array( 'placeholder' => '利用規約・ダウンロード' ) );
-	$fields[] = $F( 'header_btn_url', 'ヘッダーボタン リンクURL', 'url' );
+	$fields[] = $F( 'site_logo', 'ロゴ画像（ヘッダー共通）', 'image', array( 'return_format' => 'array', 'instructions' => '未設定時はテーマ同梱ロゴを表示' ) );
+	$fields[] = array(
+		'key'     => 'field_tsg_header_ext_msg',
+		'label'   => 'ヘッダー左側の追加ボタン（Excel等をクリックでダウンロード）',
+		'type'    => 'message',
+		'message' => 'ラベルとファイル（メディアにアップしたExcel等）を設定するとヘッダーに表示され、クリックでダウンロードされます。ファイル未設定の場合はリンク先が # になります。',
+	);
+	$fields[] = $F( 'header_ext1_label', '追加ボタン1 ラベル', 'text', array( 'placeholder' => '買付証明書' ) );
+	$fields[] = $F( 'header_ext1_file', '追加ボタン1 ファイル（Excel等）', 'file', array( 'return_format' => 'array' ) );
+	$fields[] = $F( 'header_ext2_label', '追加ボタン2 ラベル', 'text', array( 'placeholder' => '売却合意書' ) );
+	$fields[] = $F( 'header_ext2_file', '追加ボタン2 ファイル（Excel等）', 'file', array( 'return_format' => 'array' ) );
+	$fields[] = $F( 'header_btn_label', 'ヘッダーメインボタン ラベル', 'text', array( 'placeholder' => '利用規約・ダウンロード' ) );
+	$fields[] = $F( 'header_btn_url', 'ヘッダーメインボタン リンクURL', 'url' );
 	$fields[] = $F( 'footer_copyright', 'フッター コピーライト', 'text' );
 
 	$fields[] = $TAB( 'ヒーロー' );
 	$fields[] = $F( 'hero_badge', 'バッジ', 'text' );
 	$fields[] = $F( 'hero_title', 'タイトル', 'text' );
-	$fields[] = $F( 'hero_lead', 'リード文', 'textarea', array( 'rows' => 3 ) );
+	$fields[] = $F( 'hero_contact_label', '問い合わせ先 ラベル', 'text', array( 'placeholder' => '問い合わせ先:' ) );
+	$fields[] = $F( 'hero_contact_email', '問い合わせ先 メールアドレス', 'email', array( 'placeholder' => 'info@example.com', 'instructions' => 'ヒーローに表示するお問い合わせ用メールアドレス。クリックでメーラーが起動します。' ) );
 
 	$fields[] = $TAB( 'おすすめツール（調速）' );
 	$fields[] = $F( 'featured_logo', '調速 ロゴ画像（横ロゴ／PNG推奨）', 'image', array(
@@ -56,22 +67,12 @@ add_action( 'acf/init', function () {
 		$fields[] = $F( "card_{$n}_tag", 'タグ', 'text' );
 		$fields[] = $F( "card_{$n}_title", 'タイトル', 'text', array( 'instructions' => '改行は &lt;br&gt;、注釈は &lt;small&gt;〜&lt;/small&gt; が使えます' ) );
 		$fields[] = $F( "card_{$n}_desc", '説明文', 'textarea', array( 'rows' => 2 ) );
-		$fields[] = $F( "card_{$n}_btn1_label", '左ボタン ラベル', 'text' );
-		$fields[] = array(
-			'key'     => "field_tsg_card_{$n}_pdfmsg",
-			'label'   => '左ボタンのPDF（最大4件）',
-			'type'    => 'message',
-			'message' => 'PDFを1件だけ入れるとボタンで直接表示、2件以上でクリック時にリスト表示になります。',
-		);
-		for ( $i = 1; $i <= 4; $i++ ) {
-			$opt = ( $i === 1 ) ? '' : '（任意）';
-			$fields[] = $F( "card_{$n}_pdf{$i}_label", "PDF{$i} ラベル{$opt}", 'text' );
-			$fields[] = $F( "card_{$n}_pdf{$i}_file", "PDF{$i} ファイル{$opt}", 'file', array( 'return_format' => 'array', 'mime_types' => 'pdf' ) );
-		}
-		$fields[] = $F( "card_{$n}_btn2_label", '右ボタン ラベル', 'text' );
+		$fields[] = $F( "card_{$n}_btn1_label", '左ボタン（大）ラベル', 'text', array( 'placeholder' => ( $n <= 3 ) ? '依頼' : '面談調整' ) );
+		$fields[] = $F( "card_{$n}_btn1_url", '左ボタン（大）リンクURL', 'url', array( 'instructions' => 'クリック時に開くページ。Contact Form 7 を設置した固定ページのURLを設定してください。' ) );
+		$fields[] = $F( "card_{$n}_btn2_label", '右ボタン（小）ラベル', 'text', array( 'placeholder' => ( $n === 4 ) ? 'ご料金' : '詳細' ) );
 		$fields[] = $F( "card_{$n}_popup_title", '右ボタン ポップアップ 見出し', 'text' );
 		if ( $n === 4 ) {
-			$fields[] = $F( 'card_4_popup_pdf', '右ボタン ポップアップ PDF（料金表）', 'file', array( 'return_format' => 'array', 'mime_types' => 'pdf', 'instructions' => '「印刷を依頼する」で開くPDF。未設定はテーマ同梱の料金表PDF' ) );
+			$fields[] = $F( 'card_4_popup_pdf', '右ボタン ポップアップ PDF（料金表）', 'file', array( 'return_format' => 'array', 'mime_types' => 'pdf', 'instructions' => '「ご料金」で開くPDF。未設定はテーマ同梱の料金表PDF' ) );
 		} else {
 			$fields[] = $F( "card_{$n}_popup_text", '右ボタン ポップアップ 本文', 'wysiwyg', array( 'media_upload' => 1, 'tabs' => 'all' ) );
 		}

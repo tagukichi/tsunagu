@@ -21,7 +21,13 @@ $topics       = tsunagu_topics( $d['topics'] );
 					<?php echo esc_html( tsunagu_field( 'hero_badge', $d['hero_badge'] ) ); ?>
 				</span>
 				<h1 class="hero__title"><?php echo esc_html( tsunagu_field( 'hero_title', $d['hero_title'] ) ); ?></h1>
-				<p class="hero__lead"><?php echo nl2br( esc_html( tsunagu_field( 'hero_lead', $d['hero_lead'] ) ) ); ?></p>
+				<?php $mail = tsunagu_field( 'hero_contact_email', $d['hero_contact_email'] ); ?>
+				<?php if ( $mail ) : ?>
+				<p class="hero__contact">
+					<span class="hero__contact-label"><?php echo esc_html( tsunagu_field( 'hero_contact_label', $d['hero_contact_label'] ) ); ?></span>
+					<a class="hero__contact-mail" href="mailto:<?php echo esc_attr( $mail ); ?>"><?php echo esc_html( $mail ); ?></a>
+				</p>
+				<?php endif; ?>
 			</div>
 
 			<aside class="hero__promo" data-reveal>
@@ -68,10 +74,10 @@ $topics       = tsunagu_topics( $d['topics'] );
 					$tag    = tsunagu_field( "card_{$n}_tag", $c['tag'] );
 					$title  = tsunagu_field( "card_{$n}_title", $c['title'] );
 					$desc   = tsunagu_field( "card_{$n}_desc", $c['desc'] );
-					$btn1   = tsunagu_field( "card_{$n}_btn1_label", $c['btn1'] );
-					$btn2   = tsunagu_field( "card_{$n}_btn2_label", $c['btn2'] );
-					$ptitle = tsunagu_field( "card_{$n}_popup_title", $c['popup_title'] );
-					$pdfs   = tsunagu_card_pdfs( $n, $c['pdfs'] );
+					$btn1     = tsunagu_field( "card_{$n}_btn1_label", $c['btn1'] );
+					$btn1_url = tsunagu_url( "card_{$n}_btn1_url", '#' );
+					$btn2     = tsunagu_field( "card_{$n}_btn2_label", $c['btn2'] );
+					$ptitle   = tsunagu_field( "card_{$n}_popup_title", $c['popup_title'] );
 
 					if ( $n === 4 ) {
 						$pdfurl = tsunagu_file_url( 'card_4_popup_pdf', $c['popup_pdf'] );
@@ -88,19 +94,9 @@ $topics       = tsunagu_topics( $d['topics'] );
 							<h3 class="service-card__title"><?php echo wp_kses_post( $title ); ?></h3>
 						</div>
 						<p class="service-card__desc"><?php echo esc_html( $desc ); ?></p>
-						<div class="service-card__actions">
-							<div class="pdf-dropdown">
-								<button type="button" class="btn btn--outline pdf-trigger" aria-haspopup="true" aria-expanded="false">
-									<span><?php echo esc_html( $btn1 ); ?></span>
-									<svg class="pdf-caret" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-								</button>
-								<ul class="pdf-menu" role="menu" hidden>
-									<?php foreach ( $pdfs as $p ) : ?>
-										<li role="none"><a class="pdf-menu__item" role="menuitem" href="<?php echo esc_url( $p['url'] ); ?>" target="_blank" rel="noopener"><?php echo esc_html( $p['label'] ); ?></a></li>
-									<?php endforeach; ?>
-								</ul>
-							</div>
-							<button type="button" class="btn btn--solid popup-trigger" data-popup="popup-c<?php echo $n; ?>" data-popup-title="<?php echo esc_attr( $ptitle ); ?>"><?php echo esc_html( $btn2 ); ?></button>
+						<div class="service-card__actions actions--split">
+							<a class="btn btn--solid actions__primary" href="<?php echo esc_url( $btn1_url ); ?>"><?php echo esc_html( $btn1 ); ?></a>
+							<button type="button" class="btn btn--outline actions__secondary popup-trigger" data-popup="popup-c<?php echo $n; ?>" data-popup-title="<?php echo esc_attr( $ptitle ); ?>"><?php echo esc_html( $btn2 ); ?></button>
 						</div>
 						<div class="popup-content" id="popup-c<?php echo $n; ?>" hidden><?php echo $popup; // phpcs:ignore ?></div>
 					</article>
