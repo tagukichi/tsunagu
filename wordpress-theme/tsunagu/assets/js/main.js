@@ -212,11 +212,23 @@
       var list = form.querySelector('.cf7c-list');
       if (!confirmBtn) return;
 
+      // 必須項目：日本語メッセージ「この項目は必須です。」＋赤ハイライト
+      var requireds = [];
+      form.querySelectorAll('[aria-required="true"]').forEach(function (el) {
+        if (el.type === 'radio' || el.type === 'checkbox') return;
+        requireds.push(el);
+        el.addEventListener('invalid', function () {
+          if (el.validity.valueMissing) el.setCustomValidity('この項目は必須です。');
+          else if (el.validity.typeMismatch) el.setCustomValidity('入力形式が正しくありません。');
+          else el.setCustomValidity('');
+          el.classList.add('is-invalid');
+        });
+        el.addEventListener('input', function () { el.setCustomValidity(''); el.classList.remove('is-invalid'); });
+      });
+
       confirmBtn.addEventListener('click', function () {
         // CF7必須（aria-required）を一時的にHTML5必須にしてブラウザ検証
-        form.querySelectorAll('[aria-required="true"]').forEach(function (el) {
-          if (el.type !== 'radio' && el.type !== 'checkbox') el.required = true;
-        });
+        requireds.forEach(function (el) { el.required = true; });
         if (typeof form.reportValidity === 'function' && !form.reportValidity()) return;
         if (list) list.innerHTML = buildSummary(form);
         form.classList.add('is-confirming');
@@ -238,6 +250,33 @@
           f.classList.remove('is-confirming');
         });
       });
+    });
+  })();
+
+  /* ---------- 7) ヘッダー ハンバーガー（スマホ） ---------- */
+  (function () {
+    var toggle = document.querySelector('.header-toggle');
+    var nav = document.getElementById('header-nav');
+    if (!toggle || !nav) return;
+    function close() {
+      nav.classList.remove('is-open');
+      toggle.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'メニューを開く');
+    }
+    toggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var open = !nav.classList.contains('is-open');
+      nav.classList.toggle('is-open', open);
+      toggle.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+    });
+    document.addEventListener('click', function (e) {
+      if (nav.classList.contains('is-open') && !nav.contains(e.target) && !toggle.contains(e.target)) close();
+    });
+    document.addEventListener('keydown', function (e) {
+      if ((e.key === 'Escape' || e.key === 'Esc') && nav.classList.contains('is-open')) close();
     });
   })();
 })();

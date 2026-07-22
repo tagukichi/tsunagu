@@ -23,7 +23,10 @@ $ext2_u = tsunagu_file_url( 'header_ext2_file', '' );
 		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="site-logo">
 			<img class="site-logo__img" src="<?php echo esc_url( $logo ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" width="500" height="500">
 		</a>
-		<nav class="header-actions">
+		<button type="button" class="header-toggle" aria-label="メニューを開く" aria-expanded="false" aria-controls="header-nav">
+			<span class="header-toggle__bar"></span>
+		</button>
+		<nav class="header-actions" id="header-nav">
 			<?php if ( $ext1_l ) : ?>
 			<a href="<?php echo esc_url( $ext1_u ?: '#' ); ?>" class="btn-header btn-header--ghost" download>
 				<span><?php echo esc_html( $ext1_l ); ?></span>

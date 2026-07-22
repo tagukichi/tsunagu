@@ -18,7 +18,10 @@
       <a href="index.html" class="site-logo">
         <img class="site-logo__img" src="assets/img/tsunaglogo.png" alt="つなぐ" width="500" height="500">
       </a>
-      <nav class="header-actions">
+      <button type="button" class="header-toggle" aria-label="メニューを開く" aria-expanded="false" aria-controls="header-nav">
+        <span class="header-toggle__bar"></span>
+      </button>
+      <nav class="header-actions" id="header-nav">
         <a href="#" class="btn-header btn-header--ghost" download><span>買付証明書</span></a>
         <a href="#" class="btn-header btn-header--ghost" download><span>売却合意書</span></a>
         <a href="#" class="btn-header btn-header--solid">

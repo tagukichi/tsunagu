@@ -138,6 +138,36 @@ h1, h2, h3, p { margin: 0; }
 .btn-header--solid { color: #fff; background: var(--brand); box-shadow: 0 6px 14px rgba(31, 111, 224, .28); }
 .btn-header--solid:hover { filter: brightness(1.06); }
 
+/* ハンバーガー（スマホのみ表示） */
+.header-toggle { display: none; }
+.header-toggle {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border: 1.5px solid var(--brand);
+  border-radius: 10px;
+  background: #fff;
+  cursor: pointer;
+  flex: none;
+}
+.header-toggle__bar,
+.header-toggle__bar::before,
+.header-toggle__bar::after {
+  position: absolute;
+  left: 50%;
+  width: 20px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--brand);
+  transition: transform .2s ease, opacity .2s ease, background-color .2s ease;
+}
+.header-toggle__bar { top: 50%; transform: translate(-50%, -50%); }
+.header-toggle__bar::before { content: ""; top: -6px; transform: translateX(-50%); }
+.header-toggle__bar::after  { content: ""; top: 6px;  transform: translateX(-50%); }
+.header-toggle.is-open .header-toggle__bar { background: transparent; }
+.header-toggle.is-open .header-toggle__bar::before { top: 0; transform: translateX(-50%) rotate(45deg); }
+.header-toggle.is-open .header-toggle__bar::after  { top: 0; transform: translateX(-50%) rotate(-45deg); }
+
 /* ---------- 5. ヒーロー ---------- */
 .hero {
   position: relative;
@@ -851,7 +881,7 @@ body.is-locked { overflow: hidden; }
 
 /* ---------- フォームページ ---------- */
 .formpage { background: var(--bg-soft); min-height: 60vh; padding-block: 40px 60px; }
-.formpage__inner { max-width: 720px; }
+.formpage__inner { max-width: 900px; }
 .formpage__title {
   font-size: clamp(22px, 3vw, 30px);
   font-weight: 800;
@@ -986,6 +1016,22 @@ body.is-locked { overflow: hidden; }
 .formpage__form .cf7c-back:hover { filter: none; background: #e3e8f0; }
 .formpage__form .wpcf7-spinner { margin: 12px auto 0; }
 
+/* 「確認する」ボタン：中央配置で大きく */
+.formpage__form .cf7-confirm-btn {
+  display: block;
+  width: auto;
+  min-width: min(340px, 100%);
+  margin: 10px auto 0;
+  padding: 17px 48px;
+  font-size: 17px;
+}
+
+/* 必須未入力などのエラー時ハイライト */
+.formpage__form .is-invalid {
+  border-color: #e04b4b !important;
+  box-shadow: 0 0 0 3px rgba(224, 75, 75, .14) !important;
+}
+
 /* 確認画面の内容一覧 */
 .formpage__form .cf7-confirm-screen h3 { font-size: 17px; color: var(--navy); margin: 0 0 6px; }
 .formpage__form .cf7c-list { margin: 8px 0 16px; }
@@ -1024,11 +1070,29 @@ body.is-locked { overflow: hidden; }
 @media (max-width: 680px) {
   :root { --gutter: 18px; }
 
-  .site-header__inner { min-height: 76px; }
-  .site-logo__img { height: 56px; }
-  .header-actions { gap: 7px; }
-  .btn-header { padding: 8px 13px; font-size: 12.5px; gap: 5px; }
-  .btn-header .icon { width: 15px; height: 15px; }
+  .site-header__inner { min-height: 68px; }
+  .site-logo__img { height: 50px; }
+
+  /* ハンバーガー表示 & メニューをパネル化 */
+  .header-toggle { display: inline-flex; }
+  .header-actions {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: var(--gutter);
+    width: min(280px, calc(100vw - 2 * var(--gutter)));
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding: 12px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    box-shadow: 0 16px 34px rgba(20, 52, 110, .18);
+    display: none;
+  }
+  .header-actions.is-open { display: flex; }
+  .btn-header { width: 100%; justify-content: center; padding: 12px 16px; font-size: 14px; gap: 8px; }
+  .btn-header .icon { display: inline-block; width: 16px; height: 16px; }
 
   .topics { gap: 10px; padding: 10px 12px; }
   .topics__label { font-size: 11px; letter-spacing: .1em; padding: 5px 10px; }
@@ -1043,11 +1107,6 @@ body.is-locked { overflow: hidden; }
   .help-cta__inner { flex-direction: column; text-align: center; gap: 20px; }
   .help-cta__btn { width: 100%; }
   .br-pc { display: none; }
-}
-
-@media (max-width: 440px) {
-  .btn-header { padding: 8px 11px; }
-  .btn-header .icon { display: none; }
 }
 
 @media (max-width: 380px) {
