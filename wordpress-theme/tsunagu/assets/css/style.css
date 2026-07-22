@@ -935,6 +935,17 @@ body.is-locked { overflow: hidden; }
 }
 .formsteps__item.is-current { color: var(--brand); }
 .formsteps__item.is-current .formsteps__num { background: var(--brand); color: #fff; }
+.formsteps__item.is-done { color: var(--brand); }
+.formsteps__item.is-done .formsteps__num { background: var(--brand); color: #fff; }
+.formsteps__item.is-done::after { background: var(--brand); }
+
+/* 本文に .cf7-steps を置いた場合の簡易スタイル（任意・テーマ標準は .formsteps） */
+.cf7-steps { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 22px 0; flex-wrap: wrap; }
+.cf7-step { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 700; color: var(--muted); }
+.cf7-step .num { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; background: #e4eaf2; color: var(--muted); font-size: 12px; }
+.cf7-step.is-active .num, .cf7-step.is-done .num { background: var(--brand); color: #fff; }
+.cf7-step.is-active, .cf7-step.is-done { color: var(--brand); }
+.cf7-bar { width: 26px; height: 2px; background: var(--line); }
 
 /* フォーム本体（CF7の出力を整形） */
 .formpage__form {
@@ -1047,6 +1058,9 @@ body.is-locked { overflow: hidden; }
 .cf7c-label { font-weight: 700; color: var(--navy); }
 .cf7c-value { color: var(--ink); white-space: pre-wrap; word-break: break-word; }
 .formpage__form .cf7c-files-note { font-size: 13px; color: var(--muted); margin-top: -4px; }
+.formpage__form .cf7c-section { font-size: 13.5px; font-weight: 800; color: var(--navy); letter-spacing: .02em; margin: 18px 0 2px; }
+.formpage__form .cf7c-list > .cf7c-section:first-child { margin-top: 0; }
+.cf7c-value.is-empty { color: #aab4c2; }
 
 /* ---------- 10. 出現アニメ ---------- */
 [data-reveal] {

@@ -194,16 +194,38 @@
       return vals.join(' / ');
     }
     function buildSummary(form) {
-      var rows = [];
-      form.querySelectorAll('.cf7-input-screen p').forEach(function (p) {
-        if (!p.querySelector('input:not([type=submit]):not([type=button]):not([type=hidden]), textarea, select')) return;
-        var label = labelOf(p);
-        var val = valueOf(p);
-        if (label && val !== '') {
-          rows.push('<div class="cf7c-row"><span class="cf7c-label">' + esc(label) + '</span><span class="cf7c-value">' + esc(val) + '</span></div>');
-        }
+      // 見出し（h2〜h4）＋各項目を、フォームの並び順どおりに全て表示（未入力は「未入力」）
+      var out = [];
+      form.querySelectorAll('.cf7-input-screen').forEach(function (cont) {
+        Array.prototype.forEach.call(cont.children, function (node) {
+          var tag = node.nodeName;
+          if (tag === 'H2' || tag === 'H3' || tag === 'H4') {
+            out.push('<h4 class="cf7c-section">' + esc(node.textContent.trim()) + '</h4>');
+          } else if (tag === 'P') {
+            if (!node.querySelector('input:not([type=submit]):not([type=button]):not([type=hidden]), textarea, select')) return;
+            var label = labelOf(node);
+            var val = valueOf(node);
+            out.push('<div class="cf7c-row"><span class="cf7c-label">' + esc(label) + '</span><span class="cf7c-value' + (val ? '' : ' is-empty') + '">' + (val ? esc(val) : '未入力') + '</span></div>');
+          }
+        });
       });
-      return rows.length ? rows.join('') : '<p>入力内容がありません。</p>';
+      return out.length ? out.join('') : '<p>入力内容がありません。</p>';
+    }
+
+    // ステップ表示を n（1=入力 / 2=確認 / 3=送信）に更新
+    // テーマの .formsteps と、本文に置いた場合の .cf7-steps（data-step）の両対応
+    function setStep(form, n) {
+      var page = form.closest('.formpage') || document;
+      page.querySelectorAll('.formsteps__item').forEach(function (li, i) {
+        li.classList.toggle('is-current', i === n - 1);
+        li.classList.toggle('is-done', i < n - 1);
+      });
+      var scope = form.closest('.cf7-has-confirm') || page;
+      scope.querySelectorAll('.cf7-step').forEach(function (el) {
+        var s = parseInt(el.getAttribute('data-step'), 10);
+        el.classList.toggle('is-active', s === n);
+        el.classList.toggle('is-done', s < n);
+      });
     }
 
     document.querySelectorAll('form.wpcf7-form').forEach(function (form) {
@@ -232,22 +254,31 @@
         if (typeof form.reportValidity === 'function' && !form.reportValidity()) return;
         if (list) list.innerHTML = buildSummary(form);
         form.classList.add('is-confirming');
+        setStep(form, 2);
         scrollToForm(form);
       });
 
       if (backBtn) {
         backBtn.addEventListener('click', function () {
           form.classList.remove('is-confirming');
+          setStep(form, 1);
           scrollToForm(form);
         });
       }
     });
 
-    // 送信完了／検証エラー等では入力画面に戻す（エラー表示を見えるように）
-    ['wpcf7mailsent', 'wpcf7invalid', 'wpcf7spam', 'wpcf7mailfailed'].forEach(function (ev) {
+    // 送信完了＝ステップ3／検証エラー等＝入力画面（ステップ1）に戻す
+    document.addEventListener('wpcf7mailsent', function () {
+      document.querySelectorAll('form.wpcf7-form').forEach(function (f) {
+        f.classList.remove('is-confirming');
+        setStep(f, 3);
+      });
+    });
+    ['wpcf7invalid', 'wpcf7spam', 'wpcf7mailfailed'].forEach(function (ev) {
       document.addEventListener(ev, function () {
         document.querySelectorAll('form.wpcf7-form.is-confirming').forEach(function (f) {
           f.classList.remove('is-confirming');
+          setStep(f, 1);
         });
       });
     });
