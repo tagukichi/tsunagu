@@ -267,11 +267,23 @@
       }
     });
 
-    // 送信完了＝ステップ3／検証エラー等＝入力画面（ステップ1）に戻す
+    // 送信完了＝ステップ3。リダイレクト設定があれば遷移、無ければサンクス画面を表示
     document.addEventListener('wpcf7mailsent', function () {
       document.querySelectorAll('form.wpcf7-form').forEach(function (f) {
         f.classList.remove('is-confirming');
         setStep(f, 3);
+        var page = f.closest('.formpage');
+        if (!page) return;
+        var redirect = page.getAttribute('data-redirect');
+        if (redirect) { window.location.href = redirect; return; }
+        var thanks = page.querySelector('.formpage__thanks');
+        if (thanks) {
+          var box = page.querySelector('.formpage__form');
+          if (box) box.hidden = true;
+          thanks.hidden = false;
+          var top = page.getBoundingClientRect().top + window.pageYOffset - 24;
+          window.scrollTo({ top: top < 0 ? 0 : top, behavior: 'smooth' });
+        }
       });
     });
     ['wpcf7invalid', 'wpcf7spam', 'wpcf7mailfailed'].forEach(function (ev) {

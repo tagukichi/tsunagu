@@ -1062,6 +1062,34 @@ body.is-locked { overflow: hidden; }
 .formpage__form .cf7c-list > .cf7c-section:first-child { margin-top: 0; }
 .cf7c-value.is-empty { color: #aab4c2; }
 
+/* サンクス（送信完了）画面 */
+.formpage__thanks {
+  margin-top: 26px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  padding: 44px 30px 40px;
+  text-align: center;
+}
+.formpage__thanks[hidden] { display: none; }
+.formpage__thanks-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 66px;
+  height: 66px;
+  margin-bottom: 16px;
+  border-radius: 50%;
+  background: #e6f6ea;
+  color: #1ba24d;
+}
+.formpage__thanks-icon svg { width: 34px; height: 34px; }
+.formpage__thanks-title { font-size: 22px; font-weight: 800; color: var(--navy); }
+.formpage__thanks-text { margin-top: 12px; font-size: 14.5px; line-height: 1.9; color: var(--ink); }
+.formpage__thanks-text a { color: var(--brand); font-weight: 600; }
+.formpage__thanks-home { display: inline-flex; margin-top: 24px; padding: 12px 32px; }
+
 /* ---------- 10. 出現アニメ ---------- */
 [data-reveal] {
   opacity: 0;

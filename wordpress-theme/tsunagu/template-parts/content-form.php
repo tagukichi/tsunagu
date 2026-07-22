@@ -2,12 +2,16 @@
 /** フォームページ本体（ページ名 / 説明 / ステップ / CF7フォーム） */
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-$d         = tsunagu_defaults();
-$desc      = tsunagu_field( 'form_desc', $d['form_desc'] );
-$shortcode = function_exists( 'get_field' ) ? get_field( 'form_shortcode' ) : '';
+$d            = tsunagu_defaults();
+$desc         = tsunagu_field( 'form_desc', $d['form_desc'] );
+$shortcode    = function_exists( 'get_field' ) ? get_field( 'form_shortcode' ) : '';
+$thanks_title = tsunagu_field( 'form_thanks_title', $d['form_thanks_title'] );
+$thanks_text  = tsunagu_field( 'form_thanks_text', $d['form_thanks_text'] );
+$redirect     = function_exists( 'get_field' ) ? get_field( 'form_redirect_page' ) : '';
+if ( is_array( $redirect ) ) $redirect = reset( $redirect );
 ?>
 
-<main class="formpage">
+<main class="formpage" data-redirect="<?php echo esc_url( is_string( $redirect ) ? $redirect : '' ); ?>">
 	<div class="container formpage__inner">
 
 		<?php while ( have_posts() ) : the_post(); ?>
@@ -33,6 +37,16 @@ $shortcode = function_exists( 'get_field' ) ? get_field( 'form_shortcode' ) : ''
 				echo '<p class="formpage__empty">フォームは準備中です。管理画面のカスタムフィールド「Contact Form 7 ショートコード」にフォームのショートコードを貼り付けてください。</p>';
 			}
 			?>
+		</div>
+
+		<!-- サンクス画面（送信完了時にJSで表示。form_redirect_page が設定されていればそのページへ遷移） -->
+		<div class="formpage__thanks" hidden>
+			<span class="formpage__thanks-icon">
+				<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+			</span>
+			<h2 class="formpage__thanks-title"><?php echo esc_html( $thanks_title ); ?></h2>
+			<div class="formpage__thanks-text"><?php echo wp_kses_post( wpautop( $thanks_text ) ); ?></div>
+			<a class="btn btn--solid formpage__thanks-home" href="<?php echo esc_url( home_url( '/' ) ); ?>">トップへ戻る</a>
 		</div>
 
 	</div>
