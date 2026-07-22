@@ -967,6 +967,41 @@ body.is-locked { overflow: hidden; }
 .formpage__form input[type="submit"]:hover,
 .formpage__form .wpcf7-submit:hover { filter: brightness(1.06); }
 
+/* CF7：入力→確認→送信 の画面切替（JSが is-confirming を付与）
+   ※ .cf7c-buttons に display を指定しないこと（.cf7-confirm-screen の非表示と衝突するため） */
+.formpage__form .cf7-confirm-screen { display: none; }
+.formpage__form form.is-confirming .cf7-input-screen { display: none; }
+.formpage__form form.is-confirming .cf7-confirm-screen { display: block; }
+
+.formpage__form .cf7c-buttons { margin-top: 4px; }
+/* 「修正する」（戻る）は控えめに（送信するとは縦並び） */
+.formpage__form .cf7-back-btn,
+.formpage__form .cf7c-back {
+  background: #eef1f6;
+  color: var(--ink);
+  box-shadow: none;
+  margin-bottom: 10px;
+}
+.formpage__form .cf7-back-btn:hover,
+.formpage__form .cf7c-back:hover { filter: none; background: #e3e8f0; }
+.formpage__form .wpcf7-spinner { margin: 12px auto 0; }
+
+/* 確認画面の内容一覧 */
+.formpage__form .cf7-confirm-screen h3 { font-size: 17px; color: var(--navy); margin: 0 0 6px; }
+.formpage__form .cf7c-list { margin: 8px 0 16px; }
+.cf7c-row {
+  display: grid;
+  grid-template-columns: 34% 1fr;
+  gap: 12px;
+  padding: 11px 2px;
+  border-bottom: 1px solid var(--line);
+  font-size: 14px;
+}
+.cf7c-row:first-child { border-top: 1px solid var(--line); }
+.cf7c-label { font-weight: 700; color: var(--navy); }
+.cf7c-value { color: var(--ink); white-space: pre-wrap; word-break: break-word; }
+.formpage__form .cf7c-files-note { font-size: 13px; color: var(--muted); margin-top: -4px; }
+
 /* ---------- 10. 出現アニメ ---------- */
 [data-reveal] {
   opacity: 0;

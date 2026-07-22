@@ -147,4 +147,97 @@
       btn.setAttribute('aria-label', show ? 'パスワードを隠す' : 'パスワードを表示');
     });
   });
+
+  /* ---------- 6) CF7 入力→確認→送信（確認画面の切替＋内容表示） ----------
+     対応マークアップ（CF7フォーム内）:
+       .cf7-input-screen   … 入力画面に表示する要素（複数可）
+       .cf7-confirm-screen … 確認画面に表示する要素（複数可）
+       .cf7-confirm-btn    … 「確認する」ボタン（type=button）
+       .cf7-back-btn       … 「修正する」ボタン（type=button）
+       .cf7c-list          … 入力内容の一覧を差し込む空要素
+  ------------------------------------------------------------------- */
+  (function () {
+    function esc(s) {
+      return String(s).replace(/[&<>"]/g, function (c) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+      });
+    }
+    function scrollToForm(form) {
+      var top = form.getBoundingClientRect().top + window.pageYOffset - 24;
+      window.scrollTo({ top: top < 0 ? 0 : top, behavior: 'smooth' });
+    }
+    function labelOf(p) {
+      var t = '';
+      for (var i = 0; i < p.childNodes.length; i++) {
+        var node = p.childNodes[i];
+        if (node.nodeType === 3) { t += node.textContent; }
+        else if (node.nodeName === 'BR') { break; }
+        else if (node.nodeType === 1) {
+          if (node.querySelector && node.querySelector('input,textarea,select')) break;
+          t += node.textContent;
+        }
+      }
+      return t.replace(/[\s　]+/g, ' ').replace(/[（(]必須[）)]/g, '').trim();
+    }
+    function optLabel(el) {
+      var lab = el.closest ? el.closest('label') : null;
+      return lab ? lab.textContent.trim() : el.value;
+    }
+    function valueOf(p) {
+      var vals = [];
+      p.querySelectorAll('input[type=text],input[type=email],input[type=tel],input[type=url],input[type=number],input[type=date],textarea,select').forEach(function (el) {
+        if (el.value && el.value.trim() !== '') vals.push(el.value.trim());
+      });
+      p.querySelectorAll('input[type=radio]:checked,input[type=checkbox]:checked').forEach(function (el) {
+        vals.push(optLabel(el));
+      });
+      return vals.join(' / ');
+    }
+    function buildSummary(form) {
+      var rows = [];
+      form.querySelectorAll('.cf7-input-screen p').forEach(function (p) {
+        if (!p.querySelector('input:not([type=submit]):not([type=button]):not([type=hidden]), textarea, select')) return;
+        var label = labelOf(p);
+        var val = valueOf(p);
+        if (label && val !== '') {
+          rows.push('<div class="cf7c-row"><span class="cf7c-label">' + esc(label) + '</span><span class="cf7c-value">' + esc(val) + '</span></div>');
+        }
+      });
+      return rows.length ? rows.join('') : '<p>入力内容がありません。</p>';
+    }
+
+    document.querySelectorAll('form.wpcf7-form').forEach(function (form) {
+      var confirmBtn = form.querySelector('.cf7-confirm-btn');
+      var backBtn = form.querySelector('.cf7-back-btn');
+      var list = form.querySelector('.cf7c-list');
+      if (!confirmBtn) return;
+
+      confirmBtn.addEventListener('click', function () {
+        // CF7必須（aria-required）を一時的にHTML5必須にしてブラウザ検証
+        form.querySelectorAll('[aria-required="true"]').forEach(function (el) {
+          if (el.type !== 'radio' && el.type !== 'checkbox') el.required = true;
+        });
+        if (typeof form.reportValidity === 'function' && !form.reportValidity()) return;
+        if (list) list.innerHTML = buildSummary(form);
+        form.classList.add('is-confirming');
+        scrollToForm(form);
+      });
+
+      if (backBtn) {
+        backBtn.addEventListener('click', function () {
+          form.classList.remove('is-confirming');
+          scrollToForm(form);
+        });
+      }
+    });
+
+    // 送信完了／検証エラー等では入力画面に戻す（エラー表示を見えるように）
+    ['wpcf7mailsent', 'wpcf7invalid', 'wpcf7spam', 'wpcf7mailfailed'].forEach(function (ev) {
+      document.addEventListener(ev, function () {
+        document.querySelectorAll('form.wpcf7-form.is-confirming').forEach(function (f) {
+          f.classList.remove('is-confirming');
+        });
+      });
+    });
+  })();
 })();
