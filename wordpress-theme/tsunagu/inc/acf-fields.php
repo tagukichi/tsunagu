@@ -72,12 +72,18 @@ add_action( 'acf/init', function () {
 			'key'     => "field_tsg_card_{$n}_formmsg",
 			'label'   => '左ボタンの遷移先フォーム（最大4件）',
 			'type'    => 'message',
-			'message' => '「依頼」ボタンの遷移先です。1件だけ設定するとクリックでそのフォームへ直接遷移、2件以上でクリック時にリスト（プルダウン）が開き、選んだフォームへ遷移します。URLには Contact Form 7 を設置した固定ページのアドレスを入力してください。',
+			'message' => '「依頼」ボタンの遷移先です。「フォームページ」テンプレートで作成した固定ページを選んでください。1件だけ設定するとクリックで直接そのページへ遷移、2件以上でクリック時にリスト（プルダウン）が開き、選んだフォームへ遷移します。',
 		);
 		for ( $i = 1; $i <= 4; $i++ ) {
 			$opt = ( $i === 1 ) ? '' : '（任意）';
-			$fields[] = $F( "card_{$n}_form{$i}_label", "フォーム{$i} ラベル{$opt}", 'text', array( 'instructions' => ( $i === 1 ? '1件のみ設定時はリストを出さず直接遷移します（ラベルは大ボタンの文言が優先表示）。' : '' ) ) );
-			$fields[] = $F( "card_{$n}_form{$i}_url", "フォーム{$i} URL{$opt}", 'url' );
+			$fields[] = $F( "card_{$n}_form{$i}_label", "フォーム{$i} ラベル{$opt}", 'text', array( 'instructions' => ( $i === 1 ? 'プルダウンに表示する文言（例：自社物件の売却依頼）。1件のみ設定時はリストを出さず直接遷移します。' : '' ) ) );
+			$fields[] = $F( "card_{$n}_form{$i}_page", "フォーム{$i} 遷移先ページ{$opt}", 'page_link', array(
+				'post_type'     => array( 'page' ),
+				'allow_null'    => 1,
+				'multiple'      => 0,
+				'return_format' => 'url',
+				'instructions'  => '「フォームページ」テンプレートで作成した固定ページを選択してください。',
+			) );
 		}
 		$fields[] = $F( "card_{$n}_btn2_label", '右ボタン（小）ラベル', 'text', array( 'placeholder' => ( $n === 4 ) ? 'ご料金' : '詳細' ) );
 		$fields[] = $F( "card_{$n}_popup_title", '右ボタン ポップアップ 見出し', 'text' );
@@ -99,17 +105,47 @@ add_action( 'acf/init', function () {
 		'key'      => 'group_tsunagu_page',
 		'title'    => 'つなぐ依頼ページ',
 		'fields'   => $fields,
-		// 依頼ページテンプレート、フロントページ、またはログイン以外の任意の固定ページで表示
+		// 依頼ページテンプレート、フロントページ、またはログイン/フォーム以外の任意の固定ページで表示
 		'location' => array(
 			array( array( 'param' => 'post_template', 'operator' => '==', 'value' => 'template-tsunagu.php' ) ),
 			array( array( 'param' => 'page_type', 'operator' => '==', 'value' => 'front_page' ) ),
 			array(
 				array( 'param' => 'post_type', 'operator' => '==', 'value' => 'page' ),
 				array( 'param' => 'post_template', 'operator' => '!=', 'value' => 'template-login.php' ),
+				array( 'param' => 'post_template', 'operator' => '!=', 'value' => 'template-form.php' ),
 			),
 		),
 		'position' => 'normal',
 		'style'    => 'default',
+		'active'   => true,
+	) );
+
+	/* ---------------- フォームページ ---------------- */
+	acf_add_local_field_group( array(
+		'key'      => 'group_tsunagu_form',
+		'title'    => 'フォームページ',
+		'fields'   => array(
+			array(
+				'key'          => 'field_tsg_form_desc',
+				'name'         => 'form_desc',
+				'label'        => '説明文（フォーム上部）',
+				'type'         => 'textarea',
+				'rows'         => 3,
+				'instructions' => 'ページ名の下に表示する案内文。未入力時は既定文を表示します。',
+			),
+			array(
+				'key'          => 'field_tsg_form_shortcode',
+				'name'         => 'form_shortcode',
+				'label'        => 'Contact Form 7 ショートコード',
+				'type'         => 'textarea',
+				'rows'         => 3,
+				'instructions' => 'CF7で作成したフォームのショートコード（例： [contact-form-7 id="123" title="お問い合わせ"] ）をそのまま貼り付けてください。',
+				'placeholder'  => '[contact-form-7 id="123" title="フォーム"]',
+			),
+		),
+		'location' => array(
+			array( array( 'param' => 'post_template', 'operator' => '==', 'value' => 'template-form.php' ) ),
+		),
 		'active'   => true,
 	) );
 

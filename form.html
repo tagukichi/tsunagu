@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>自社物件の売却依頼 | つなぐ依頼ページ</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- ヘッダー（共通・簡略） -->
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="index.html" class="site-logo">
+        <img class="site-logo__img" src="assets/img/tsunaglogo.png" alt="つなぐ" width="500" height="500">
+      </a>
+      <nav class="header-actions">
+        <a href="#" class="btn-header btn-header--ghost" download><span>買付証明書</span></a>
+        <a href="#" class="btn-header btn-header--ghost" download><span>売却合意書</span></a>
+        <a href="#" class="btn-header btn-header--solid">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M12 4v10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M8 11l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M5 19h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          <span>利用規約・ダウンロード</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       フォームページ（デザイン確認用モック）
+       ※ WPテンプレート「つなぐ フォームページ」= 固定ページ名 + 説明 + ステップ + CF7フォーム
+  ============================================================ -->
+  <main class="formpage">
+    <div class="container formpage__inner">
+
+      <!-- 固定ページ名（WPでは the_title()） -->
+      <h1 class="formpage__title">自社物件の売却依頼</h1>
+
+      <!-- 説明（ACF: form_desc） -->
+      <p class="formpage__desc">必要事項をご記入の上、内容をご確認いただき送信してください。担当者より順次ご連絡いたします。</p>
+
+      <!-- 入力 → 確認 → 送信 -->
+      <ol class="formsteps" aria-label="入力の流れ">
+        <li class="formsteps__item is-current"><span class="formsteps__num">1</span>入力</li>
+        <li class="formsteps__item"><span class="formsteps__num">2</span>確認</li>
+        <li class="formsteps__item"><span class="formsteps__num">3</span>送信</li>
+      </ol>
+
+      <!-- フォーム（WPでは ACF: form_shortcode の CF7 を do_shortcode で出力）。以下はサンプル -->
+      <div class="formpage__form">
+        <form onsubmit="return false;">
+          <p><label>会社名 <span aria-hidden="true" style="color:#c0392b">*</span><input type="text" placeholder="株式会社つなぐ"></label></p>
+          <p><label>ご担当者名 <span aria-hidden="true" style="color:#c0392b">*</span><input type="text" placeholder="山田 太郎"></label></p>
+          <p><label>メールアドレス <span aria-hidden="true" style="color:#c0392b">*</span><input type="email" placeholder="info@example.com"></label></p>
+          <p><label>物件所在地<input type="text" placeholder="東京都〇〇区〇〇 1-2-3"></label></p>
+          <p><label>ご依頼内容<textarea placeholder="物件の概要、希望価格、売却時期などをご記入ください。"></textarea></label></p>
+          <p><input type="submit" value="入力内容を確認する"></p>
+        </form>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small class="site-footer__copy">&copy; TSUNAGU. All rights reserved.</small>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

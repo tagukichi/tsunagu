@@ -59,7 +59,7 @@ function tsunagu_extract_file_url( $v ) {
 
 /**
  * カードの左ボタン用「フォームリンク」リスト取得
- * （ACF無料版対応：固定スロット card_{n}_form1..4 の label / url）
+ * （ACF無料版対応：固定スロット card_{n}_form1..4 の label + page〈ページ選択〉）
  * 返り値: [ ['label'=>..., 'url'=>...], ... ]。未入力なら既定配列。
  * 1件 = クリックで直接そのフォームへ遷移／2件以上 = プルダウン表示。
  */
@@ -68,9 +68,12 @@ function tsunagu_card_forms( $n, $default = array() ) {
 		$out = array();
 		for ( $i = 1; $i <= 4; $i++ ) {
 			$label = get_field( "card_{$n}_form{$i}_label" );
-			$url   = get_field( "card_{$n}_form{$i}_url" );
+			// ページ選択（Page Link, return_format=url）。配列で返る場合は先頭を採用。
+			$page  = get_field( "card_{$n}_form{$i}_page" );
+			if ( is_array( $page ) ) $page = reset( $page );
+			$url   = is_string( $page ) ? $page : '';
 			$has_label = ( $label !== '' && $label !== null );
-			$has_url   = ( $url !== '' && $url !== null );
+			$has_url   = ( $url !== '' );
 			if ( $has_label || $has_url ) {
 				$out[] = array(
 					'label' => $has_label ? $label : '依頼',

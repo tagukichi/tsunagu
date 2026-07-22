@@ -26,19 +26,11 @@ $ext2_u = tsunagu_file_url( 'header_ext2_file', '' );
 		<nav class="header-actions">
 			<?php if ( $ext1_l ) : ?>
 			<a href="<?php echo esc_url( $ext1_u ?: '#' ); ?>" class="btn-header btn-header--ghost" download>
-				<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-					<rect x="4" y="4" width="16" height="16" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
-					<path d="M9 9l6 6M15 9l-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-				</svg>
 				<span><?php echo esc_html( $ext1_l ); ?></span>
 			</a>
 			<?php endif; ?>
 			<?php if ( $ext2_l ) : ?>
 			<a href="<?php echo esc_url( $ext2_u ?: '#' ); ?>" class="btn-header btn-header--ghost" download>
-				<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-					<rect x="4" y="4" width="16" height="16" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
-					<path d="M9 9l6 6M15 9l-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-				</svg>
 				<span><?php echo esc_html( $ext2_l ); ?></span>
 			</a>
 			<?php endif; ?>
