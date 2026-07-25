@@ -1112,8 +1112,9 @@ body.is-locked { overflow: hidden; }
 @media (max-width: 680px) {
   :root { --gutter: 18px; }
 
-  .site-header__inner { min-height: 68px; }
-  .site-logo__img { height: 50px; }
+  .site-header__inner { min-height: 60px; }
+  .site-logo__img { height: 44px; }
+  .header-toggle { width: 40px; height: 40px; }
 
   /* ハンバーガー表示 & メニューをパネル化 */
   .header-toggle { display: inline-flex; }
@@ -1136,15 +1137,75 @@ body.is-locked { overflow: hidden; }
   .btn-header { width: 100%; justify-content: center; padding: 12px 16px; font-size: 14px; gap: 8px; }
   .btn-header .icon { display: inline-block; width: 16px; height: 16px; }
 
-  .topics { gap: 10px; padding: 10px 12px; }
-  .topics__label { font-size: 11px; letter-spacing: .1em; padding: 5px 10px; }
-  .topics__item { font-size: 13.5px; padding: 0 18px 0 26px; }
+  /* TOPIC：1行のスリム帯 */
+  .topics { gap: 8px; padding: 7px 10px; margin-bottom: 10px; border-radius: 10px; }
+  .topics__label { font-size: 10px; letter-spacing: .08em; padding: 4px 9px; }
+  .topics__item { font-size: 12.5px; padding: 0 14px 0 22px; }
+  .topics__item::before { width: 5px; height: 5px; left: 9px; }
 
-  .hero { padding-block: 28px 48px; }
-  .featured__ribbon { left: 20px; top: -15px; font-size: 12px; padding: 7px 14px; }
-  .featured__logo { height: 84px; }
+  /* ヒーロー：初見で依頼カードが見えるよう圧縮 */
+  .hero { padding-block: 14px 22px; }
+  .hero__inner { gap: 12px; }
+  .hero__main { order: 2; }
+  .hero__badge { font-size: 11px; padding: 5px 12px; gap: 6px; }
+  .hero__badge .icon { width: 1em; height: 1em; }
+  .hero__title { margin-top: 8px; font-size: 26px; line-height: 1.2; }
+  .hero__contact { margin-top: 8px; padding: 6px 12px; gap: 7px; font-size: 12.5px; }
+  .hero__contact-label { font-size: 11px; }
+  .hero__skyline { -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 55%); mask-image: linear-gradient(to bottom, transparent 0, #000 55%); }
 
-  .services__grid { grid-template-columns: 1fr; }
+  /* おすすめツール：最上部のスリムな横バーに */
+  .hero__promo { order: 1; }
+  .featured__ribbon {
+    top: -7px; left: 10px;
+    font-size: 9.5px; font-weight: 700;
+    padding: 3px 8px 3px 7px;
+    gap: 4px;
+    box-shadow: 0 4px 10px rgba(216, 158, 56, .3);
+    animation: none;
+    transform: rotate(-2deg);
+  }
+  .featured__ribbon::before { width: 7px; height: 7px; }
+  .featured__box {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 12px;
+    text-align: left;
+    border-radius: 12px;
+  }
+  .featured__brand { flex: none; }
+  .featured__logo { height: 34px; padding: 4px 8px; border-radius: 8px; }
+  .featured__body { flex: 1 1 auto; min-width: 0; }
+  .featured__product { justify-content: flex-start; gap: 6px; font-size: 12.5px; line-height: 1.35; }
+  .featured__pill { display: none; }
+  .featured__text { display: none; }
+  .featured__btn { flex: none; align-self: center; padding: 8px 12px; font-size: 12px; }
+
+  /* サービスカード：コンパクト化して2枚目まで見せる */
+  .services { padding-block: 6px 16px; }
+  .services__grid { grid-template-columns: 1fr; gap: 8px; }
+  .service-card { padding: 11px 13px 11px; border-radius: 12px; }
+  /* タグはタイトルと内容が重複するためスマホでは非表示（表示したい場合は下行を削除） */
+  .service-card__tag { display: none; }
+  .service-card__head { gap: 10px; margin-top: 0; }
+  .service-card__icon { width: 38px; height: 38px; }
+  .service-card__icon .icon { width: 22px; height: 22px; }
+  .service-card__title { font-size: 15px; line-height: 1.28; }
+  .service-card__title small { font-size: 10.5px; }
+  .service-card__desc {
+    margin-top: 6px;
+    font-size: 11.5px;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .service-card__actions { margin-top: 9px; gap: 7px; }
+  .actions--split a.actions__primary,
+  .actions--split .actions__primary .pdf-trigger { font-size: 13.5px; padding: 10px 6px; }
+  .actions--split .actions__secondary { font-size: 11.5px; padding: 9px 4px; }
 
   .help-cta__inner { flex-direction: column; text-align: center; gap: 20px; }
   .help-cta__btn { width: 100%; }
