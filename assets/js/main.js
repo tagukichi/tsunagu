@@ -255,7 +255,15 @@
         if (list) list.innerHTML = buildSummary(form);
         form.classList.add('is-confirming');
         setStep(form, 2);
-        scrollToForm(form);
+        // 確認画面では「修正する／送信する」ボタンが画面内（下部）に来るようスクロール
+        var btns = form.querySelector('.cf7c-buttons.cf7-confirm-screen');
+        if (btns) {
+          var rect = btns.getBoundingClientRect();
+          var target = rect.top + window.pageYOffset - (window.innerHeight - rect.height - 30);
+          window.scrollTo({ top: target < 0 ? 0 : target, behavior: 'smooth' });
+        } else {
+          scrollToForm(form);
+        }
       });
 
       if (backBtn) {
