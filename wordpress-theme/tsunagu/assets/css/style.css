@@ -121,11 +121,11 @@ h1, h2, h3, p { margin: 0; }
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  gap: 3px;
+  gap: 0;
   transition: opacity .15s ease;
 }
 .site-logo:hover { opacity: .8; }
-.site-logo__img { display: block; height: 66px; width: auto; }
+.site-logo__img { display: block; height: 88px; width: auto; margin-bottom: -4px; }
 .site-logo__caption {
   font-size: 11.5px;
   font-weight: 700;
@@ -1227,8 +1227,7 @@ body.is-locked { overflow: hidden; }
   :root { --gutter: 18px; }
 
   .site-header__inner { min-height: 60px; }
-  .site-logo { gap: 1px; }
-  .site-logo__img { height: 40px; }
+  .site-logo__img { height: 54px; margin-bottom: -3px; }
   .site-logo__caption { font-size: 10px; }
   .header-toggle { width: 40px; height: 40px; }
 
