@@ -116,8 +116,28 @@ h1, h2, h3, p { margin: 0; }
   justify-content: space-between;
   min-height: 92px;
 }
-.site-logo { display: inline-flex; align-items: center; }
+.site-header__brand { display: inline-flex; align-items: center; gap: 12px; }
+.site-logo { display: inline-flex; align-items: center; transition: opacity .15s ease; }
+.site-logo:hover { opacity: .75; }
 .site-logo__img { display: block; height: 72px; width: auto; }
+
+/* TOPへ戻る（トップページ以外で表示） */
+.site-home-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 15px 8px 12px;
+  border: 1.5px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: color .15s ease, border-color .15s ease, background-color .15s ease;
+}
+.site-home-link .icon { width: 16px; height: 16px; }
+.site-home-link:hover { color: var(--brand); border-color: var(--brand); background: #eaf3ff; }
 
 .header-actions { display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
 .btn-header {
@@ -1062,6 +1082,101 @@ body.is-locked { overflow: hidden; }
 .formpage__form .cf7c-list > .cf7c-section:first-child { margin-top: 0; }
 .cf7c-value.is-empty { color: #aab4c2; }
 
+/* ===== ファイル添付エリア（CF7 Drag & Drop Multiple File Upload）=====
+   「ファイルの参照」を大きな青ボタンにし、枠内どこでもクリックできると分かるUIに */
+.formpage__form .codedropz-upload-handler {
+  position: relative;
+  border: 2px dashed #a9c3e8;
+  border-radius: 14px;
+  background: #f6faff;
+  padding: 22px 16px;
+  cursor: pointer;
+  transition: border-color .15s ease, background-color .15s ease, box-shadow .15s ease;
+}
+.formpage__form .codedropz-upload-handler:hover,
+.formpage__form .codedropz-upload-handler.dnd-dragover,
+.formpage__form .codedropz-upload-handler.dragover {
+  border-color: var(--brand);
+  background: #eaf3ff;
+  box-shadow: 0 0 0 3px rgba(31, 111, 224, .1);
+}
+.formpage__form .codedropz-upload-container {
+  border: none;
+  background: transparent;
+  padding: 0;
+}
+.formpage__form .dnd-upload-text,
+.formpage__form .codedropz-upload-inner h3 {
+  margin: 0;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.6;
+  color: var(--navy);
+}
+.formpage__form .dnd-upload-text .dnd-text-or {
+  display: block;
+  margin: 6px 0 12px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--muted);
+}
+/* 参照ボタン本体 */
+.formpage__form .cd-upload-btn,
+.formpage__form .dnd-upload-text a,
+.formpage__form .wpcf7-drag-n-drop-file {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-width: 240px;
+  padding: 14px 30px;
+  background: var(--brand);
+  color: #fff !important;
+  font-size: 16.5px;
+  font-weight: 700;
+  text-decoration: none !important;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 8px 18px rgba(31, 111, 224, .32);
+  cursor: pointer;
+  transition: filter .15s ease, transform .15s ease, box-shadow .15s ease;
+}
+.formpage__form .cd-upload-btn::before,
+.formpage__form .dnd-upload-text a::before,
+.formpage__form .wpcf7-drag-n-drop-file::before {
+  content: "";
+  flex: none;
+  width: 21px;
+  height: 21px;
+  background: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4'/%3E%3Cpolyline points='17 8 12 3 7 8'/%3E%3Cline x1='12' y1='3' x2='12' y2='15'/%3E%3C/svg%3E") no-repeat center / contain;
+}
+.formpage__form .cd-upload-btn:hover,
+.formpage__form .dnd-upload-text a:hover,
+.formpage__form .wpcf7-drag-n-drop-file:hover {
+  filter: brightness(1.07);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(31, 111, 224, .38);
+}
+/* 「0 / 10」カウンタ（右下に配置して文言と重ならないように） */
+.formpage__form .dnd-upload-counter {
+  position: absolute;
+  right: 12px;
+  bottom: 8px;
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 600;
+}
+/* アップロード済みリスト */
+.formpage__form .dnd-upload-status { margin-top: 12px; }
+@media (max-width: 680px) {
+  .formpage__form .dnd-upload-text,
+  .formpage__form .codedropz-upload-inner h3 { font-size: 13.5px; }
+  .formpage__form .cd-upload-btn,
+  .formpage__form .dnd-upload-text a,
+  .formpage__form .wpcf7-drag-n-drop-file { min-width: 0; width: 100%; padding: 13px 18px; font-size: 15px; }
+}
+
 /* サンクス（送信完了）画面 */
 .formpage__thanks {
   margin-top: 26px;
@@ -1113,7 +1228,10 @@ body.is-locked { overflow: hidden; }
   :root { --gutter: 18px; }
 
   .site-header__inner { min-height: 60px; }
+  .site-header__brand { gap: 8px; }
   .site-logo__img { height: 44px; }
+  .site-home-link { padding: 6px 12px 6px 9px; font-size: 11.5px; gap: 3px; }
+  .site-home-link .icon { width: 14px; height: 14px; }
   .header-toggle { width: 40px; height: 40px; }
 
   /* ハンバーガー表示 & メニューをパネル化 */

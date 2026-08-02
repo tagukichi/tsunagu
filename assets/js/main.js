@@ -304,6 +304,18 @@
     });
   })();
 
+  /* ---------- 8) ファイル添付エリア：枠内どこでもクリックで参照 ---------- */
+  (function () {
+    document.addEventListener('click', function (e) {
+      var zone = e.target.closest ? e.target.closest('.codedropz-upload-handler') : null;
+      if (!zone) return;
+      // 参照ボタン・削除ボタン・リンク自体のクリックはそのまま通す
+      if (e.target.closest('.cd-upload-btn, a, button, .dnd-upload-status, .remove-file, .dnd-icon-remove')) return;
+      var btn = zone.querySelector('.cd-upload-btn, .wpcf7-drag-n-drop-file');
+      if (btn) { e.preventDefault(); btn.click(); }
+    });
+  })();
+
   /* ---------- 7) ヘッダー ハンバーガー（スマホ） ---------- */
   (function () {
     var toggle = document.querySelector('.header-toggle');

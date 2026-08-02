@@ -15,9 +15,17 @@
   <!-- ヘッダー（共通・簡略） -->
   <header class="site-header">
     <div class="container site-header__inner">
-      <a href="index.html" class="site-logo">
-        <img class="site-logo__img" src="assets/img/tsunaglogo.png" alt="つなぐ" width="500" height="500">
-      </a>
+      <div class="site-header__brand">
+        <a href="index.html" class="site-logo" title="TOPへ戻る">
+          <img class="site-logo__img" src="assets/img/tsunaglogo.png" alt="つなぐ" width="500" height="500">
+        </a>
+        <a href="index.html" class="site-home-link">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>TOPへ戻る</span>
+        </a>
+      </div>
       <button type="button" class="header-toggle" aria-label="メニューを開く" aria-expanded="false" aria-controls="header-nav">
         <span class="header-toggle__bar"></span>
       </button>
