@@ -20,19 +20,10 @@ $ext2_u = tsunagu_file_url( 'header_ext2_file', '' );
 
 <header class="site-header">
 	<div class="container site-header__inner">
-		<div class="site-header__brand">
-			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="site-logo" title="TOPへ戻る">
-				<img class="site-logo__img" src="<?php echo esc_url( $logo ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" width="500" height="500">
-			</a>
-			<?php if ( ! is_front_page() ) : ?>
-			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="site-home-link">
-				<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-					<path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-				</svg>
-				<span>TOPへ戻る</span>
-			</a>
-			<?php endif; ?>
-		</div>
+		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="site-logo" title="TOPページへ戻る">
+			<img class="site-logo__img" src="<?php echo esc_url( $logo ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" width="500" height="500">
+			<span class="site-logo__caption">TOPページへ戻る</span>
+		</a>
 		<button type="button" class="header-toggle" aria-label="メニューを開く" aria-expanded="false" aria-controls="header-nav">
 			<span class="header-toggle__bar"></span>
 		</button>

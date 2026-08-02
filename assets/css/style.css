@@ -116,28 +116,27 @@ h1, h2, h3, p { margin: 0; }
   justify-content: space-between;
   min-height: 92px;
 }
-.site-header__brand { display: inline-flex; align-items: center; gap: 12px; }
-.site-logo { display: inline-flex; align-items: center; transition: opacity .15s ease; }
-.site-logo:hover { opacity: .75; }
-.site-logo__img { display: block; height: 72px; width: auto; }
-
-/* TOPへ戻る（トップページ以外で表示） */
-.site-home-link {
+/* ロゴ＋その下の「TOPページへ戻る」テキスト */
+.site-logo {
   display: inline-flex;
+  flex-direction: column;
   align-items: center;
-  gap: 5px;
-  padding: 8px 15px 8px 12px;
-  border: 1.5px solid var(--line);
-  border-radius: 999px;
-  background: #fff;
-  color: var(--muted);
-  font-size: 13px;
-  font-weight: 700;
-  white-space: nowrap;
-  transition: color .15s ease, border-color .15s ease, background-color .15s ease;
+  gap: 3px;
+  transition: opacity .15s ease;
 }
-.site-home-link .icon { width: 16px; height: 16px; }
-.site-home-link:hover { color: var(--brand); border-color: var(--brand); background: #eaf3ff; }
+.site-logo:hover { opacity: .8; }
+.site-logo__img { display: block; height: 66px; width: auto; }
+.site-logo__caption {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--brand);
+  letter-spacing: .02em;
+  white-space: nowrap;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+.site-logo:hover .site-logo__caption { color: var(--brand-dark); }
 
 .header-actions { display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
 .btn-header {
@@ -1228,10 +1227,9 @@ body.is-locked { overflow: hidden; }
   :root { --gutter: 18px; }
 
   .site-header__inner { min-height: 60px; }
-  .site-header__brand { gap: 8px; }
-  .site-logo__img { height: 44px; }
-  .site-home-link { padding: 6px 12px 6px 9px; font-size: 11.5px; gap: 3px; }
-  .site-home-link .icon { width: 14px; height: 14px; }
+  .site-logo { gap: 1px; }
+  .site-logo__img { height: 40px; }
+  .site-logo__caption { font-size: 10px; }
   .header-toggle { width: 40px; height: 40px; }
 
   /* ハンバーガー表示 & メニューをパネル化 */
