@@ -127,10 +127,10 @@ function table(slide, x, y, w, rows, labelW) {
   heading(s, '', 'このマニュアルの内容', '管理画面での基本操作をまとめています');
   // 見出し番号なしのため上書き調整
   const items = [
-    ['1', 'WordPressへのログイン', '管理画面に入る方法と、2種類のログインの違い'],
-    ['2', 'コンテンツの修正', '固定ページのカスタムフィールドで文言・リンクを変更'],
-    ['3', 'フォームについて', '入力〜送信の流れ、宛先メールや文言の変更場所'],
-    ['4', '新規ユーザーの登録', '会員アカウントの作り方（会社名の入力は必須）'],
+    ['1', 'WordPressへのログイン', '管理画面に入る方法と、2種類のログインの違い', 'ログイン手順 ／ 管理画面の見方'],
+    ['2', 'コンテンツの修正', '固定ページのカスタムフィールドで文言・リンクを変更', '基本の流れ ／ 修正例3種'],
+    ['3', 'フォームについて', '入力〜送信の流れ、宛先メールや文言の変更場所', '文言・宛先の変更 ／ 紐付け'],
+    ['4', '新規ユーザーの登録', '会員アカウントの作り方（会社名の入力は必須）', '登録手順 ／ 運用の注意点'],
   ];
   items.forEach((it, i) => {
     const y = 1.72 + i * 1.22;
@@ -138,7 +138,10 @@ function table(slide, x, y, w, rows, labelW) {
     s.addShape(pres.ShapeType.ellipse, { x: 0.95, y: y + 0.22, w: 0.58, h: 0.58, fill: { color: BRAND } });
     s.addText(it[0], { x: 0.95, y: y + 0.22, w: 0.58, h: 0.58, align: 'center', valign: 'middle', fontFace: FONT, fontSize: 19, bold: true, color: 'FFFFFF', margin: 0 });
     s.addText(it[1], { x: 1.78, y: y + 0.16, w: 5.2, h: 0.36, fontFace: FONT, fontSize: 17, bold: true, color: NAVY, margin: 0, valign: 'middle' });
-    s.addText(it[2], { x: 1.78, y: y + 0.53, w: 10.5, h: 0.32, fontFace: FONT, fontSize: 12, color: MUTED, margin: 0, valign: 'middle' });
+    s.addText(it[2], { x: 1.78, y: y + 0.53, w: 6.4, h: 0.32, fontFace: FONT, fontSize: 12, color: MUTED, margin: 0, valign: 'middle' });
+    // 右側に章の内容を表示して余白を活かす
+    s.addShape(pres.ShapeType.roundRect, { x: 8.42, y: y + 0.29, w: 3.95, h: 0.44, rectRadius: 0.22, fill: { color: 'FFFFFF' }, line: { color: LINE, width: 1 } });
+    s.addText(it[3], { x: 8.42, y: y + 0.29, w: 3.95, h: 0.44, align: 'center', valign: 'middle', fontFace: FONT, fontSize: 11, color: BRAND_DK, bold: true, margin: 0 });
   });
 }
 
@@ -151,13 +154,14 @@ function table(slide, x, y, w, rows, labelW) {
     ['TOPページ', '依頼メニュー6つと\nおすすめツールを掲載', BRAND, 'FFFFFF'],
     ['フォームページ', '依頼内容を入力して\n送信する画面', LIGHT, NAVY],
   ];
+  // 本文カラム（0.85〜12.48）に3枠を収める：幅3.5 × 3 + 間隔0.565 × 2
   boxes.forEach((b, i) => {
-    const x = 0.85 + i * 4.3;
+    const x = 0.85 + i * 4.065;
     s.addShape(pres.ShapeType.roundRect, { x, y: 1.95, w: 3.5, h: 1.85, rectRadius: 0.08, fill: { color: b[2] }, line: { color: i === 1 ? BRAND : LINE, width: 1 } });
     s.addText(b[0], { x, y: 2.2, w: 3.5, h: 0.42, align: 'center', fontFace: FONT, fontSize: 17, bold: true, color: b[3], margin: 0, valign: 'middle' });
     s.addText(b[1], { x: x + 0.2, y: 2.7, w: 3.1, h: 0.85, align: 'center', fontFace: FONT, fontSize: 12, color: i === 1 ? 'DCEAFF' : MUTED, margin: 0, lineSpacingMultiple: 1.2 });
     if (i < 2) {
-      s.addText('▶', { x: x + 3.55, y: 2.62, w: 0.7, h: 0.5, align: 'center', valign: 'middle', fontFace: FONT, fontSize: 16, color: BRAND, margin: 0 });
+      s.addText('▶', { x: x + 3.5, y: 2.62, w: 0.565, h: 0.5, align: 'center', valign: 'middle', fontFace: FONT, fontSize: 16, color: BRAND, margin: 0 });
     }
   });
   noteBox(s, 0.85, 4.15, 11.63, 1.32, 'ログインしていない人はサイトを見られません',
@@ -203,15 +207,16 @@ sectionSlide(1, 'WordPressへのログイン', 'LOGIN', ['ログイン手順', '
 {
   const s = pres.addSlide();
   heading(s, 1, '【重要】2種類のログインがあります', '入口と目的が違うので、混同しないようご注意ください');
+  // 本マニュアルの対象である「管理画面ログイン」（右）を強調
   const cards = [
-    ['会員用ログイン', 'サイトを閲覧するための入口', ['URL：サイトのトップ（/login など）', '対象：つなぐ登録会社の皆さま', 'できること：依頼ページの閲覧・依頼'], LIGHT, NAVY, BRAND],
-    ['管理画面ログイン', 'サイトを編集するための入口', ['URL：サイトのURL + /wp-admin', '対象：管理者（貴社ご担当者）', 'できること：文言修正・ユーザー追加'], SOFT, NAVY, NAVY],
+    ['会員用ログイン', 'サイトを閲覧するための入口', ['URL：サイトのトップ（/login など）', '対象：つなぐ登録会社の皆さま', 'できること：依頼ページの閲覧・依頼'], SOFT, NAVY, MUTED],
+    ['管理画面ログイン', 'サイトを編集するための入口', ['URL：サイトのURL + /wp-admin', '対象：管理者（貴社ご担当者）', 'できること：文言修正・ユーザー追加'], LIGHT, NAVY, BRAND],
   ];
   cards.forEach((c, i) => {
     const x = 0.75 + i * 6.15;
-    s.addShape(pres.ShapeType.roundRect, { x, y: 1.8, w: 5.7, h: 3.3, rectRadius: 0.08, fill: { color: c[3] }, line: { color: i === 0 ? BRAND : LINE, width: 1.5 } });
-    s.addShape(pres.ShapeType.roundRect, { x: x + 0.32, y: 2.08, w: 1.7, h: 0.36, rectRadius: 0.18, fill: { color: c[5] } });
-    s.addText(i === 0 ? '会員の方' : '管理者の方', { x: x + 0.32, y: 2.08, w: 1.7, h: 0.36, align: 'center', valign: 'middle', fontFace: FONT, fontSize: 11, bold: true, color: 'FFFFFF', margin: 0 });
+    s.addShape(pres.ShapeType.roundRect, { x, y: 1.8, w: 5.7, h: 3.3, rectRadius: 0.08, fill: { color: c[3] }, line: { color: i === 1 ? BRAND : LINE, width: 1.5 } });
+    s.addShape(pres.ShapeType.roundRect, { x: x + 0.32, y: 2.08, w: 2.35, h: 0.36, rectRadius: 0.18, fill: { color: c[5] } });
+    s.addText(i === 0 ? '会員の方' : '管理者の方（本書の対象）', { x: x + 0.32, y: 2.08, w: 2.35, h: 0.36, align: 'center', valign: 'middle', fontFace: FONT, fontSize: 10, bold: true, color: 'FFFFFF', margin: 0 });
     s.addText(c[0], { x: x + 0.32, y: 2.56, w: 5.06, h: 0.44, fontFace: FONT, fontSize: 20, bold: true, color: c[4], margin: 0, valign: 'middle' });
     s.addText(c[1], { x: x + 0.32, y: 3.0, w: 5.06, h: 0.32, fontFace: FONT, fontSize: 12, color: MUTED, margin: 0, valign: 'middle' });
     c[2].forEach((t, j) => {
@@ -232,7 +237,7 @@ sectionSlide(2, 'コンテンツの修正', 'EDIT CONTENT', ['基本の流れ', 
   const flow = [
     ['固定ページを開く', '左メニュー →\n「固定ページ」'],
     ['ページを選ぶ', 'TOPページ（依頼\nページ）を編集'],
-    ['カスタムフィールド\nを修正', '本文の下にある\n入力欄を編集'],
+    ['入力欄を修正', 'カスタムフィールドを\n編集します'],
     ['「更新」を押す', 'サイトに反映\nされます'],
   ];
   flow.forEach((f, i) => {
@@ -307,9 +312,9 @@ sectionSlide(2, 'コンテンツの修正', 'EDIT CONTENT', ['基本の流れ', 
   imgBox(s, 0.75, 1.78, 6.1, 3.15, 'サイト上のTOPIC表示部分のスクリーンショット');
   s.addText('入力のしかた', { x: 7.2, y: 1.78, w: 5.42, h: 0.34, fontFace: FONT, fontSize: 15, bold: true, color: NAVY, margin: 0, valign: 'middle' });
   s.addText('「TOPIC」タブの入力欄に、1行につき1件を入力します。', { x: 7.2, y: 2.18, w: 5.42, h: 0.34, fontFace: FONT, fontSize: 12, color: MUTED, margin: 0, valign: 'middle' });
-  s.addShape(pres.ShapeType.roundRect, { x: 7.2, y: 2.62, w: 5.42, h: 1.62, rectRadius: 0.06, fill: { color: '1B2A44' }, line: { color: '1B2A44', width: 1 } });
-  s.addText('1棟案件アパート求む\nボロ戸建て投資家に提案可能\n500万円以下の案件は是非！', { x: 7.44, y: 2.8, w: 5.0, h: 1.3, fontFace: FONT, fontSize: 12.5, color: 'CADCFC', margin: 0, lineSpacingMultiple: 1.4 });
-  s.addText('↑ 入力例（3件）', { x: 7.2, y: 4.3, w: 5.42, h: 0.3, fontFace: FONT, fontSize: 10.5, color: MUTED, margin: 0 });
+  s.addShape(pres.ShapeType.roundRect, { x: 7.2, y: 2.62, w: 5.42, h: 1.18, rectRadius: 0.06, fill: { color: '1B2A44' }, line: { color: '1B2A44', width: 1 } });
+  s.addText('1棟案件アパート求む\nボロ戸建て投資家に提案可能\n500万円以下の案件は是非！', { x: 7.44, y: 2.74, w: 5.0, h: 0.94, fontFace: FONT, fontSize: 12.5, color: 'CADCFC', margin: 0, lineSpacingMultiple: 1.32 });
+  s.addText('↑ 入力例（3件）', { x: 7.2, y: 3.88, w: 5.42, h: 0.3, fontFace: FONT, fontSize: 10.5, color: MUTED, margin: 0, valign: 'middle' });
   noteBox(s, 0.75, 5.1, 11.87, 1.3, '件数は自由に増減できます',
     '行を増やせば表示件数が増え、すべて削除すると初期の内容が表示されます。長すぎる文章は読みにくくなるため、20文字程度を目安にしてください。');
 }
@@ -352,7 +357,7 @@ sectionSlide(3, 'フォームについて', 'FORM', ['入力〜送信の流れ',
       s.addText('・' + t, { x: x + 0.3, y: 2.86 + j * 0.44, w: 5.0, h: 0.4, fontFace: FONT, fontSize: 12, color: INK, margin: 0, valign: 'middle' });
     });
   });
-  imgBox(s, 0.8, 4.75, 11.62, 1.65, 'フォーム設定画面（「お問い合わせ」→ フォーム編集、またはメールタブ）のスクリーンショット');
+  imgBox(s, 0.8, 4.75, 11.72, 1.65, 'フォーム設定画面（「お問い合わせ」→ フォーム編集、またはメールタブ）のスクリーンショット');
 }
 
 /* 3-3 ボタンとの紐付け */
@@ -435,7 +440,8 @@ sectionSlide(4, '新規ユーザーの登録', 'ADD USER', ['登録の手順', '
 {
   const s = pres.addSlide();
   s.background = { color: NAVY };
-  s.addShape(pres.ShapeType.ellipse, { x: -1.2, y: 4.2, w: 4.6, h: 4.6, fill: { color: '17356F' } });
+  // 装飾円は本文テキストに掛からない位置に配置
+  s.addShape(pres.ShapeType.ellipse, { x: -2.0, y: -1.3, w: 4.2, h: 4.2, fill: { color: '17356F' } });
   s.addText('困ったときは', { x: 1.0, y: 1.5, w: 8.0, h: 0.7, fontFace: FONT, fontSize: 32, bold: true, color: 'FFFFFF', margin: 0, valign: 'middle' });
   const faq = [
     ['ログインできない', 'ログイン画面の「パスワードをお忘れですか？」から再設定できます。'],
@@ -450,7 +456,7 @@ sectionSlide(4, '新規ユーザーの登録', 'ADD USER', ['登録の手順', '
     s.addText(f[1], { x: 1.7, y: y + 0.44, w: 10.3, h: 0.32, fontFace: FONT, fontSize: 11.5, color: 'A8C4EE', margin: 0, valign: 'middle' });
   });
   s.addText('その他ご不明な点は、サイト制作担当までお問い合わせください。', { x: 1.0, y: 5.9, w: 11.33, h: 0.36, fontFace: FONT, fontSize: 12.5, color: '9FC0F0', margin: 0, valign: 'middle' });
-  s.addText('つなぐ依頼ページ 運用マニュアル ／ 版数 1.0', { x: 1.0, y: 6.32, w: 11.33, h: 0.32, fontFace: FONT, fontSize: 10.5, color: '6D8CBF', margin: 0, valign: 'middle' });
+  s.addText('つなぐ依頼ページ 運用マニュアル ／ 版数 1.0', { x: 1.0, y: 6.32, w: 11.33, h: 0.32, fontFace: FONT, fontSize: 11, color: '9FC0F0', margin: 0, valign: 'middle' });
 }
 
 pres.writeFile({ fileName: OUT }).then(() => console.log('created:', OUT));
