@@ -772,54 +772,42 @@ body.is-locked { overflow: hidden; }
   .modal__dialog { animation: none; }
 }
 
-/* ---------- ログアウト（ヘッダー / フッター） ---------- */
-/* ヘッダー内のログアウト：他のボタンと区別できるグレー系 */
-.btn-header--logout {
-  color: var(--muted);
-  background: #fff;
-  border-color: #cdd6e3;
-}
-.btn-header--logout:hover {
-  color: #c0392b;
-  border-color: #e2a5a0;
-  background: #fdf1f0;
-}
-
-/* フッターの全幅ログアウト帯 */
+/* ---------- ログアウト（フッター全幅・中央） ---------- */
 .site-footer__logout {
   display: flex;
   justify-content: center;
-  padding: 18px var(--gutter);
+  padding: 20px var(--gutter);
   background: #eef2f8;
   border-bottom: 1px solid var(--line);
 }
+/* 「利用規約・ダウンロード」と同等の視認性（塗りボタン） */
 .logout-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 9px;
-  min-width: 280px;
-  padding: 14px 32px;
-  border-radius: var(--radius-sm);
-  background: #fff;
-  border: 1.5px solid #cdd6e3;
-  color: var(--ink);
-  font-size: 15px;
+  min-width: 300px;
+  padding: 15px 34px;
+  border-radius: 999px;
+  background: var(--brand);
+  border: 1.5px solid var(--brand);
+  color: #fff;
+  font-size: 15.5px;
   font-weight: 700;
-  transition: color .15s ease, border-color .15s ease, background-color .15s ease, box-shadow .15s ease;
+  box-shadow: 0 6px 14px rgba(31, 111, 224, .28);
+  transition: filter .15s ease, box-shadow .15s ease, transform .15s ease;
 }
-.logout-btn .icon { width: 19px; height: 19px; flex: none; }
+.logout-btn .icon { width: 20px; height: 20px; flex: none; }
 .logout-btn:hover {
-  color: #c0392b;
-  border-color: #e2a5a0;
-  background: #fdf1f0;
-  box-shadow: 0 6px 16px rgba(192, 57, 43, .12);
+  filter: brightness(1.06);
+  box-shadow: 0 10px 22px rgba(31, 111, 224, .34);
+  transform: translateY(-1px);
 }
 @media (max-width: 680px) {
-  .site-footer__logout { padding: 14px var(--gutter); }
-  .logout-btn { min-width: 0; width: 100%; padding: 13px 20px; font-size: 14.5px; }
+  .site-footer__logout { padding: 16px var(--gutter); }
+  .logout-btn { min-width: 0; width: 100%; padding: 14px 20px; font-size: 15px; }
 }
-@media print { .site-footer__logout, .btn-header--logout { display: none; } }
+@media print { .site-footer__logout { display: none; } }
 
 /* ---------- ログインページ ---------- */
 .login-page {

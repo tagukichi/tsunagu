@@ -46,16 +46,6 @@ $ext2_u = tsunagu_file_url( 'header_ext2_file', '' );
 				</svg>
 				<span><?php echo esc_html( tsunagu_field( 'header_btn_label', $d['header_btn_label'] ) ); ?></span>
 			</a>
-			<?php if ( is_user_logged_in() ) : ?>
-			<a href="<?php echo esc_url( wp_logout_url( tsunagu_login_page_url() ) ); ?>" class="btn-header btn-header--logout">
-				<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-					<path d="M15 17l5-5-5-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
-					<path d="M20 12H9" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
-					<path d="M12 20H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
-				</svg>
-				<span>ログアウト</span>
-			</a>
-			<?php endif; ?>
 		</nav>
 	</div>
 </header>
