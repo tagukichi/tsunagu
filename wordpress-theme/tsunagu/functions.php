@@ -69,6 +69,18 @@ add_action( 'template_redirect', function () {
 	exit;
 }, 1 );
 
+/* ログアウト後は全ユーザー共通でログインページへ */
+add_action( 'wp_logout', function () {
+	wp_safe_redirect( add_query_arg( 'loggedout', 'true', tsunagu_login_page_url() ) );
+	exit;
+}, 1 );
+
+/* wp_logout_url() の戻り先もログインページに統一 */
+add_filter( 'logout_url', function ( $logout_url ) {
+	$url = remove_query_arg( 'redirect_to', $logout_url );
+	return add_query_arg( 'redirect_to', rawurlencode( tsunagu_login_page_url() ), $url );
+}, 10, 1 );
+
 /* ログイン失敗時、カスタムログインページへエラー付きで戻す */
 add_action( 'wp_login_failed', function ( $username ) {
 	$referrer = wp_get_referer();
