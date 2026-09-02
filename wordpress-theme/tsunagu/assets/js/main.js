@@ -183,9 +183,10 @@
       var lab = el.closest ? el.closest('label') : null;
       return lab ? lab.textContent.trim() : el.value;
     }
+    var TEXTISH = 'input[type=text],input[type=email],input[type=tel],input[type=url],input[type=number],input[type=date],textarea,select';
     function valueOf(p) {
       var vals = [];
-      p.querySelectorAll('input[type=text],input[type=email],input[type=tel],input[type=url],input[type=number],input[type=date],textarea,select').forEach(function (el) {
+      p.querySelectorAll(TEXTISH).forEach(function (el) {
         if (el.value && el.value.trim() !== '') vals.push(el.value.trim());
       });
       p.querySelectorAll('input[type=radio]:checked,input[type=checkbox]:checked').forEach(function (el) {
@@ -193,9 +194,30 @@
       });
       return vals.join(' / ');
     }
+    // 入力欄の直後に置かれた単位表記（万円・円・㎡ など）を拾って確認画面にも表示する
+    function unitOf(p) {
+      var els = p.querySelectorAll(TEXTISH);
+      if (!els.length) return '';
+      var node = els[els.length - 1].nextSibling, t = '';
+      while (node && node.nodeType === 3) { t += node.textContent; node = node.nextSibling; }
+      var m = t.trim().match(/^(万円|円|万|㎡|平米|坪|%|年|カ月|ヶ月|日|件|人)/);
+      return m ? m[1] : '';
+    }
+    // 価格欄の単位を「万円」に統一（CF7本文が「円」のままでも表示を合わせる。既に万円なら何もしない）
+    function normalizePriceUnits(form) {
+      form.querySelectorAll('input[name*="price"]').forEach(function (el) {
+        var node = el.nextSibling;
+        while (node && node.nodeType === 3) {
+          if (node.textContent.indexOf('円') !== -1 && node.textContent.indexOf('万円') === -1) {
+            node.textContent = node.textContent.replace('円', '万円');
+          }
+          node = node.nextSibling;
+        }
+      });
+    }
     function buildSummary(form) {
-      // 見出し（h2〜h4）＋各項目を、フォームの並び順どおりに全て表示（未入力は「未入力」）
-      var out = [];
+      // 見出し（h2〜h4）＋各項目を、フォームの並び順どおりに全て表示（未回答は「未回答」）
+      var out = [], empty = 0;
       form.querySelectorAll('.cf7-input-screen').forEach(function (cont) {
         Array.prototype.forEach.call(cont.children, function (node) {
           var tag = node.nodeName;
@@ -205,11 +227,34 @@
             if (!node.querySelector('input:not([type=submit]):not([type=button]):not([type=hidden]), textarea, select')) return;
             var label = labelOf(node);
             var val = valueOf(node);
-            out.push('<div class="cf7c-row"><span class="cf7c-label">' + esc(label) + '</span><span class="cf7c-value' + (val ? '' : ' is-empty') + '">' + (val ? esc(val) : '未入力') + '</span></div>');
+            if (!val) empty++;
+            var unit = val ? unitOf(node) : '';
+            out.push('<div class="cf7c-row"><span class="cf7c-label">' + esc(label) + '</span><span class="cf7c-value' + (val ? '' : ' is-empty') + '">' + (val ? esc(val) + (unit ? ' ' + esc(unit) : '') : '未回答') + '</span></div>');
           }
         });
       });
-      return out.length ? out.join('') : '<p>入力内容がありません。</p>';
+      return { html: out.length ? out.join('') : '<p>入力内容がありません。</p>', empty: empty };
+    }
+    // 確認画面の先頭に「未回答が◯件あります」の注意喚起を表示
+    function renderNotice(form, list, empty) {
+      var box = form.querySelector('.cf7c-notice');
+      if (!box) {
+        box = document.createElement('div');
+        box.className = 'cf7c-notice';
+        list.parentNode.insertBefore(box, list);
+      }
+      if (empty > 0) {
+        box.className = 'cf7c-notice is-warn';
+        box.setAttribute('role', 'alert');
+        box.innerHTML = '<span class="cf7c-notice__icon" aria-hidden="true">!</span>' +
+          '<span class="cf7c-notice__text"><strong>未回答が ' + empty + ' 件あります。</strong>' +
+          'このまま送信もできますが、内容をご確認のうえ、必要に応じて「修正する」から追記してください。</span>';
+      } else {
+        box.className = 'cf7c-notice is-ok';
+        box.removeAttribute('role');
+        box.innerHTML = '<span class="cf7c-notice__icon" aria-hidden="true">✓</span>' +
+          '<span class="cf7c-notice__text">すべての項目にご回答いただいています。内容をご確認のうえ送信してください。</span>';
+      }
     }
 
     // ステップ表示を n（1=入力 / 2=確認 / 3=送信）に更新
@@ -234,6 +279,8 @@
       var list = form.querySelector('.cf7c-list');
       if (!confirmBtn) return;
 
+      normalizePriceUnits(form);
+
       // 必須項目：日本語メッセージ「この項目は必須です。」＋赤ハイライト
       var requireds = [];
       form.querySelectorAll('[aria-required="true"]').forEach(function (el) {
@@ -252,7 +299,11 @@
         // CF7必須（aria-required）を一時的にHTML5必須にしてブラウザ検証
         requireds.forEach(function (el) { el.required = true; });
         if (typeof form.reportValidity === 'function' && !form.reportValidity()) return;
-        if (list) list.innerHTML = buildSummary(form);
+        if (list) {
+          var summary = buildSummary(form);
+          list.innerHTML = summary.html;
+          renderNotice(form, list, summary.empty);
+        }
         form.classList.add('is-confirming');
         setStep(form, 2);
         // 確認画面では「修正する／送信する」ボタンが画面内（下部）に来るようスクロール

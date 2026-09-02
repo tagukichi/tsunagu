@@ -1093,7 +1093,7 @@ body.is-locked { overflow: hidden; }
   font-size: 17px;
 }
 
-/* 必須未入力などのエラー時ハイライト */
+/* 必須未回答などのエラー時ハイライト */
 .formpage__form .is-invalid {
   border-color: #e04b4b !important;
   box-shadow: 0 0 0 3px rgba(224, 75, 75, .14) !important;
@@ -1116,7 +1116,44 @@ body.is-locked { overflow: hidden; }
 .formpage__form .cf7c-files-note { font-size: 13px; color: var(--muted); margin-top: -4px; }
 .formpage__form .cf7c-section { font-size: 13.5px; font-weight: 800; color: var(--navy); letter-spacing: .02em; margin: 18px 0 2px; }
 .formpage__form .cf7c-list > .cf7c-section:first-child { margin-top: 0; }
-.cf7c-value.is-empty { color: #aab4c2; }
+.cf7c-value.is-empty { color: #b9843a; font-weight: 700; }
+
+/* 確認画面の注意喚起（未回答の件数） */
+.formpage__form .cf7c-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0 0 14px;
+  padding: 13px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  line-height: 1.7;
+}
+.formpage__form .cf7c-notice__icon {
+  flex: none;
+  width: 21px;
+  height: 21px;
+  margin-top: 1px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 900;
+  color: #fff;
+}
+.formpage__form .cf7c-notice.is-warn {
+  background: #fdf3dc;
+  border: 1.5px solid #e8c780;
+  color: #7a5410;
+}
+.formpage__form .cf7c-notice.is-warn .cf7c-notice__icon { background: #c98a16; }
+.formpage__form .cf7c-notice.is-ok {
+  background: #eef7f0;
+  border: 1.5px solid #b7ddc2;
+  color: #2c6b41;
+}
+.formpage__form .cf7c-notice.is-ok .cf7c-notice__icon { background: #3f9a5f; }
 
 /* ===== ファイル添付エリア（CF7 Drag & Drop Multiple File Upload）=====
    「ファイルの参照」を大きな青ボタンにし、枠内どこでもクリックできると分かるUIに */
