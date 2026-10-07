@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="UTF-8">
+<style>
+  body { margin: 0; padding: 20px; background: #fff; font-family: "IPAPGothic", "IPAGothic", sans-serif; color: #233244; }
+  .fig { display: inline-block; padding: 18px; background: #fff; margin-bottom: 30px; }
+
+  /* ---------- レイアウト図 ---------- */
+  #layout { display: inline-flex; gap: 34px; align-items: flex-start; }
+  .dev { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .dev-name { font-size: 18px; font-weight: 700; color: #11295A; letter-spacing: .04em; }
+  .screen { border: 2px solid #9AA8BC; border-radius: 10px; background: #F7F9FC; padding: 10px; display: flex; flex-direction: column; gap: 7px; }
+  .pc { width: 640px; }
+  .sp { width: 214px; border-radius: 22px; padding: 14px 10px; }
+  .blk { border-radius: 6px; background: #fff; border: 1px solid #D5DDE8; font-size: 14px; color: #5D6B7E; display: flex; align-items: center; justify-content: center; text-align: center; line-height: 1.35; }
+  .row { display: flex; gap: 7px; }
+  .hdr { height: 34px; justify-content: space-between; padding: 0 10px; }
+  .logo { width: 40px; height: 22px; border-radius: 4px; background: #DCE3EE; }
+  .pills { display: flex; gap: 5px; }
+  .pill { width: 44px; height: 14px; border-radius: 7px; border: 1px solid #1F6FE0; }
+  .pill.s { background: #1F6FE0; }
+  .burger { width: 22px; height: 18px; border: 1px solid #1F6FE0; border-radius: 4px; }
+  .hero-l { flex: 1.1; height: 86px; flex-direction: column; align-items: flex-start; padding-left: 14px; gap: 6px; }
+  .bar { height: 9px; border-radius: 4px; background: #DCE3EE; }
+  .self { background: #EAF3FF; border: 1.5px solid #1F6FE0; color: #0D3FA6; font-weight: 700; }
+  .hero-r { flex: .9; height: 86px; }
+  .topic { height: 24px; }
+  .ad { background: #FDF3DC; border: 2px dashed #C98A16; color: #7A5410; font-weight: 700; position: relative; }
+  .ad .pr { position: absolute; top: 4px; left: 5px; font-size: 9px; font-weight: 900; color: #fff; background: #C98A16; border-radius: 3px; padding: 0 4px; line-height: 14px; }
+  .ad small { display: block; font-weight: 500; font-size: 12.5px; color: #8A6420; }
+  .adA { height: 58px; font-size: 16px; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; }
+  .card { height: 58px; }
+  .adB { height: 96px; font-size: 15px; }
+  .ftr { height: 26px; background: #EEF2F8; }
+  .sp .hero-sp { height: 50px; flex-direction: column; align-items: flex-start; padding-left: 10px; gap: 5px; }
+  .sp .promo { height: 28px; font-size: 13px; }
+  .sp .card { height: 44px; }
+  .sp .adB { height: 78px; font-size: 13.5px; }
+  .note { font-size: 12.5px; color: #7A5410; background: #FFF9EC; border: 1px solid #EAD7AE; border-radius: 6px; padding: 4px 6px; text-align: center; }
+  .dots { text-align: center; color: #9AA8BC; font-size: 14px; line-height: 1; }
+  .legend { display: flex; gap: 22px; justify-content: center; margin-top: 14px; font-size: 15px; color: #233244; }
+  .legend span { display: inline-flex; align-items: center; gap: 7px; }
+  .sw { width: 22px; height: 14px; border-radius: 3px; display: inline-block; }
+  .sw.ad { border-width: 2px; }
+</style></head>
+<body>
+
+<!-- 図1：広告枠の配置案 -->
+<div class="fig" id="fig-layout">
+  <div id="layout">
+    <div class="dev">
+      <div class="dev-name">PC表示</div>
+      <div class="screen pc">
+        <div class="blk hdr"><span class="logo"></span><span class="pills"><span class="pill"></span><span class="pill"></span><span class="pill s"></span></span></div>
+        <div class="row">
+          <div class="blk hero-l"><span style="font-size:16px;color:#11295A;font-weight:700">つなぐ依頼ページ</span><span class="bar" style="width:62%"></span><span class="bar" style="width:44%"></span></div>
+          <div class="blk self hero-r"><div>調速バナー<br><span style="font-weight:500;font-size:13px">自社製品枠（据え置き）</span></div></div>
+        </div>
+        <div class="blk topic">TOPIC</div>
+        <div class="blk ad adA"><span class="pr">PR</span><div>広告枠A　横長<small>表示 1180×120px ／ PCのみ ／ 複数登録時はランダム1枚</small></div></div>
+        <div class="grid">
+          <div class="blk card">依頼メニュー1</div><div class="blk card">依頼メニュー2</div><div class="blk card">依頼メニュー3</div>
+          <div class="blk card">依頼メニュー4</div><div class="blk card">依頼メニュー5</div><div class="blk card">依頼メニュー6</div>
+        </div>
+        <div class="grid">
+          <div class="blk ad adB"><span class="pr">PR</span><div>広告枠B-1<small>300×250px</small></div></div>
+          <div class="blk ad adB"><span class="pr">PR</span><div>広告枠B-2<small>300×250px</small></div></div>
+          <div class="blk ad adB"><span class="pr">PR</span><div>広告枠B-3<small>300×250px</small></div></div>
+        </div>
+        <div class="blk ftr">フッター（ログアウト）</div>
+      </div>
+    </div>
+
+    <div class="dev">
+      <div class="dev-name">スマホ表示</div>
+      <div class="screen sp">
+        <div class="blk hdr"><span class="logo" style="width:30px"></span><span class="burger"></span></div>
+        <div class="blk self promo">調速（上部バー）</div>
+        <div class="blk hero-sp"><span style="font-size:13.5px;color:#11295A;font-weight:700">つなぐ依頼ページ</span><span class="bar" style="width:70%"></span></div>
+        <div class="blk topic" style="height:22px;font-size:13px">TOPIC</div>
+        <div class="note">広告枠Aは非表示<br>（初見でカードを見せるため）</div>
+        <div class="blk card">依頼メニュー1</div>
+        <div class="blk card">依頼メニュー2</div>
+        <div class="dots">⋮</div>
+        <div class="blk card">依頼メニュー6</div>
+        <div class="blk ad adB"><span class="pr">PR</span><div>広告枠B-1<small>縦に並べて表示</small></div></div>
+        <div class="dots">⋮</div>
+        <div class="blk ad adB" style="height:40px"><span class="pr">PR</span><div>広告枠B-3</div></div>
+        <div class="blk ftr" style="font-size:13px">フッター</div>
+      </div>
+    </div>
+  </div>
+  <div class="legend">
+    <span><i class="sw ad" style="background:#FDF3DC;border:2px dashed #C98A16"></i>新設する広告枠</span>
+    <span><i class="sw" style="background:#EAF3FF;border:1.5px solid #1F6FE0"></i>既存の自社枠（調速）</span>
+    <span><i class="sw" style="background:#fff;border:1px solid #D5DDE8"></i>既存のコンテンツ</span>
+  </div>
+</div>
+
+<!-- 図2〜4：mermaid -->
+<div class="fig" id="fig-arch"><pre class="mermaid">
+flowchart TD
+  U[会員が<br/>フォームを送信] --> CF7[Contact Form 7]
+  CF7 -->|従来どおり| M[メール通知]
+  CF7 -->|送信フック| S[控え保存<br/>WordPress内]
+  S --> D[配信]
+  D --> X[Excel<br/>Microsoft Graph API]
+  D --> C[調速<br/>Webhook]
+  D -.->|失敗時| R[自動再送<br/>WP-Cron]
+  R -.-> D
+</pre></div>
+
+<div class="fig" id="fig-seq"><pre class="mermaid">
+sequenceDiagram
+  participant WP as WordPress<br/>（Xサーバー）
+  participant MS as Microsoft<br/>ログイン
+  participant G as Graph API
+  participant X as Excel<br/>（SharePoint）
+  WP->>MS: トークン要求（クライアントID＋シークレット）
+  MS-->>WP: アクセストークン（約1時間有効）
+  WP->>G: 行の追加（テーブル名＋値）
+  G->>X: 末尾に追記
+  G-->>WP: 結果（成功／エラー）
+</pre></div>
+
+<div class="fig" id="fig-phase"><pre class="mermaid">
+flowchart LR
+  P0[フェーズ0<br/>準備<br/>（クライアント作業）] --> P2[フェーズ2<br/>共通基盤＋<br/>Excel実験]
+  P2 --> P3[フェーズ3<br/>Excel限定運用<br/>（1週間）]
+  P3 --> P4[フェーズ4<br/>Excel本運用]
+  P2 --> P5[フェーズ5<br/>調速連携]
+  P1[フェーズ1<br/>広告枠] -.独立して並行.-> P4
+</pre></div>
+
+<script src="node_modules/mermaid/dist/mermaid.min.js"></script>
+<script>
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: 'base',
+    fontFamily: 'IPAPGothic, IPAGothic, sans-serif',
+    themeVariables: {
+      fontFamily: 'IPAPGothic, IPAGothic, sans-serif',
+      fontSize: '16px',
+      primaryColor: '#EAF3FF',
+      primaryTextColor: '#11295A',
+      primaryBorderColor: '#1F6FE0',
+      lineColor: '#5D6B7E',
+      secondaryColor: '#F3F7FC',
+      tertiaryColor: '#FFFFFF',
+      edgeLabelBackground: '#FFFFFF',
+      actorBkg: '#EAF3FF',
+      actorBorder: '#1F6FE0',
+      actorTextColor: '#11295A',
+      signalColor: '#233244',
+      signalTextColor: '#233244',
+      noteBkgColor: '#FDF3DC'
+    },
+    flowchart: { htmlLabels: true, curve: 'basis', padding: 14, nodeSpacing: 34, rankSpacing: 48, useMaxWidth: false, wrappingWidth: 400 },
+    sequence: { actorMargin: 26, messageMargin: 36, mirrorActors: false, useMaxWidth: false }
+  });
+  mermaid.run({ querySelector: '.mermaid' }).then(() => { document.body.dataset.ready = '1'; });
+</script>
+</body></html>
