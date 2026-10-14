@@ -1,9 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="600" height="500" viewBox="0 0 600 500">
-  <rect width="600" height="500" fill="#FDF3DC"/>
-  <rect x="24" y="24" width="552" height="452" rx="18" fill="none" stroke="#C98A16" stroke-width="4" stroke-dasharray="14 10"/>
-  <circle cx="300" cy="190" r="58" fill="#C98A16" opacity=".18"/>
-  <text x="300" y="206" text-anchor="middle" font-family="sans-serif" font-size="46" font-weight="700" fill="#C98A16">3</text>
-  <text x="300" y="320" text-anchor="middle" font-family="sans-serif" font-size="40" font-weight="700" fill="#C98A16">広告サンプル 3</text>
-  <text x="300" y="372" text-anchor="middle" font-family="sans-serif" font-size="26" fill="#5D6B7E">業務効率化ツール</text>
-  <text x="300" y="428" text-anchor="middle" font-family="sans-serif" font-size="20" fill="#8A97A8">600 × 500 px</text>
+  <rect width="600" height="500" fill="#F4F6F9"/>
+  <rect x="24" y="24" width="552" height="452" rx="18" fill="none" stroke="#B3BDCA" stroke-width="4" stroke-dasharray="14 10"/>
+  <g transform="translate(240 120)" fill="none" stroke="#9AA6B5" stroke-width="8" stroke-linejoin="round">
+    <rect x="0" y="0" width="120" height="96" rx="10"/>
+    <circle cx="36" cy="32" r="11" fill="#9AA6B5" stroke="none"/>
+    <path d="M10 84 L46 50 L72 72 L88 58 L112 84" stroke-linecap="round"/>
+  </g>
+  <text x="300" y="300" text-anchor="middle" font-family="sans-serif" font-size="40" font-weight="700" fill="#5D6B7E">広告画像 3</text>
+  <text x="300" y="352" text-anchor="middle" font-family="sans-serif" font-size="24" fill="#7A8696">クリックでリンク先を開きます</text>
+  <text x="300" y="420" text-anchor="middle" font-family="sans-serif" font-size="20" fill="#9AA6B5">600 × 500 px</text>
 </svg>

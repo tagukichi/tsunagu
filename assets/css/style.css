@@ -778,9 +778,9 @@ body.is-locked { overflow: hidden; }
   --per: 3;
   --gap: 20px;
   --slide-w: 300px;
-  background: #fff;
-  border-bottom: 1px solid var(--line);
-  padding: 22px var(--gutter) 24px;
+  /* フッター（ログアウト帯）と同じ背景にして、フッターの一部として見せる */
+  background: #eef2f8;
+  padding: 24px var(--gutter) 4px;
 }
 .tsg-pickup__inner {
   max-width: calc(var(--per) * var(--slide-w) + (var(--per) - 1) * var(--gap));
@@ -815,13 +815,13 @@ body.is-locked { overflow: hidden; }
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 10px;
-  background: var(--bg-soft);
+  background: #fff;
   transition: border-color .15s ease, opacity .15s ease;
 }
 a.tsg-pickup__link:hover { border-color: var(--brand); opacity: .9; }
 .tsg-pickup__img { display: block; width: 100%; height: 100%; object-fit: contain; }
 @media (max-width: 680px) {
-  .tsg-pickup { --per: 1; --gap: 12px; padding: 16px var(--gutter) 18px; }
+  .tsg-pickup { --per: 1; --gap: 12px; padding: 18px var(--gutter) 2px; }
 }
 @media print { .tsg-pickup { display: none; } }
 
