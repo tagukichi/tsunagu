@@ -319,6 +319,21 @@
        フッター  [ACF] footer_copyright
   ============================================================ -->
   <footer class="site-footer">
+    <!-- 広告エリア（WPでは管理メニュー「広告」の登録内容。未登録なら非表示）
+         PC 3枚／スマホ 1枚。超える分は自動スライド。以下はサンプル4件 -->
+    <section class="tsg-pickup" aria-label="広告">
+      <div class="tsg-pickup__inner">
+        <p class="tsg-pickup__label">PR</p>
+        <div class="tsg-pickup__viewport" data-interval="4000">
+          <ul class="tsg-pickup__track">
+            <li class="tsg-pickup__item"><a class="tsg-pickup__link" href="#" target="_blank" rel="sponsored noopener"><img class="tsg-pickup__img" src="assets/img/sample-pickup-1.svg" alt="広告サンプル1" width="600" height="500" loading="lazy"></a></li>
+            <li class="tsg-pickup__item"><a class="tsg-pickup__link" href="#" target="_blank" rel="sponsored noopener"><img class="tsg-pickup__img" src="assets/img/sample-pickup-2.svg" alt="広告サンプル2" width="600" height="500" loading="lazy"></a></li>
+            <li class="tsg-pickup__item"><a class="tsg-pickup__link" href="#" target="_blank" rel="sponsored noopener"><img class="tsg-pickup__img" src="assets/img/sample-pickup-3.svg" alt="広告サンプル3" width="600" height="500" loading="lazy"></a></li>
+            <li class="tsg-pickup__item"><a class="tsg-pickup__link" href="#" target="_blank" rel="sponsored noopener"><img class="tsg-pickup__img" src="assets/img/sample-pickup-4.svg" alt="広告サンプル4" width="600" height="500" loading="lazy"></a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
     <!-- ログアウト帯（WPではログイン中のみ表示） -->
     <div class="site-footer__logout">
       <a class="logout-btn" href="#">

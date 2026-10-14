@@ -4,11 +4,12 @@
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-define( 'TSUNAGU_VER', '1.0.0' );
+define( 'TSUNAGU_VER', '1.1.0' );
 
 require_once get_theme_file_path( 'inc/helpers.php' );
 require_once get_theme_file_path( 'inc/defaults.php' );
 require_once get_theme_file_path( 'inc/acf-fields.php' );
+require_once get_theme_file_path( 'inc/ads.php' );
 
 /* テーマ基本設定 */
 add_action( 'after_setup_theme', function () {

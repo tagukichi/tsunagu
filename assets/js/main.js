@@ -393,4 +393,91 @@
       if ((e.key === 'Escape' || e.key === 'Esc') && nav.classList.contains('is-open')) close();
     });
   })();
+
+  /* ---------- 9) フッターの広告スライダー ----------
+     表示枚数は CSS の --per（PC 3／スマホ 1）。登録数がそれ以下なら固定表示、
+     超える場合のみ1枚ずつ自動送り。末尾に先頭の複製を足して切れ目なくループする。
+     マウスを乗せている間・フォーカス中・タブが非表示の間は停止。 */
+  (function () {
+    var roots = document.querySelectorAll('.tsg-pickup');
+    if (!roots.length) return;
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    roots.forEach(function (root) {
+      var viewport = root.querySelector('.tsg-pickup__viewport');
+      var track = root.querySelector('.tsg-pickup__track');
+      if (!viewport || !track) return;
+      var originals = Array.prototype.slice.call(track.children);
+      var interval = parseInt(viewport.getAttribute('data-interval'), 10) || 4000;
+      var timer = null, index = 0, per = 0, step = 0, hover = false;
+
+      function perView() {
+        return parseInt(getComputedStyle(root).getPropertyValue('--per'), 10) || 1;
+      }
+      function measure() {
+        var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+        step = originals[0].getBoundingClientRect().width + gap;
+      }
+      function setPos(animate) {
+        track.style.transition = animate && !reduceMotion ? 'transform .6s ease' : 'none';
+        track.style.transform = 'translateX(' + (-index * step) + 'px)';
+      }
+      function stop() { clearInterval(timer); timer = null; }
+      function start() {
+        if (timer || hover || document.hidden || !root.classList.contains('is-sliding')) return;
+        timer = setInterval(next, interval);
+      }
+      function next() {
+        index += 1;
+        setPos(true);
+        // 動きを抑える設定の場合は transitionend が来ないので、その場で先頭へ戻す
+        if (reduceMotion && index >= originals.length) { index = 0; setPos(false); }
+      }
+      // 複製（先頭と同じ並び）まで送り切ったら、見た目を変えずに先頭位置へ戻す
+      track.addEventListener('transitionend', function (e) {
+        if (e.target !== track || index < originals.length) return;
+        index = 0;
+        setPos(false);
+        void track.offsetWidth; // 次の送りでアニメーションが効くよう再計算させる
+      });
+
+      function build() {
+        stop();
+        track.querySelectorAll('.is-clone').forEach(function (c) { c.remove(); });
+        index = 0;
+        per = perView();
+        var sliding = originals.length > per;
+        root.classList.toggle('is-static', !sliding);
+        root.classList.toggle('is-sliding', sliding);
+        if (!sliding) { track.style.transition = 'none'; track.style.transform = ''; return; }
+        for (var i = 0; i < per; i++) {
+          var clone = originals[i].cloneNode(true);
+          clone.classList.add('is-clone');
+          clone.setAttribute('aria-hidden', 'true');
+          clone.querySelectorAll('a').forEach(function (a) { a.setAttribute('tabindex', '-1'); });
+          track.appendChild(clone);
+        }
+        measure();
+        setPos(false);
+        start();
+      }
+
+      root.addEventListener('mouseenter', function () { hover = true; stop(); });
+      root.addEventListener('mouseleave', function () { hover = false; start(); });
+      root.addEventListener('focusin', function () { hover = true; stop(); });
+      root.addEventListener('focusout', function () { hover = false; start(); });
+      document.addEventListener('visibilitychange', function () { if (document.hidden) stop(); else start(); });
+
+      var resizeTimer = null;
+      window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function () {
+          if (perView() !== per) { build(); return; }
+          if (root.classList.contains('is-sliding')) { measure(); setPos(false); }
+        }, 150);
+      });
+
+      build();
+    });
+  })();
 })();

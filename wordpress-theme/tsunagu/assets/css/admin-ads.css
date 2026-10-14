@@ -1,0 +1,61 @@
+/* 管理画面「広告」 */
+.tsg-ads-help {
+  max-width: 1100px;
+  margin: 14px 0 20px;
+  padding: 10px 18px 12px;
+  background: #fff;
+  border-left: 4px solid #2271b1;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .04);
+}
+.tsg-ads-help p { margin: .6em 0; }
+.tsg-ads-help ul { list-style: disc; margin: 0 0 .4em 20px; }
+.tsg-ads-help li { margin: .25em 0; }
+
+.tsg-ads-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+  max-width: 1100px;
+}
+.tsg-ads-slot {
+  background: #fff;
+  border: 1px solid #c3c4c7;
+  border-radius: 6px;
+  padding: 14px 16px 16px;
+}
+.tsg-ads-slot h2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 0 10px;
+  font-size: 15px;
+}
+.tsg-ads-status {
+  padding: 2px 9px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  background: #e7f5ea;
+  color: #1e6b32;
+}
+.tsg-ads-slot.is-empty .tsg-ads-status { background: #f0f0f1; color: #646970; }
+
+.tsg-ads-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 6 / 5;
+  margin-bottom: 10px;
+  overflow: hidden;
+  border: 1px solid #dcdcde;
+  border-radius: 4px;
+  background: #f6f7f7;
+  color: #8c8f94;
+}
+.tsg-ads-slot.is-empty .tsg-ads-preview { border-style: dashed; }
+.tsg-ads-preview img { display: block; width: 100%; height: 100%; object-fit: contain; }
+
+.tsg-ads-actions { display: flex; align-items: center; gap: 14px; margin: 0 0 12px; }
+.tsg-ads-remove[hidden] { display: none !important; }
+.tsg-ads-url-label { display: block; font-weight: 600; }
+.tsg-ads-url { display: block; box-sizing: border-box; width: 100%; max-width: 100%; margin-top: 4px; font-weight: 400; }

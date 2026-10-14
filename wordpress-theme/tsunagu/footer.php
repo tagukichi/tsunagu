@@ -4,6 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 $d = tsunagu_defaults();
 ?>
 <footer class="site-footer">
+	<?php get_template_part( 'template-parts/footer', 'pickup' ); ?>
 	<?php if ( is_user_logged_in() ) : ?>
 	<div class="site-footer__logout">
 		<a class="logout-btn" href="<?php echo esc_url( wp_logout_url( tsunagu_login_page_url() ) ); ?>">
