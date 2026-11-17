@@ -1,53 +1,14 @@
 <?php
-/** 依頼ページ本体（ヒーロー / 調速 / カード6枚 / TOPIC / 相談CTA / モーダル） */
+/** 依頼ページ本体（TOPIC / カード6枚 / モーダル） */
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-$d            = tsunagu_defaults();
-$featured_img = tsunagu_image_url( 'featured_logo', tsunagu_asset( 'img/cho-sokulogo_yoko.png' ) );
-$topics       = tsunagu_topics( $d['topics'] );
+$d        = tsunagu_defaults();
+$topics   = tsunagu_topics( $d['topics'] );
+$order_pc = tsunagu_card_order( 'cards_order_pc', $d['cards_order_pc'] );
+$order_sp = tsunagu_card_order( 'cards_order_sp', $d['cards_order_sp'] );
 ?>
 
 <main>
-
-	<!-- ヒーロー（右に調速プロモを配置） -->
-	<section class="hero">
-		<div class="container hero__inner">
-			<div class="hero__main" data-reveal>
-				<span class="hero__badge">
-					<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-						<path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-						<path d="M9 12l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-					</svg>
-					<?php echo esc_html( tsunagu_field( 'hero_badge', $d['hero_badge'] ) ); ?>
-				</span>
-				<h1 class="hero__title"><?php echo esc_html( tsunagu_field( 'hero_title', $d['hero_title'] ) ); ?></h1>
-				<?php $mail = tsunagu_field( 'hero_contact_email', $d['hero_contact_email'] ); ?>
-				<?php if ( $mail ) : ?>
-				<p class="hero__contact">
-					<span class="hero__contact-label"><?php echo esc_html( tsunagu_field( 'hero_contact_label', $d['hero_contact_label'] ) ); ?></span>
-					<a class="hero__contact-mail" href="mailto:<?php echo esc_attr( $mail ); ?>"><?php echo esc_html( $mail ); ?></a>
-				</p>
-				<?php endif; ?>
-			</div>
-
-			<aside class="hero__promo" data-reveal>
-				<span class="featured__ribbon"><?php echo esc_html( tsunagu_field( 'featured_ribbon', $d['featured_ribbon'] ) ); ?></span>
-				<div class="featured__box">
-					<div class="featured__brand">
-						<img class="featured__logo" src="<?php echo esc_url( $featured_img ); ?>" alt="調速（チョーソク） 不動産調査アプリ">
-					</div>
-					<div class="featured__body">
-						<p class="featured__product"><?php echo esc_html( tsunagu_field( 'featured_product', $d['featured_product'] ) ); ?><span class="featured__pill"><?php echo esc_html( tsunagu_field( 'featured_pill', $d['featured_pill'] ) ); ?></span></p>
-						<p class="featured__text"><?php echo wp_kses_post( tsunagu_field( 'featured_text', $d['featured_text'] ) ); ?></p>
-					</div>
-					<a class="btn btn--white featured__btn" href="<?php echo esc_url( tsunagu_url( 'featured_btn_url' ) ); ?>">
-						<span><?php echo esc_html( tsunagu_field( 'featured_btn_label', $d['featured_btn_label'] ) ); ?></span>
-					</a>
-				</div>
-			</aside>
-		</div>
-		<div class="hero__skyline" aria-hidden="true"></div>
-	</section>
 
 	<!-- サービスメニュー（固定6枚） -->
 	<section class="services" id="menu">
@@ -68,7 +29,8 @@ $topics       = tsunagu_topics( $d['topics'] );
 
 			<div class="services__grid">
 				<?php
-				foreach ( range( 1, 6 ) as $n ) :
+				// HTMLはPCの並び順で出力し、スマホの並び順は CSS の order（--sp-order）で切り替える
+				foreach ( $order_pc as $n ) :
 					$c      = $d['cards'][ $n ];
 					$theme  = $c['theme'];
 					$tag    = tsunagu_field( "card_{$n}_tag", $c['tag'] );
@@ -78,16 +40,20 @@ $topics       = tsunagu_topics( $d['topics'] );
 					$forms  = tsunagu_card_forms( $n, $c['forms'] );
 					$btn2   = tsunagu_field( "card_{$n}_btn2_label", $c['btn2'] );
 					$ptitle = tsunagu_field( "card_{$n}_popup_title", $c['popup_title'] );
+					$sp_pos = array_search( $n, $order_sp, true ) + 1;
 
-					if ( $n === 4 ) {
-						$pdfurl = tsunagu_file_url( 'card_4_popup_pdf', $c['popup_pdf'] );
-						$popup  = '<object class="popup-pdf" data="' . esc_url( $pdfurl ) . '" type="application/pdf" title="' . esc_attr( $ptitle ) . '"><p class="popup-note">PDFをこの場で表示できない環境のようです。下のリンクからご覧ください。</p></object>'
-							. '<p class="popup-note"><a href="' . esc_url( $pdfurl ) . '" target="_blank" rel="noopener">料金表PDFを新しいタブで開く →</a></p>';
+					// 右ボタンのポップアップ：PDFがあればPDF（ACFで本文を入力していれば本文＋PDF）、なければ本文
+					$pdfurl = tsunagu_file_url( "card_{$n}_popup_pdf", isset( $c['popup_pdf'] ) ? $c['popup_pdf'] : '' );
+					if ( $pdfurl ) {
+						$text  = function_exists( 'get_field' ) ? get_field( "card_{$n}_popup_text" ) : '';
+						$popup = ( is_string( $text ) ? $text : '' )
+							. '<object class="popup-pdf" data="' . esc_url( $pdfurl ) . '" type="application/pdf" title="' . esc_attr( $ptitle ) . '"><p class="popup-note">PDFをこの場で表示できない環境のようです。下のリンクからご覧ください。</p></object>'
+							. '<p class="popup-note"><a href="' . esc_url( $pdfurl ) . '" target="_blank" rel="noopener">PDFを新しいタブで開く →</a></p>';
 					} else {
 						$popup = tsunagu_field( "card_{$n}_popup_text", $c['popup'] );
 					}
 					?>
-					<article class="service-card" data-theme="<?php echo esc_attr( $theme ); ?>" data-reveal>
+					<article class="service-card" data-theme="<?php echo esc_attr( $theme ); ?>" data-card="<?php echo (int) $n; ?>" style="--sp-order:<?php echo (int) $sp_pos; ?>" data-reveal>
 						<span class="service-card__tag"><?php echo esc_html( $tag ); ?></span>
 						<div class="service-card__head">
 							<span class="service-card__icon"><?php echo tsunagu_card_icon( $n ); // phpcs:ignore ?></span>
@@ -103,17 +69,17 @@ $topics       = tsunagu_topics( $d['topics'] );
 									</button>
 									<ul class="pdf-menu" role="menu" hidden>
 										<?php foreach ( $forms as $f ) : ?>
-											<li role="none"><a class="pdf-menu__item" role="menuitem" href="<?php echo esc_url( $f['url'] ); ?>"><?php echo esc_html( $f['label'] ); ?></a></li>
+											<li role="none"><a class="pdf-menu__item" role="menuitem" href="<?php echo esc_url( $f['url'] ); ?>"<?php echo tsunagu_link_target( $f ); // phpcs:ignore ?>><?php echo esc_html( $f['label'] ); ?></a></li>
 										<?php endforeach; ?>
 									</ul>
 								</div>
 							<?php else :
-								$one_url = ! empty( $forms ) ? $forms[0]['url'] : '#'; ?>
-								<a class="btn btn--solid actions__primary" href="<?php echo esc_url( $one_url ); ?>"><?php echo esc_html( $btn1 ); ?></a>
+								$one = ! empty( $forms ) ? $forms[0] : array( 'url' => '#' ); ?>
+								<a class="btn btn--solid actions__primary" href="<?php echo esc_url( $one['url'] ); ?>"<?php echo tsunagu_link_target( $one ); // phpcs:ignore ?>><?php echo esc_html( $btn1 ); ?></a>
 							<?php endif; ?>
-							<button type="button" class="btn btn--outline actions__secondary popup-trigger" data-popup="popup-c<?php echo $n; ?>" data-popup-title="<?php echo esc_attr( $ptitle ); ?>"><?php echo esc_html( $btn2 ); ?></button>
+							<button type="button" class="btn btn--outline actions__secondary popup-trigger" data-popup="popup-c<?php echo (int) $n; ?>" data-popup-title="<?php echo esc_attr( $ptitle ); ?>"><?php echo esc_html( $btn2 ); ?></button>
 						</div>
-						<div class="popup-content" id="popup-c<?php echo $n; ?>" hidden><?php echo $popup; // phpcs:ignore ?></div>
+						<div class="popup-content" id="popup-c<?php echo (int) $n; ?>" hidden><?php echo $popup; // phpcs:ignore ?></div>
 					</article>
 				<?php endforeach; ?>
 			</div>

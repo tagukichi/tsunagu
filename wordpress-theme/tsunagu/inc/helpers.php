@@ -58,10 +58,11 @@ function tsunagu_extract_file_url( $v ) {
 }
 
 /**
- * カードの左ボタン用「フォームリンク」リスト取得
- * （ACF無料版対応：固定スロット card_{n}_form1..4 の label + page〈ページ選択〉）
- * 返り値: [ ['label'=>..., 'url'=>...], ... ]。未入力なら既定配列。
- * 1件 = クリックで直接そのフォームへ遷移／2件以上 = プルダウン表示。
+ * カードの左ボタン用メニュー（リンク）リスト取得
+ * （ACF無料版対応：固定スロット card_{n}_form1..4）
+ * 遷移先は「PDF」→「外部URL」→「ページ選択」の順で優先。PDFと外部URLは新しいタブで開く。
+ * 返り値: [ ['label'=>..., 'url'=>..., 'external'=>bool], ... ]。未入力なら既定配列。
+ * 1件 = クリックで直接遷移／2件以上 = プルダウン表示。
  */
 function tsunagu_card_forms( $n, $default = array() ) {
 	if ( function_exists( 'get_field' ) ) {
@@ -69,21 +70,53 @@ function tsunagu_card_forms( $n, $default = array() ) {
 		for ( $i = 1; $i <= 4; $i++ ) {
 			$label = get_field( "card_{$n}_form{$i}_label" );
 			// ページ選択（Page Link, return_format=url）。配列で返る場合は先頭を採用。
-			$page  = get_field( "card_{$n}_form{$i}_page" );
+			$page = get_field( "card_{$n}_form{$i}_page" );
 			if ( is_array( $page ) ) $page = reset( $page );
-			$url   = is_string( $page ) ? $page : '';
+			$page = is_string( $page ) ? $page : '';
+			$url  = get_field( "card_{$n}_form{$i}_url" );
+			$url  = is_string( $url ) ? trim( $url ) : '';
+			$file = tsunagu_extract_file_url( get_field( "card_{$n}_form{$i}_file" ) );
+
+			if ( $file !== '' )     { $href = $file; $external = true; }
+			elseif ( $url !== '' )  { $href = $url;  $external = true; }
+			elseif ( $page !== '' ) { $href = $page; $external = false; }
+			else                    { $href = '';    $external = false; }
+
 			$has_label = ( $label !== '' && $label !== null );
-			$has_url   = ( $url !== '' );
-			if ( $has_label || $has_url ) {
+			if ( $has_label || $href !== '' ) {
 				$out[] = array(
-					'label' => $has_label ? $label : '依頼',
-					'url'   => $has_url ? $url : '#',
+					'label'    => $has_label ? $label : '依頼',
+					'url'      => $href !== '' ? $href : '#',
+					'external' => $external,
 				);
 			}
 		}
 		if ( ! empty( $out ) ) return $out;
 	}
 	return $default;
+}
+
+/** 新しいタブで開くリンク用の属性 */
+function tsunagu_link_target( $item ) {
+	return ! empty( $item['external'] ) ? ' target="_blank" rel="noopener"' : '';
+}
+
+/**
+ * カードの並び順（カード番号の配列）
+ * 「6,3,4,5,1,2」のようなカンマ区切りを解釈。全角数字も可。抜けた番号は末尾に補う。
+ */
+function tsunagu_card_order( $name, $default ) {
+	$raw = (string) tsunagu_field( $name, $default );
+	if ( function_exists( 'mb_convert_kana' ) ) $raw = mb_convert_kana( $raw, 'n', 'UTF-8' );
+	$order = array();
+	foreach ( preg_split( '/[^0-9]+/', $raw ) as $v ) {
+		$v = (int) $v;
+		if ( $v >= 1 && $v <= 6 && ! in_array( $v, $order, true ) ) $order[] = $v;
+	}
+	foreach ( range( 1, 6 ) as $v ) {
+		if ( ! in_array( $v, $order, true ) ) $order[] = $v;
+	}
+	return $order;
 }
 
 /**

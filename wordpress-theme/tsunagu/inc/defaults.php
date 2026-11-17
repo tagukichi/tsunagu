@@ -10,23 +10,21 @@ function tsunagu_defaults() {
 
 	$d = array(
 		// ヘッダー / 共通
-		'header_ext1_label' => '買付証明書',
-		'header_ext2_label' => '売却合意書',
-		'header_btn_label'  => '利用規約・ダウンロード',
-		'footer_copyright'  => '© TSUNAGU. All rights reserved.',
+		'header_title'         => '会員限定依頼ページ',
+		'header_company_label' => '会社紹介',
+		'header_forms_label'   => '指定書式',
+		'header_ext1_label'    => '買付証明書',
+		'header_ext2_label'    => '売却合意書',
+		'header_btn_label'     => '利用規約・ダウンロード',
+		'footer_copyright'     => '© TSUNAGU. All rights reserved.',
 
-		// ヒーロー
-		'hero_badge'         => '会員限定ポータルサイト',
-		'hero_title'         => 'つなぐ依頼ページ',
-		'hero_contact_label' => '問い合わせ先:',
+		// 問い合わせ先（フッターに表示）※フィールド名はヒーローにあった頃のまま
+		'hero_contact_label' => 'お問い合わせ：',
 		'hero_contact_email' => 'info@tsunagu.example',
 
-		// おすすめツール（調速）
-		'featured_ribbon'    => 'おすすめツール',
-		'featured_product'   => '不動産調査AIツール',
-		'featured_pill'      => '調査・相場確認を効率化',
-		'featured_text'      => '「10秒検索」で物件概要を簡易調査、提案資料を「AI」が自動作成',
-		'featured_btn_label' => '利用案内を見る',
+		// カードの並び順（カード番号をカンマ区切り。PC＝左上から右へ、スマホ＝上から）
+		'cards_order_pc' => '6,3,4,5,1,2',
+		'cards_order_sp' => '1,2,6,3,4,5',
 
 		// TOPIC
 		'topics' => array(
@@ -104,25 +102,35 @@ function tsunagu_defaults() {
 			),
 			5 => array(
 				'theme'       => 'orange',
-				'tag'         => 'イベント・セミナー',
-				'title'       => 'イベント・セミナーの依頼',
-				'desc'        => '勉強会や研修、イベントの企画・運営をサポートします。',
-				'btn1'        => '面談調整',
-				'forms'       => array(),
-				'btn2'        => '詳細',
-				'popup_title' => 'イベント・セミナー依頼について',
-				'popup'       => '<p>弊社では、イベントやセミナーの補助を行っております。不動産業界に関わらず、様々な業界・業種の企業様にご利用いただいております。大手企業様向け・中小企業様向けどちらも対応可能です。</p>',
+				'tag'         => 'Web制作・DX支援',
+				'title'       => 'HP制作・DX支援',
+				'desc'        => 'LP・HP制作から業務の自動化、自社アプリの開発までご相談いただけます。',
+				'btn1'        => '依頼',
+				// メニューが1件の間はボタンから直接フォームへ。2件以上でプルダウン表示
+				'forms'       => array(
+					array( 'label' => 'HP制作', 'url' => '#' ),
+				),
+				'btn2'        => 'サービス・料金案内',
+				'popup_title' => 'サービス・料金案内',
+				// 料金表PDFを登録すると、PDFを表示（この本文は使われない）
+				'popup'       => '<p>以下のサービスをご提供しています。</p><ul><li>LP／HP／掲載型</li><li>業務自動化の相談</li><li>自社アプリ開発等の相談</li></ul>',
+				'popup_pdf'   => '',
 			),
 			6 => array(
 				'theme'       => 'cyan',
-				'tag'         => 'その他のご相談',
-				'title'       => 'その他依頼<small>（営業代行・業務効率化相談など）</small>',
-				'desc'        => '営業代行や業務効率化など、課題に合わせたご相談を承ります。',
-				'btn1'        => '面談調整',
-				'forms'       => array(),
+				'tag'         => '不動産調査AIツール',
+				'title'       => '調速サービス',
+				'desc'        => '「10秒検索」で物件概要を簡易調査、提案資料を「AI」が自動作成する不動産調査AIツールです。',
+				'btn1'        => 'ご利用メニュー',
+				'forms'       => array(
+					array( 'label' => 'ログイン', 'url' => '#' ),
+					array( 'label' => '申込フォーム', 'url' => '#' ),
+					array( 'label' => 'サービス内容（営業資料）', 'url' => '#' ),
+					array( 'label' => '料金表', 'url' => '#' ),
+				),
 				'btn2'        => '詳細',
-				'popup_title' => '個別相談について',
-				'popup'       => '<p>弊社のメイン事業は「営業代行事業」です。継続的なご依頼も、スポット対応でもご相談可能です。</p><p>また、様々な企業様への支援経験を活かし、業務の効率化ツールの紹介や、独自ツールの作成もご協力可能です。簡単なHP作成〜何でもご相談ください。</p>',
+				'popup_title' => '調速（チョーソク）について',
+				'popup'       => '<p>調速（チョーソク）は、不動産の調査・相場確認を効率化するAIツールです。</p><ul><li>「10秒検索」で物件概要を簡易調査</li><li>提案資料を「AI」が自動作成</li></ul>',
 			),
 		),
 	);
@@ -137,8 +145,8 @@ function tsunagu_card_icon( $n ) {
 		2 => '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="9.5" r="3.2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M5.5 19c0-3 2.6-5 5.5-5s5.5 2 5.5 5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="16.5" cy="15" r="2.6" fill="none" stroke="currentColor" stroke-width="1.5"/><line x1="18.4" y1="16.9" x2="20.5" y2="19" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>',
 		3 => '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 7a3 3 0 0 1 4 4l-9 9-2-2 9-9a1 1 0 0 0-1-1z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M6.5 4l3.5 3.5-2.5 2.5L4 6.5a3 3 0 0 1 2.5-2.5z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M13 13l5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>',
 		4 => '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 9V4h10v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><rect x="4" y="9" width="16" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="7" y="14" width="10" height="6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="16.5" cy="11.5" r="0.9" fill="currentColor"/></svg>',
-		5 => '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="4" y="4" width="16" height="10" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8.5 18.5L12 15l3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9.5" cy="8.5" r="1.4" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M13 11c0-1.4 1-2.2 2.2-2.2S17.4 9.6 17.4 11" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>',
-		6 => '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 9l4-2 5 3 5-3 4 2v6l-4 2-3-2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 10l-2.2 2.2a1.4 1.4 0 0 0 2 2l.7-.7.9.9a1.3 1.3 0 0 0 1.9-1.8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+		5 => '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3.5" y="4.5" width="17" height="11.5" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M9 20h6M12 16v4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M10 8.3L8 10.2l2 1.9M14 8.3l2 1.9-2 1.9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+		6 => '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M15 15l5 5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><path d="M8 12.2l1.8-2 1.6 1.2 2-2.6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
 	);
 	return isset( $icons[ $n ] ) ? $icons[ $n ] : '';
 }
