@@ -65,7 +65,7 @@ $order_sp = tsunagu_card_order( 'cards_order_sp', $d['cards_order_sp'] );
 							<span class="service-card__icon"><?php echo tsunagu_card_icon( $n ); // phpcs:ignore ?></span>
 							<h3 class="service-card__title"><?php echo wp_kses_post( $title ); ?></h3>
 						</div>
-						<p class="service-card__desc"><?php echo esc_html( $desc ); ?></p>
+						<p class="service-card__desc"><?php echo nl2br( esc_html( $desc ), false ); // 改行はそのまま改行として表示 ?></p>
 						<div class="service-card__actions actions--split">
 							<?php if ( count( $forms ) >= 2 ) : ?>
 								<div class="pdf-dropdown actions__primary">
