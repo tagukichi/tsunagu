@@ -172,6 +172,15 @@ h1, h2, h3, p { margin: 0; }
 .btn-header--ghost:hover { background: #eaf3ff; }
 .btn-header--solid { color: #fff; background: var(--brand); box-shadow: 0 6px 14px rgba(31, 111, 224, .28); }
 .btn-header--solid:hover { filter: brightness(1.06); }
+/* ログアウト：他のボタンと区別するため灰色の控えめな見た目 */
+.btn-header--logout { color: var(--muted); background: #fff; border-color: #cfd8e4; }
+.btn-header--logout:hover { color: var(--ink); background: #f3f6fa; }
+/* タブレット幅（ハンバーガー表示の手前）：ヘッダーのボタンを詰めて1行に収める */
+@media (min-width: 681px) and (max-width: 960px) {
+  .header-actions { gap: 6px; }
+  .btn-header { padding: 7px 10px; font-size: 12.5px; gap: 4px; }
+  .site-title { font-size: 16px; }
+}
 
 /* ハンバーガー（スマホのみ表示） */
 .header-toggle { display: none; }
