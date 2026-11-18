@@ -78,6 +78,22 @@ add_action( 'acf/init', function () {
 			$fields[] = $F( "card_{$n}_form{$i}_file", "メニュー{$i} PDF", 'file', array( 'return_format' => 'array', 'mime_types' => 'pdf', 'instructions' => ( $i === 1 ? '資料・料金表など' : '' ), 'wrapper' => array( 'width' => '25' ) ) );
 		}
 		$fields[] = $F( "card_{$n}_btn2_label", '右ボタン（小）ラベル', 'text' );
+		$fields[] = array(
+			'key'     => "field_tsg_card_{$n}_btn2msg",
+			'label'   => '右ボタンのリンク先（任意）',
+			'type'    => 'message',
+			'message' => ( in_array( $n, array( 5, 6 ), true )
+				? 'このカードの右ボタンは「申し込み」として、リンク先を開きます。GoogleフォームなどはURL欄（新しいタブで開く）、サイト内のフォームはページ欄に設定してください（URL欄が優先）。'
+				: 'リンク先を設定すると、右ボタンはポップアップではなくリンクになります（URL欄は新しいタブで開きます。URL欄が優先）。未設定ならポップアップを表示します。' ),
+		);
+		$fields[] = $F( "card_{$n}_btn2_url", '右ボタン 外部URL（Googleフォーム等）', 'url', array( 'wrapper' => array( 'width' => '50' ) ) );
+		$fields[] = $F( "card_{$n}_btn2_page", '右ボタン ページ（サイト内フォーム等）', 'page_link', array(
+			'post_type'     => array( 'page' ),
+			'allow_null'    => 1,
+			'multiple'      => 0,
+			'return_format' => 'url',
+			'wrapper'       => array( 'width' => '50' ),
+		) );
 		$fields[] = $F( "card_{$n}_popup_title", '右ボタン ポップアップ 見出し', 'text' );
 		$fields[] = $F( "card_{$n}_popup_pdf", '右ボタン ポップアップ PDF（料金表など・任意）', 'file', array(
 			'return_format' => 'array',

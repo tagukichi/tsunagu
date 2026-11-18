@@ -96,6 +96,25 @@ function tsunagu_card_forms( $n, $default = array() ) {
 	return $default;
 }
 
+/**
+ * カードの右ボタンのリンク先
+ * 管理画面で「外部URL」または「ページ」を設定すると、ポップアップではなくリンクとして動く。
+ * 未設定なら既定値（btn2_link）を返す。既定値もなければ null（＝ポップアップ）。
+ * 返り値: [ 'url'=>..., 'external'=>bool ] または null
+ */
+function tsunagu_card_btn2_link( $n, $default = null ) {
+	if ( function_exists( 'get_field' ) ) {
+		$url = get_field( "card_{$n}_btn2_url" );
+		$url = is_string( $url ) ? trim( $url ) : '';
+		if ( $url !== '' ) return array( 'url' => $url, 'external' => true );
+
+		$page = get_field( "card_{$n}_btn2_page" );
+		if ( is_array( $page ) ) $page = reset( $page );
+		if ( is_string( $page ) && $page !== '' ) return array( 'url' => $page, 'external' => false );
+	}
+	return is_array( $default ) ? $default : null;
+}
+
 /** 新しいタブで開くリンク用の属性 */
 function tsunagu_link_target( $item ) {
 	return ! empty( $item['external'] ) ? ' target="_blank" rel="noopener"' : '';

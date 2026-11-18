@@ -105,15 +105,18 @@ function tsunagu_defaults() {
 				'tag'         => 'Web制作・DX支援',
 				'title'       => 'HP制作・DX支援',
 				'desc'        => 'LP・HP制作から業務の自動化、自社アプリの開発までご相談いただけます。',
-				'btn1'        => '依頼',
-				// メニューが1件の間はボタンから直接フォームへ。2件以上でプルダウン表示
+				// 左（大）：サービス・料金の案内をプルダウンで表示（遷移先は管理画面で設定）
+				'btn1'        => 'サービス料金案内',
 				'forms'       => array(
-					array( 'label' => 'HP制作', 'url' => '#' ),
+					array( 'label' => 'LP・HP掲載型', 'url' => '#', 'external' => true ),
+					array( 'label' => '業務自動化の相談', 'url' => '#', 'external' => true ),
+					array( 'label' => '自社アプリ開発の相談', 'url' => '#', 'external' => true ),
 				),
-				'btn2'        => 'サービス・料金案内',
-				'popup_title' => 'サービス・料金案内',
-				// 料金表PDFを登録すると、PDFを表示（この本文は使われない）
-				'popup'       => '<p>以下のサービスをご提供しています。</p><ul><li>LP／HP／掲載型</li><li>業務自動化の相談</li><li>自社アプリ開発等の相談</li></ul>',
+				// 右（小）：申し込みフォームへ直接移動（ポップアップは使わない）
+				'btn2'        => '申し込み',
+				'btn2_link'   => array( 'url' => '#', 'external' => false ),
+				'popup_title' => '',
+				'popup'       => '',
 				'popup_pdf'   => '',
 			),
 			6 => array(
@@ -121,16 +124,18 @@ function tsunagu_defaults() {
 				'tag'         => '不動産調査AIツール',
 				'title'       => '調速サービス',
 				'desc'        => '「10秒検索」で物件概要を簡易調査、提案資料を「AI」が自動作成する不動産調査AIツールです。',
-				'btn1'        => 'ご利用メニュー',
+				// 左（大）：資料をプルダウンで表示（新しいタブで開く。URL・PDFは管理画面で設定）
+				'btn1'        => '詳細説明',
 				'forms'       => array(
-					array( 'label' => 'ログイン', 'url' => '#' ),
-					array( 'label' => '申込フォーム', 'url' => '#' ),
-					array( 'label' => 'サービス内容（営業資料）', 'url' => '#' ),
-					array( 'label' => '料金表', 'url' => '#' ),
+					array( 'label' => '営業資料', 'url' => '#', 'external' => true ),
+					array( 'label' => 'LP（サービスサイト）', 'url' => '#', 'external' => true ),
+					array( 'label' => '料金表（PDF）', 'url' => '#', 'external' => true ),
 				),
-				'btn2'        => '詳細',
-				'popup_title' => '調速（チョーソク）について',
-				'popup'       => '<p>調速（チョーソク）は、不動産の調査・相場確認を効率化するAIツールです。</p><ul><li>「10秒検索」で物件概要を簡易調査</li><li>提案資料を「AI」が自動作成</li></ul>',
+				// 右（小）：申し込み（Googleフォーム）を新しいタブで開く
+				'btn2'        => '申し込み',
+				'btn2_link'   => array( 'url' => '#', 'external' => true ),
+				'popup_title' => '',
+				'popup'       => '',
 			),
 		),
 	);

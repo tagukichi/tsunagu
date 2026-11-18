@@ -42,9 +42,15 @@ $order_sp = tsunagu_card_order( 'cards_order_sp', $d['cards_order_sp'] );
 					$ptitle = tsunagu_field( "card_{$n}_popup_title", $c['popup_title'] );
 					$sp_pos = array_search( $n, $order_sp, true ) + 1;
 
-					// 右ボタンのポップアップ：PDFがあればPDF（ACFで本文を入力していれば本文＋PDF）、なければ本文
-					$pdfurl = tsunagu_file_url( "card_{$n}_popup_pdf", isset( $c['popup_pdf'] ) ? $c['popup_pdf'] : '' );
-					if ( $pdfurl ) {
+					// 右ボタン：リンク先があればリンク、なければポップアップ
+					$link2  = tsunagu_card_btn2_link( $n, isset( $c['btn2_link'] ) ? $c['btn2_link'] : null );
+					$popup  = '';
+					$pdfurl = $link2 ? '' : tsunagu_file_url( "card_{$n}_popup_pdf", isset( $c['popup_pdf'] ) ? $c['popup_pdf'] : '' );
+
+					// ポップアップ：PDFがあればPDF（ACFで本文を入力していれば本文＋PDF）、なければ本文
+					if ( $link2 ) {
+						// リンクのときはポップアップを出さない
+					} elseif ( $pdfurl ) {
 						$text  = function_exists( 'get_field' ) ? get_field( "card_{$n}_popup_text" ) : '';
 						$popup = ( is_string( $text ) ? $text : '' )
 							. '<object class="popup-pdf" data="' . esc_url( $pdfurl ) . '" type="application/pdf" title="' . esc_attr( $ptitle ) . '"><p class="popup-note">PDFをこの場で表示できない環境のようです。下のリンクからご覧ください。</p></object>'
@@ -77,9 +83,15 @@ $order_sp = tsunagu_card_order( 'cards_order_sp', $d['cards_order_sp'] );
 								$one = ! empty( $forms ) ? $forms[0] : array( 'url' => '#' ); ?>
 								<a class="btn btn--solid actions__primary" href="<?php echo esc_url( $one['url'] ); ?>"<?php echo tsunagu_link_target( $one ); // phpcs:ignore ?>><?php echo esc_html( $btn1 ); ?></a>
 							<?php endif; ?>
-							<button type="button" class="btn btn--outline actions__secondary popup-trigger" data-popup="popup-c<?php echo (int) $n; ?>" data-popup-title="<?php echo esc_attr( $ptitle ); ?>"><?php echo esc_html( $btn2 ); ?></button>
+							<?php if ( $link2 ) : ?>
+								<a class="btn btn--outline actions__secondary" href="<?php echo esc_url( $link2['url'] ); ?>"<?php echo tsunagu_link_target( $link2 ); // phpcs:ignore ?>><?php echo esc_html( $btn2 ); ?></a>
+							<?php else : ?>
+								<button type="button" class="btn btn--outline actions__secondary popup-trigger" data-popup="popup-c<?php echo (int) $n; ?>" data-popup-title="<?php echo esc_attr( $ptitle ); ?>"><?php echo esc_html( $btn2 ); ?></button>
+							<?php endif; ?>
 						</div>
+						<?php if ( ! $link2 ) : ?>
 						<div class="popup-content" id="popup-c<?php echo (int) $n; ?>" hidden><?php echo $popup; // phpcs:ignore ?></div>
+						<?php endif; ?>
 					</article>
 				<?php endforeach; ?>
 			</div>
