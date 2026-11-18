@@ -131,9 +131,9 @@ function tsunagu_defaults() {
 					array( 'label' => 'LP（サービスサイト）', 'url' => '#', 'external' => true ),
 					array( 'label' => '料金表（PDF）', 'url' => '#', 'external' => true ),
 				),
-				// 右（小）：申し込み（Googleフォーム）を新しいタブで開く
+				// 右（小）：申し込み（サイト内の申込フォームページへ移動）
 				'btn2'        => '申し込み',
-				'btn2_link'   => array( 'url' => '#', 'external' => true ),
+				'btn2_link'   => array( 'url' => '#', 'external' => false ),
 				'popup_title' => '',
 				'popup'       => '',
 			),
