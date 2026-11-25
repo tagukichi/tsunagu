@@ -4,6 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 $d        = tsunagu_defaults();
 $topics   = tsunagu_topics( $d['topics'] );
+$topics_in_header = ( tsunagu_field( 'topics_position', $d['topics_position'] ) === 'header' );
 $order_pc = tsunagu_card_order( 'cards_order_pc', $d['cards_order_pc'] );
 $order_sp = tsunagu_card_order( 'cards_order_sp', $d['cards_order_sp'] );
 ?>
@@ -15,7 +16,7 @@ $order_sp = tsunagu_card_order( 'cards_order_sp', $d['cards_order_sp'] );
 		<div class="container">
 
 			<?php if ( ! empty( $topics ) ) : ?>
-			<div class="topics" data-reveal>
+			<div class="topics<?php echo $topics_in_header ? ' topics--below' : ''; ?>" data-reveal>
 				<span class="topics__label">TOPIC</span>
 				<div class="topics__viewport">
 					<ul class="topics__track">

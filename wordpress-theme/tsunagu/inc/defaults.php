@@ -15,7 +15,6 @@ function tsunagu_defaults() {
 		'header_forms_label'   => '指定書式',
 		'header_ext1_label'    => '買付証明書',
 		'header_ext2_label'    => '売却合意書',
-		'header_btn_label'     => '利用規約・ダウンロード',
 		'footer_copyright'     => '© TSUNAGU. All rights reserved.',
 
 		// 問い合わせ先（フッターに表示）※フィールド名はヒーローにあった頃のまま
@@ -26,7 +25,8 @@ function tsunagu_defaults() {
 		'cards_order_pc' => '6,3,4,5,1,2',
 		'cards_order_sp' => '1,2,6,3,4,5',
 
-		// TOPIC
+		// TOPIC（表示位置：header＝PCはヘッダー内／cards＝カードの上）
+		'topics_position' => 'header',
 		'topics' => array(
 			'1棟案件アパート求む',
 			'ボロ戸建て投資家に提案可能',

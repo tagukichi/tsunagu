@@ -22,7 +22,17 @@
 			</a>
 							<h1 class="site-title">会員限定依頼ページ</h1>
 					</div>
-		<button type="button" class="header-toggle" aria-label="メニューを開く" aria-expanded="false" aria-controls="header-nav">
+				<div class="topics topics--header">
+			<span class="topics__label">TOPIC</span>
+			<div class="topics__viewport">
+				<ul class="topics__track">
+											<li class="topics__item">1棟案件アパート求む</li>
+											<li class="topics__item">ボロ戸建て投資家に提案可能</li>
+											<li class="topics__item">500万円以下の案件は是非！</li>
+									</ul>
+			</div>
+		</div>
+				<button type="button" class="header-toggle" aria-label="メニューを開く" aria-expanded="false" aria-controls="header-nav">
 			<span class="header-toggle__bar"></span>
 		</button>
 		<nav class="header-actions" id="header-nav">
@@ -39,15 +49,7 @@
 											<li role="none"><a class="pdf-menu__item" role="menuitem" href="#" download>売却合意書</a></li>
 									</ul>
 			</div>
-						<a href="#" class="btn-header btn-header--solid">
-				<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-					<path d="M12 4v10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-					<path d="M8 11l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-					<path d="M5 19h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-				</svg>
-				<span>利用規約・ダウンロード</span>
-			</a>
-			<a href="#" class="btn-header btn-header--logout">
+									<a href="#" class="btn-header btn-header--logout">
 				<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
 					<path d="M15 17l5-5-5-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
 					<path d="M20 12H9" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
@@ -55,7 +57,7 @@
 				</svg>
 				<span>ログアウト</span>
 			</a>
-		</nav>
+					</nav>
 	</div>
 </header>
 
@@ -65,7 +67,7 @@
 	<section class="services" id="menu">
 		<div class="container">
 
-						<div class="topics" data-reveal>
+						<div class="topics topics--below" data-reveal>
 				<span class="topics__label">TOPIC</span>
 				<div class="topics__viewport">
 					<ul class="topics__track">
@@ -83,22 +85,24 @@
 							<span class="service-card__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M15 15l5 5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><path d="M8 12.2l1.8-2 1.6 1.2 2-2.6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
 							<h3 class="service-card__title">調速サービス</h3>
 						</div>
-						<p class="service-card__desc">住所を入力して、約5分。<br>不動産調査業務を効率化する<br>クラウド型ソフトウェア。</p>
+						<p class="service-card__desc">住所を入力して、約5分。<br>
+不動産調査業務を効率化する<br>
+クラウド型ソフトウェア。</p>
 						<div class="service-card__actions actions--split">
-								<div class="pdf-dropdown actions__primary">
+															<div class="pdf-dropdown actions__primary">
 									<button type="button" class="btn btn--solid pdf-trigger" aria-haspopup="true" aria-expanded="false">
 										<span>詳細説明</span>
 										<svg class="pdf-caret" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
 									</button>
 									<ul class="pdf-menu" role="menu" hidden>
-										<li role="none"><a class="pdf-menu__item" role="menuitem" href="#" target="_blank" rel="noopener">営業資料</a></li>
-										<li role="none"><a class="pdf-menu__item" role="menuitem" href="#" target="_blank" rel="noopener">LP（サービスサイト）</a></li>
-										<li role="none"><a class="pdf-menu__item" role="menuitem" href="#" target="_blank" rel="noopener">料金表（PDF）</a></li>
-									</ul>
+																					<li role="none"><a class="pdf-menu__item" role="menuitem" href="#" target="_blank" rel="noopener">営業資料</a></li>
+																					<li role="none"><a class="pdf-menu__item" role="menuitem" href="#" target="_blank" rel="noopener">LP（サービスサイト）</a></li>
+																					<li role="none"><a class="pdf-menu__item" role="menuitem" href="#" target="_blank" rel="noopener">料金表（PDF）</a></li>
+																			</ul>
 								</div>
-								<a class="btn btn--outline actions__secondary" href="#">申し込み</a>
-						</div>
-					</article>
+																						<a class="btn btn--outline actions__secondary" href="#">申し込み</a>
+													</div>
+											</article>
 									<article class="service-card" data-theme="green" data-card="3" style="--sp-order:4" data-reveal>
 						<span class="service-card__tag">工事・リフォーム・派遣</span>
 						<div class="service-card__head">
@@ -117,10 +121,10 @@
 																					<li role="none"><a class="pdf-menu__item" role="menuitem" href="#">リフォームの見積依頼</a></li>
 																			</ul>
 								</div>
-														<button type="button" class="btn btn--outline actions__secondary popup-trigger" data-popup="popup-c3" data-popup-title="工事・リフォーム・派遣について">詳細</button>
-						</div>
-						<div class="popup-content" id="popup-c3" hidden><p>つなぐ提携会社様をご紹介可能です。まずは実際の現場の見積からおつなぎ致します。</p><p>大切な弊社のパートナー企業様をおつなぎ致しますので、軽率な依頼はご遠慮ください。</p></div>
-					</article>
+																						<button type="button" class="btn btn--outline actions__secondary popup-trigger" data-popup="popup-c3" data-popup-title="工事・リフォーム・派遣について">詳細</button>
+													</div>
+												<div class="popup-content" id="popup-c3" hidden><p>つなぐ提携会社様をご紹介可能です。まずは実際の現場の見積からおつなぎ致します。</p><p>大切な弊社のパートナー企業様をおつなぎ致しますので、軽率な依頼はご遠慮ください。</p></div>
+											</article>
 									<article class="service-card" data-theme="purple" data-card="4" style="--sp-order:5" data-reveal>
 						<span class="service-card__tag">印刷・制作</span>
 						<div class="service-card__head">
@@ -130,10 +134,10 @@
 						<p class="service-card__desc">名刺やチラシなどの印刷物制作をサポートします。</p>
 						<div class="service-card__actions actions--split">
 															<a class="btn btn--solid actions__primary" href="#">面談調整</a>
-														<button type="button" class="btn btn--outline actions__secondary popup-trigger" data-popup="popup-c4" data-popup-title="印刷メニュー・料金表">ご料金</button>
-						</div>
-						<div class="popup-content" id="popup-c4" hidden><object class="popup-pdf" data="assets/pdf/print-pricing.pdf" type="application/pdf" title="印刷メニュー・料金表"><p class="popup-note">PDFをこの場で表示できない環境のようです。下のリンクからご覧ください。</p></object><p class="popup-note"><a href="assets/pdf/print-pricing.pdf" target="_blank" rel="noopener">PDFを新しいタブで開く →</a></p></div>
-					</article>
+																						<button type="button" class="btn btn--outline actions__secondary popup-trigger" data-popup="popup-c4" data-popup-title="印刷メニュー・料金表">ご料金</button>
+													</div>
+												<div class="popup-content" id="popup-c4" hidden><object class="popup-pdf" data="assets/pdf/print-pricing.pdf" type="application/pdf" title="印刷メニュー・料金表"><p class="popup-note">PDFをこの場で表示できない環境のようです。下のリンクからご覧ください。</p></object><p class="popup-note"><a href="assets/pdf/print-pricing.pdf" target="_blank" rel="noopener">PDFを新しいタブで開く →</a></p></div>
+											</article>
 									<article class="service-card" data-theme="orange" data-card="5" style="--sp-order:6" data-reveal>
 						<span class="service-card__tag">Web制作・DX支援</span>
 						<div class="service-card__head">
@@ -142,20 +146,20 @@
 						</div>
 						<p class="service-card__desc">LP・HP制作から業務の自動化、自社アプリの開発までご相談いただけます。</p>
 						<div class="service-card__actions actions--split">
-								<div class="pdf-dropdown actions__primary">
+															<div class="pdf-dropdown actions__primary">
 									<button type="button" class="btn btn--solid pdf-trigger" aria-haspopup="true" aria-expanded="false">
 										<span>サービス料金案内</span>
 										<svg class="pdf-caret" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
 									</button>
 									<ul class="pdf-menu" role="menu" hidden>
-										<li role="none"><a class="pdf-menu__item" role="menuitem" href="#" target="_blank" rel="noopener">LP・HP掲載型</a></li>
-										<li role="none"><a class="pdf-menu__item" role="menuitem" href="#" target="_blank" rel="noopener">業務自動化の相談</a></li>
-										<li role="none"><a class="pdf-menu__item" role="menuitem" href="#" target="_blank" rel="noopener">自社アプリ開発の相談</a></li>
-									</ul>
+																					<li role="none"><a class="pdf-menu__item" role="menuitem" href="#" target="_blank" rel="noopener">LP・HP掲載型</a></li>
+																					<li role="none"><a class="pdf-menu__item" role="menuitem" href="#" target="_blank" rel="noopener">業務自動化の相談</a></li>
+																					<li role="none"><a class="pdf-menu__item" role="menuitem" href="#" target="_blank" rel="noopener">自社アプリ開発の相談</a></li>
+																			</ul>
 								</div>
-								<a class="btn btn--outline actions__secondary" href="#">申し込み</a>
-						</div>
-					</article>
+																						<a class="btn btn--outline actions__secondary" href="#">申し込み</a>
+													</div>
+											</article>
 									<article class="service-card" data-theme="blue" data-card="1" style="--sp-order:1" data-reveal>
 						<span class="service-card__tag">売却の相談・依頼</span>
 						<div class="service-card__head">
@@ -174,10 +178,10 @@
 																					<li role="none"><a class="pdf-menu__item" role="menuitem" href="#">仲介物件の売却依頼</a></li>
 																			</ul>
 								</div>
-														<button type="button" class="btn btn--outline actions__secondary popup-trigger" data-popup="popup-c1" data-popup-title="売却のご相談について">詳細</button>
-						</div>
-						<div class="popup-content" id="popup-c1" hidden><p>自社物件の売却や、一般のお客様から預かった物件の売却依頼はこちらからご依頼ください。</p><ul><li>水面下で進めたい</li><li>まずは強気価格で出したい</li><li>仲介手数料を事前に定めた上で案件を出したい。</li></ul><p>など、柔軟なご依頼が可能です。</p></div>
-					</article>
+																						<button type="button" class="btn btn--outline actions__secondary popup-trigger" data-popup="popup-c1" data-popup-title="売却のご相談について">詳細</button>
+													</div>
+												<div class="popup-content" id="popup-c1" hidden><p>自社物件の売却や、一般のお客様から預かった物件の売却依頼はこちらからご依頼ください。</p><ul><li>水面下で進めたい</li><li>まずは強気価格で出したい</li><li>仲介手数料を事前に定めた上で案件を出したい。</li></ul><p>など、柔軟なご依頼が可能です。</p></div>
+											</article>
 									<article class="service-card" data-theme="teal" data-card="2" style="--sp-order:2" data-reveal>
 						<span class="service-card__tag">仕入・エンド情報</span>
 						<div class="service-card__head">
@@ -196,10 +200,10 @@
 																					<li role="none"><a class="pdf-menu__item" role="menuitem" href="#">一般買主の購入ニーズを依頼</a></li>
 																			</ul>
 								</div>
-														<button type="button" class="btn btn--outline actions__secondary popup-trigger" data-popup="popup-c2" data-popup-title="仕入・エンド情報について">詳細</button>
-						</div>
-						<div class="popup-content" id="popup-c2" hidden><p>自社物件の仕入や、一般のお客様が希望されるニーズ情報の共有はこちらからご依頼ください。</p><p>案件情報のうち、約70%が未公開案件であり、値下げ案件も多くございます。仕入にも適した案件情報をご提供致します。</p></div>
-					</article>
+																						<button type="button" class="btn btn--outline actions__secondary popup-trigger" data-popup="popup-c2" data-popup-title="仕入・エンド情報について">詳細</button>
+													</div>
+												<div class="popup-content" id="popup-c2" hidden><p>自社物件の仕入や、一般のお客様が希望されるニーズ情報の共有はこちらからご依頼ください。</p><p>案件情報のうち、約70%が未公開案件であり、値下げ案件も多くございます。仕入にも適した案件情報をご提供致します。</p></div>
+											</article>
 							</div>
 		</div>
 	</section>

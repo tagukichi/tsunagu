@@ -119,20 +119,20 @@
     });
   }
 
-  /* ---------- 4) TOPIC マーキー ---------- */
+  /* ---------- 4) TOPIC マーキー（ヘッダー内／カードの上の両方に対応） ---------- */
   (function () {
-    var track = document.querySelector('.topics__track');
-    if (!track) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    var items = Array.prototype.slice.call(track.children);
-    if (!items.length) return;
-    // シームレスなループのため、項目を1セット複製する
-    items.forEach(function (li) {
-      var clone = li.cloneNode(true);
-      clone.setAttribute('aria-hidden', 'true');
-      track.appendChild(clone);
+    document.querySelectorAll('.topics__track').forEach(function (track) {
+      var items = Array.prototype.slice.call(track.children);
+      if (!items.length) return;
+      // シームレスなループのため、項目を1セット複製する
+      items.forEach(function (li) {
+        var clone = li.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        track.appendChild(clone);
+      });
+      track.classList.add('is-marquee');
     });
-    track.classList.add('is-marquee');
   })();
 
   /* ---------- 5) パスワード表示切替（ログイン画面） ---------- */

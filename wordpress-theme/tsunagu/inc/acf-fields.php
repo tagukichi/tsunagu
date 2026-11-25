@@ -45,8 +45,6 @@ add_action( 'acf/init', function () {
 	$fields[] = $F( 'header_ext1_file', '書式1 ファイル（Excel等）', 'file', array( 'return_format' => 'array', 'wrapper' => array( 'width' => '60' ) ) );
 	$fields[] = $F( 'header_ext2_label', '書式2 ラベル', 'text', array( 'placeholder' => '売却合意書', 'wrapper' => array( 'width' => '40' ) ) );
 	$fields[] = $F( 'header_ext2_file', '書式2 ファイル（Excel等）', 'file', array( 'return_format' => 'array', 'wrapper' => array( 'width' => '60' ) ) );
-	$fields[] = $F( 'header_btn_label', 'ヘッダーメインボタン ラベル', 'text', array( 'placeholder' => '利用規約・ダウンロード', 'wrapper' => array( 'width' => '40' ) ) );
-	$fields[] = $F( 'header_btn_url', 'ヘッダーメインボタン リンクURL', 'url', array( 'wrapper' => array( 'width' => '60' ) ) );
 	$fields[] = $F( 'hero_contact_label', '問い合わせ先 ラベル（フッターに表示）', 'text', array( 'placeholder' => 'お問い合わせ：', 'wrapper' => array( 'width' => '40' ) ) );
 	$fields[] = $F( 'hero_contact_email', '問い合わせ先 メールアドレス（フッターに表示）', 'email', array( 'placeholder' => 'info@example.com', 'wrapper' => array( 'width' => '60' ) ) );
 	$fields[] = $F( 'footer_copyright', 'フッター コピーライト', 'text' );
@@ -114,6 +112,14 @@ add_action( 'acf/init', function () {
 	$fields[] = $F( 'cards_order_sp', 'スマホの並び順', 'text', array( 'placeholder' => '1,2,6,3,4,5', 'wrapper' => array( 'width' => '50' ) ) );
 
 	$fields[] = $TAB( 'TOPIC' );
+	$fields[] = $F( 'topics_position', 'TOPICの表示位置', 'radio', array(
+		'choices'       => array(
+			'header' => 'ヘッダー内（PCのみ。タブレット・スマホはカードの上）',
+			'cards'  => 'カードの上（すべての端末）',
+		),
+		'default_value' => 'header',
+		'layout'        => 'vertical',
+	) );
 	$fields[] = $F( 'topics_text', 'TOPIC（1行に1件）', 'textarea', array(
 		'rows'         => 4,
 		'instructions' => 'カードの上に流れるお知らせ。1行＝1件。例）1棟案件アパート求む',

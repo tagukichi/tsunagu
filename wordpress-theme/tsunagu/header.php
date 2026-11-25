@@ -16,7 +16,10 @@ foreach ( array( 1, 2 ) as $i ) {
 	}
 }
 // トップページではページ名を見出し（h1）に
-$title_tag = ( is_front_page() || is_page_template( 'template-tsunagu.php' ) ) ? 'h1' : 'p';
+$is_top    = ( is_front_page() || is_page_template( 'template-tsunagu.php' ) );
+$title_tag = $is_top ? 'h1' : 'p';
+// TOPIC：表示位置が「ヘッダー内」のとき、トップページのヘッダーに表示（PCのみ。狭い画面はカードの上に表示）
+$header_topics = ( $is_top && tsunagu_field( 'topics_position', $d['topics_position'] ) === 'header' ) ? tsunagu_topics( $d['topics'] ) : array();
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -39,6 +42,18 @@ $title_tag = ( is_front_page() || is_page_template( 'template-tsunagu.php' ) ) ?
 				<<?php echo $title_tag; ?> class="site-title"><?php echo esc_html( $title ); ?></<?php echo $title_tag; ?>>
 			<?php endif; ?>
 		</div>
+		<?php if ( $header_topics ) : ?>
+		<div class="topics topics--header">
+			<span class="topics__label">TOPIC</span>
+			<div class="topics__viewport">
+				<ul class="topics__track">
+					<?php foreach ( $header_topics as $t ) : ?>
+						<li class="topics__item"><?php echo esc_html( $t ); ?></li>
+					<?php endforeach; ?>
+				</ul>
+			</div>
+		</div>
+		<?php endif; ?>
 		<button type="button" class="header-toggle" aria-label="メニューを開く" aria-expanded="false" aria-controls="header-nav">
 			<span class="header-toggle__bar"></span>
 		</button>
@@ -61,14 +76,6 @@ $title_tag = ( is_front_page() || is_page_template( 'template-tsunagu.php' ) ) ?
 				</ul>
 			</div>
 			<?php endif; ?>
-			<a href="<?php echo esc_url( tsunagu_url( 'header_btn_url' ) ); ?>" class="btn-header btn-header--solid">
-				<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-					<path d="M12 4v10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-					<path d="M8 11l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-					<path d="M5 19h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-				</svg>
-				<span><?php echo esc_html( tsunagu_field( 'header_btn_label', $d['header_btn_label'] ) ); ?></span>
-			</a>
 			<?php if ( is_user_logged_in() ) : ?>
 			<a href="<?php echo esc_url( wp_logout_url( tsunagu_login_page_url() ) ); ?>" class="btn-header btn-header--logout">
 				<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
