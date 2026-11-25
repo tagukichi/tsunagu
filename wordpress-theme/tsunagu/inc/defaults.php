@@ -25,8 +25,7 @@ function tsunagu_defaults() {
 		'cards_order_pc' => '6,3,4,5,1,2',
 		'cards_order_sp' => '1,2,6,3,4,5',
 
-		// TOPIC（表示位置：header＝PCはヘッダー内／cards＝カードの上）
-		'topics_position' => 'header',
+		// TOPIC
 		'topics' => array(
 			'1棟案件アパート求む',
 			'ボロ戸建て投資家に提案可能',
@@ -123,7 +122,7 @@ function tsunagu_defaults() {
 				'theme'       => 'cyan',
 				'tag'         => '不動産調査AIツール',
 				'title'       => '調速サービス',
-				'desc'        => "住所を入力して、約5分。\n不動産調査業務を効率化する\nクラウド型ソフトウェア。",
+				'desc'        => "住所を入力して、約5分。\n不動産調査業務を効率化するクラウド型ソフトウェア。",
 				// 左（大）：資料をプルダウンで表示（新しいタブで開く。URL・PDFは管理画面で設定）
 				'btn1'        => '詳細説明',
 				'forms'       => array(

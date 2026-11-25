@@ -4,7 +4,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-define( 'TSUNAGU_VER', '1.3.4' );
+define( 'TSUNAGU_VER', '1.3.5' );
 
 require_once get_theme_file_path( 'inc/helpers.php' );
 require_once get_theme_file_path( 'inc/defaults.php' );

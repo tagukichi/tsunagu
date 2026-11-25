@@ -150,27 +150,6 @@ h1, h2, h3, p { margin: 0; }
   white-space: nowrap;
 }
 
-/* ヘッダー内のTOPIC（管理画面で「ヘッダー内」を選んだとき。PCのみ表示） */
-.topics.topics--header { display: none; }
-@media (min-width: 1025px) {
-  .topics.topics--header {
-    display: flex;
-    flex: 1 1 auto;
-    min-width: 0;
-    gap: 10px;
-    margin: 0 22px;
-    padding: 6px 8px 6px 6px;
-    border-radius: 999px;
-    box-shadow: 0 6px 16px rgba(20, 52, 110, .14);
-  }
-  .topics--header .topics__label { font-size: 11px; padding: 5px 12px; }
-  .topics--header .topics__item { font-size: 13.5px; padding: 0 18px 0 26px; }
-  .topics--header .topics__item::before { left: 10px; width: 5px; height: 5px; }
-  .topics.topics--below { display: none; }
-  /* TOPICが残りの幅を使い、右のボタンは1行のまま縮めない */
-  .site-header__inner .header-actions { flex: none; flex-wrap: nowrap; }
-}
-
 /* ヘッダーの「指定書式」プルダウン（カードのプルダウンと同じ部品） */
 .header-dropdown .pdf-trigger { width: auto; }
 .header-dropdown .pdf-menu { left: auto; right: 0; }

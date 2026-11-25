@@ -112,14 +112,6 @@ add_action( 'acf/init', function () {
 	$fields[] = $F( 'cards_order_sp', 'スマホの並び順', 'text', array( 'placeholder' => '1,2,6,3,4,5', 'wrapper' => array( 'width' => '50' ) ) );
 
 	$fields[] = $TAB( 'TOPIC' );
-	$fields[] = $F( 'topics_position', 'TOPICの表示位置', 'radio', array(
-		'choices'       => array(
-			'header' => 'ヘッダー内（PCのみ。タブレット・スマホはカードの上）',
-			'cards'  => 'カードの上（すべての端末）',
-		),
-		'default_value' => 'header',
-		'layout'        => 'vertical',
-	) );
 	$fields[] = $F( 'topics_text', 'TOPIC（1行に1件）', 'textarea', array(
 		'rows'         => 4,
 		'instructions' => 'カードの上に流れるお知らせ。1行＝1件。例）1棟案件アパート求む',
