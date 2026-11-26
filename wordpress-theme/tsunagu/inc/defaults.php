@@ -101,8 +101,8 @@ function tsunagu_defaults() {
 			),
 			5 => array(
 				'theme'       => 'orange',
-				'tag'         => 'Web制作・DX支援',
-				'title'       => 'HP制作・DX支援',
+				'tag'         => 'Web制作・業務効率化',
+				'title'       => 'HP制作・業務自動化',
 				'desc'        => 'LP・HP制作から業務の自動化、自社アプリの開発までご相談いただけます。',
 				// 左（大）：サービス・料金の案内をプルダウンで表示（遷移先は管理画面で設定）
 				'btn1'        => 'サービス料金案内',

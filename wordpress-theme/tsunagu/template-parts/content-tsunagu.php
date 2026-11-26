@@ -15,7 +15,7 @@ $order_sp = tsunagu_card_order( 'cards_order_sp', $d['cards_order_sp'] );
 		<div class="container">
 
 			<?php if ( ! empty( $topics ) ) : ?>
-			<!-- TOPIC（スマホ用。PC・タブレットはフッターに表示） -->
+			<!-- TOPIC（タブレット・スマホ用。PCはヘッダー内に表示） -->
 			<div class="topics topics--sp" data-reveal>
 				<span class="topics__label">TOPIC</span>
 				<div class="topics__viewport">

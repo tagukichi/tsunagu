@@ -27,7 +27,7 @@ add_action( 'acf/init', function () {
 
 	/* ---------------- 依頼ページ ---------------- */
 	$fields = array();
-	$names  = array( 1 => '売却物件', 2 => '仕入・エンド情報', 3 => '工事', 4 => '名刺・チラシ', 5 => 'HP制作・DX支援', 6 => '調速サービス' );
+	$names  = array( 1 => '売却物件', 2 => '仕入・エンド情報', 3 => '工事', 4 => '名刺・チラシ', 5 => 'HP制作・業務自動化', 6 => '調速サービス' );
 
 	$fields[] = $TAB( 'ヘッダー / 共通' );
 	$fields[] = $F( 'site_logo', 'ロゴ画像（ヘッダー共通）', 'image', array( 'return_format' => 'array', 'instructions' => '未設定時はテーマ同梱ロゴを表示' ) );
@@ -106,7 +106,7 @@ add_action( 'acf/init', function () {
 		'key'     => 'field_tsg_cards_order_msg',
 		'label'   => '並び順の指定方法',
 		'type'    => 'message',
-		'message' => 'カード番号（各タブ名の番号）をカンマ区切りで入力します。PCは左上から右へ、スマホは上から順に並びます。<br>カード番号：1 売却物件／2 仕入・エンド情報／3 工事／4 名刺・チラシ／5 HP制作・DX支援／6 調速サービス<br>入力しなかった番号は末尾に並びます。',
+		'message' => 'カード番号（各タブ名の番号）をカンマ区切りで入力します。PCは左上から右へ、スマホは上から順に並びます。<br>カード番号：1 売却物件／2 仕入・エンド情報／3 工事／4 名刺・チラシ／5 HP制作・業務自動化／6 調速サービス<br>入力しなかった番号は末尾に並びます。',
 	);
 	$fields[] = $F( 'cards_order_pc', 'PCの並び順', 'text', array( 'placeholder' => '6,3,4,5,1,2', 'wrapper' => array( 'width' => '50' ) ) );
 	$fields[] = $F( 'cards_order_sp', 'スマホの並び順', 'text', array( 'placeholder' => '1,2,6,3,4,5', 'wrapper' => array( 'width' => '50' ) ) );

@@ -671,11 +671,27 @@ h1, h2, h3, p { margin: 0; }
 body:not(.login-page) { display: flex; flex-direction: column; min-height: 100vh; }
 body.admin-bar:not(.login-page) { min-height: calc(100vh - 32px); }
 .site-footer { flex: 1 0 auto; background: #eef2f8; border-top: 1px solid var(--line); padding-top: 10px; }
-/* フッターのTOPIC（PC・タブレット） */
-.site-footer__topics { width: 100%; max-width: var(--container); margin: 0 auto 8px; padding-inline: var(--gutter); }
-.topics.topics--footer { margin-bottom: 0; padding: 5px 12px; box-shadow: 0 6px 14px rgba(20, 52, 110, .12); }
-.topics--footer .topics__label { font-size: 11.5px; padding: 5px 12px; }
-.topics--footer .topics__item { font-size: 14px; }
+/* ヘッダーの横幅を広げ、ロゴとボタンの間にTOPICを置く（PCのみ。タブレット・スマホはカードの上） */
+.site-header .container { max-width: 1680px; }
+.topics.topics--header { display: none; }
+@media (min-width: 1025px) {
+  .topics.topics--header {
+    display: flex;
+    flex: 1 1 auto;
+    min-width: 0;
+    gap: 10px;
+    margin: 0 24px;
+    padding: 6px 8px 6px 6px;
+    border-radius: 999px;
+    box-shadow: 0 6px 16px rgba(20, 52, 110, .14);
+  }
+  .topics--header .topics__label { font-size: 11.5px; padding: 5px 12px; }
+  .topics--header .topics__item { font-size: 14px; padding: 0 18px 0 26px; }
+  .topics--header .topics__item::before { left: 10px; width: 5px; height: 5px; }
+  /* TOPICが残りの幅を使い、右のボタンは1行のまま縮めない */
+  .site-header__inner .header-actions { flex: none; flex-wrap: nowrap; }
+  .topics.topics--sp { display: none; }
+}
 /* 見える高さが小さい画面（1366×768のノートPCなど）では、1画面に収めるためタグを隠し、ロゴを一回り小さく */
 @media (min-width: 681px) and (max-height: 760px) {
   .service-card__tag { display: none; }
@@ -689,9 +705,6 @@ body.admin-bar:not(.login-page) { min-height: calc(100vh - 32px); }
   .services { padding-block: 10px; }
   .services__grid { gap: 10px; }
 }
-/* TOPICの出し分け：PC・タブレットはフッター、スマホはカードの上 */
-@media (min-width: 681px) { .topics.topics--sp { display: none; } }
-@media (max-width: 680px) { .site-footer__topics { display: none; } }
 .site-footer__bottom {
   display: flex;
   flex-wrap: wrap;
