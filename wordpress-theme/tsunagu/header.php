@@ -18,8 +18,6 @@ foreach ( array( 1, 2 ) as $i ) {
 // トップページではページ名を見出し（h1）に
 $is_top    = ( is_front_page() || is_page_template( 'template-tsunagu.php' ) );
 $title_tag = $is_top ? 'h1' : 'p';
-// TOPIC：トップページのヘッダー内（ロゴとボタンの間）に表示。PCのみ（タブレット・スマホはカードの上に表示）
-$header_topics = $is_top ? tsunagu_topics( $d['topics'] ) : array();
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -42,18 +40,6 @@ $header_topics = $is_top ? tsunagu_topics( $d['topics'] ) : array();
 				<<?php echo $title_tag; ?> class="site-title"><?php echo esc_html( $title ); ?></<?php echo $title_tag; ?>>
 			<?php endif; ?>
 		</div>
-		<?php if ( $header_topics ) : ?>
-		<div class="topics topics--header">
-			<span class="topics__label">TOPIC</span>
-			<div class="topics__viewport">
-				<ul class="topics__track">
-					<?php foreach ( $header_topics as $t ) : ?>
-						<li class="topics__item"><?php echo esc_html( $t ); ?></li>
-					<?php endforeach; ?>
-				</ul>
-			</div>
-		</div>
-		<?php endif; ?>
 		<button type="button" class="header-toggle" aria-label="メニューを開く" aria-expanded="false" aria-controls="header-nav">
 			<span class="header-toggle__bar"></span>
 		</button>
