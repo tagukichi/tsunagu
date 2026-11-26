@@ -102,13 +102,14 @@ function tsunagu_defaults() {
 			5 => array(
 				'theme'       => 'orange',
 				'tag'         => 'Web制作・業務効率化',
-				'title'       => 'HP制作・業務自動化',
-				'desc'        => 'LP・HP制作から業務の自動化、自社アプリの開発までご相談いただけます。',
+				'title'       => 'HP制作・業務自動化・生成AI研修',
+				'desc'        => 'LP・HP制作から業務の自動化、生成AI研修、自社アプリの開発までご相談いただけます。',
 				// 左（大）：サービス・料金の案内をプルダウンで表示（遷移先は管理画面で設定）
 				'btn1'        => 'サービス料金案内',
 				'forms'       => array(
 					array( 'label' => 'LP・HP掲載型', 'url' => '#', 'external' => true ),
 					array( 'label' => '業務自動化の相談', 'url' => '#', 'external' => true ),
+					array( 'label' => '生成AI研修の相談', 'url' => '#', 'external' => true ),
 					array( 'label' => '自社アプリ開発の相談', 'url' => '#', 'external' => true ),
 				),
 				// 右（小）：申し込みフォームへ直接移動（ポップアップは使わない）

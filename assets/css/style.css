@@ -445,7 +445,8 @@ h1, h2, h3, p { margin: 0; }
 .featured__btn .icon { width: 18px; height: 18px; }
 
 /* ---------- 7. サービスカード ---------- */
-.services { padding-block: 14px 16px; background: #fff; }
+/* 6枚のカードの上下の余白：画面の高さに応じて 14〜40px（低い画面でも1画面に収まる範囲） */
+.services { padding-block: clamp(14px, 3.4vh, 40px); background: #fff; }
 .services__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -461,7 +462,7 @@ h1, h2, h3, p { margin: 0; }
   border: 1px solid #2b2b2b;
   border-radius: var(--radius);
   box-shadow: var(--shadow-card);
-  padding: 10px 16px 10px;
+  padding: 14px 16px 14px;
 }
 
 /* カラーテーマ */
@@ -694,6 +695,7 @@ body.admin-bar:not(.login-page) { min-height: calc(100vh - 32px); }
 }
 /* 見える高さが小さい画面（1366×768のノートPCなど）では、1画面に収めるためタグを隠し、ロゴを一回り小さく */
 @media (min-width: 681px) and (max-height: 760px) {
+  .service-card { padding-block: 12px; }
   .service-card__tag { display: none; }
   .service-card__head { margin-top: 0; }
   .site-logo__img { height: 70px; }
@@ -702,7 +704,7 @@ body.admin-bar:not(.login-page) { min-height: calc(100vh - 32px); }
 /* さらに低い画面（ブックマークバー表示の1366×768など） */
 @media (min-width: 681px) and (max-height: 640px) {
   .site-logo__img { height: 58px; }
-  .services { padding-block: 10px; }
+  .service-card { padding-block: 10px; }
   .services__grid { gap: 10px; }
 }
 .site-footer__bottom {
