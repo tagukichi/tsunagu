@@ -57,7 +57,8 @@
 	<section class="services" id="menu">
 		<div class="container">
 
-						<div class="topics" data-reveal>
+						<!-- TOPIC（スマホ用。PC・タブレットはフッターに表示） -->
+			<div class="topics topics--sp" data-reveal>
 				<span class="topics__label">TOPIC</span>
 				<div class="topics__viewport">
 					<ul class="topics__track">
@@ -203,30 +204,46 @@
        フッター  [ACF] footer_copyright
   ============================================================ -->
   <footer class="site-footer">
-    <!-- 広告エリア（WPでは管理メニュー「広告」の登録内容。未登録なら非表示）
-         PC 3枚／スマホ 1枚。超える分は自動スライド。以下はサンプル4件 -->
-    <section class="tsg-pickup" aria-label="広告">
-      <div class="tsg-pickup__inner">
-        <p class="tsg-pickup__label">PR</p>
-        <div class="tsg-pickup__viewport" data-interval="4000">
-          <ul class="tsg-pickup__track">
-            <li class="tsg-pickup__item"><a class="tsg-pickup__link" href="#" target="_blank" rel="sponsored noopener"><img class="tsg-pickup__img" src="assets/img/sample-pickup-1.svg" alt="広告画像1" width="600" height="500" loading="lazy"></a></li>
-            <li class="tsg-pickup__item"><a class="tsg-pickup__link" href="#" target="_blank" rel="sponsored noopener"><img class="tsg-pickup__img" src="assets/img/sample-pickup-2.svg" alt="広告画像2" width="600" height="500" loading="lazy"></a></li>
-            <li class="tsg-pickup__item"><a class="tsg-pickup__link" href="#" target="_blank" rel="sponsored noopener"><img class="tsg-pickup__img" src="assets/img/sample-pickup-3.svg" alt="広告画像3" width="600" height="500" loading="lazy"></a></li>
-            <li class="tsg-pickup__item"><a class="tsg-pickup__link" href="#" target="_blank" rel="sponsored noopener"><img class="tsg-pickup__img" src="assets/img/sample-pickup-4.svg" alt="広告画像4" width="600" height="500" loading="lazy"></a></li>
-          </ul>
-        </div>
-      </div>
-    </section>
-    <!-- ログアウト帯（WPではログイン中のみ表示） -->
-    <div class="container">
-      <p class="site-footer__contact">
+		<div class="site-footer__topics">
+		<div class="topics topics--footer">
+			<span class="topics__label">TOPIC</span>
+			<div class="topics__viewport">
+				<ul class="topics__track">
+											<li class="topics__item">1棟案件アパート求む</li>
+											<li class="topics__item">ボロ戸建て投資家に提案可能</li>
+											<li class="topics__item">500万円以下の案件は是非！</li>
+									</ul>
+			</div>
+		</div>
+	</div>
+		<section class="tsg-pickup" aria-label="広告">
+	<div class="tsg-pickup__inner">
+		<div class="tsg-pickup__viewport" data-interval="4000">
+			<ul class="tsg-pickup__track">
+									<li class="tsg-pickup__item">
+													<a class="tsg-pickup__link" href="#" target="_blank" rel="sponsored noopener"><img src="assets/img/sample-pickup-1.svg" width="600" height="200" class="tsg-pickup__img" alt="広告画像1" sizes="300px" loading="lazy" decoding="async"></a>
+											</li>
+									<li class="tsg-pickup__item">
+													<a class="tsg-pickup__link" href="#" target="_blank" rel="sponsored noopener"><img src="assets/img/sample-pickup-2.svg" width="600" height="200" class="tsg-pickup__img" alt="広告画像2" sizes="300px" loading="lazy" decoding="async"></a>
+											</li>
+									<li class="tsg-pickup__item">
+													<a class="tsg-pickup__link" href="#" target="_blank" rel="sponsored noopener"><img src="assets/img/sample-pickup-3.svg" width="600" height="200" class="tsg-pickup__img" alt="広告画像3" sizes="300px" loading="lazy" decoding="async"></a>
+											</li>
+									<li class="tsg-pickup__item">
+													<a class="tsg-pickup__link" href="#" target="_blank" rel="sponsored noopener"><img src="assets/img/sample-pickup-4.svg" width="600" height="200" class="tsg-pickup__img" alt="広告画像4" sizes="300px" loading="lazy" decoding="async"></a>
+											</li>
+							</ul>
+		</div>
+	</div>
+</section>
+	<div class="container site-footer__bottom">
+						<p class="site-footer__contact">
 			<span>お問い合わせ：</span>
 			<a href="mailto:info@tsunagu.example">info@tsunagu.example</a>
 		</p>
-      <small class="site-footer__copy">&copy; TSUNAGU. All rights reserved.</small>
-    </div>
-  </footer>
+				<small class="site-footer__copy">© TSUNAGU. All rights reserved.</small>
+	</div>
+</footer>
 
   <!-- ============================================================
        共通ポップアップ（右ボタン用）

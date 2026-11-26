@@ -1,7 +1,7 @@
 <?php
 /**
  * フッターの広告エリア（管理メニュー「広告」で登録）
- * PC 3枚／スマホ 1枚を表示し、超える分は main.js が自動スライドで入れ替える。
+ * 横長バナー（表示300×100px）を PC 3枚／スマホ 1枚表示し、超える分は main.js が自動スライドで入れ替える。
  * 広告が1件もなければ何も出力しない。
  * ※ 広告ブロッカーで消されないよう、クラス名に ad / banner を使わない。
  */
@@ -12,7 +12,6 @@ if ( ! $items ) return;
 ?>
 <section class="tsg-pickup" aria-label="広告">
 	<div class="tsg-pickup__inner">
-		<p class="tsg-pickup__label">PR</p>
 		<div class="tsg-pickup__viewport" data-interval="4000">
 			<ul class="tsg-pickup__track">
 				<?php foreach ( $items as $item ) :
